@@ -1,7 +1,7 @@
 #include <iostream>
 #include "leetcode.h"
 
-int main() {
+void twoSum() {
     auto *lc = new Leetcode();
     std::vector<int> nums = {2, 7, 11, 15};
     int target = 9;
@@ -14,5 +14,18 @@ int main() {
     }
     std::cout << "]" << std::endl;
     delete lc;
+}
+
+void isPalindrom() {
+    auto *lc = new Leetcode();
+    int x = 121;
+    bool res = Leetcode::isPalindrome(x);
+    std::cout << res << std::endl;
+    delete lc;
+}
+
+int main() {
+    twoSum();
+    isPalindrom();
     return 0;
 }
