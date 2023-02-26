@@ -1,5 +1,5 @@
-#ifndef WORK_ZZZ_CPP_LEETCODE_H
-#define WORK_ZZZ_CPP_LEETCODE_H
+#ifndef LEETCODE_CPP_LEETCODE_H
+#define LEETCODE_CPP_LEETCODE_H
 
 #include <string>
 #include <vector>
