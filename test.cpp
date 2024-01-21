@@ -16,6 +16,12 @@ void twoSum() {
     delete lc;
 }
 
+void length_of_longest_substring() {
+    std::string input = "your_input_string_here";
+    int res = Leetcode::length_of_longest_substring(input);
+    std::cout << res << std::endl;
+}
+
 void isPalindrom() {
     auto *lc = new Leetcode();
     int x = 121;
@@ -26,6 +32,7 @@ void isPalindrom() {
 
 int main() {
     twoSum();
+    length_of_longest_substring();
     isPalindrom();
     return 0;
 }

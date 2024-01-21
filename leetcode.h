@@ -23,6 +23,24 @@ public:
         return {};
     }
 
+    // 3: /problems/longest-substring-without-repeating-characters/
+    static int length_of_longest_substring(const std::string& s) {
+        std::string ss;
+        int ll = 0, cl = 0;
+        for (char x : s) {
+            auto it = std::find(ss.begin(), ss.end(), x);
+            if (it != ss.end()) {
+                ss = std::string(it + 1, ss.end()) + x;
+                cl = static_cast<int>(ss.length());
+            } else {
+                ss += x;
+                cl++;
+                ll = (cl > ll) ? cl : ll;
+            }
+        }
+        return ll;
+    }
+
     // 9: /problems/palindrome-number/
     static bool isPalindrome(int x) {
         std::string s0 = std::to_string(x);
