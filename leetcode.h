@@ -12,13 +12,13 @@ public:
     virtual ~Leetcode() = default;
 
     // 1: /problems/two-sum/
-    static std::vector<int> twoSum(std::vector<int>& nums, int target) {
+    static std::vector<int> two_sum(std::vector<int>& nums, int target) {
         std::unordered_map<int, int> dic;
-        for (int i = 0; i < nums.size(); i++) {
-            if (dic.find(target - nums[i]) != dic.end()) {
-                return {dic[target - nums[i]], i};
+        for (int i = 0; i < nums.size(); ++i) {
+            if (dic.find(nums[i]) != dic.end()) {
+                return {dic[nums[i]], i};
             }
-            dic[nums[i]] = i;
+            dic[target - nums[i]] = i;
         }
         return {};
     }
