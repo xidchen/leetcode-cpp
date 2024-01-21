@@ -17,17 +17,15 @@ void length_of_longest_substring() {
     std::cout << res << std::endl;
 }
 
-void isPalindrom() {
-    auto *lc = new Leetcode();
+void is_palindrom() {
     int x = 121;
-    bool res = Leetcode::isPalindrome(x);
-    std::cout << res << std::endl;
-    delete lc;
+    bool res = Leetcode::is_palindrome(x);
+    std::cout << std::boolalpha << res << std::endl;
 }
 
 int main() {
     two_sum();
     length_of_longest_substring();
-    isPalindrom();
+    is_palindrom();
     return 0;
 }

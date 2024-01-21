@@ -42,11 +42,9 @@ public:
     }
 
     // 9: /problems/palindrome-number/
-    static bool isPalindrome(int x) {
-        std::string s0 = std::to_string(x);
-        std::string s1 = s0;
-        std::reverse(s0.begin(), s0.end());
-        return s0 == s1;
+    static bool is_palindrome(int x) {
+        std::string str_x = std::to_string(x);
+        return str_x == std::string(str_x.rbegin(), str_x.rend());
     }
 };
 
