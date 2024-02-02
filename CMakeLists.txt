@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.19)
-project(leetcode_cpp)
+project(Leetcode)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(leetcode_cpp test.cpp leetcode.h)
+add_executable(Leetcode test.cpp leetcode.h)
