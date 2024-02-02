@@ -41,6 +41,31 @@ public:
         return ll;
     }
 
+    // 6: /problems/zigzag-conversion/
+    static std::string convert(const std::string& s, int num_rows) {
+        if (num_rows == 1 || s.length() < num_rows) {
+            return s;
+        }
+        std::vector<std::string> zigzag(num_rows, "");
+        int row = 0;
+        int step = 1;
+        for (char c : s) {
+            zigzag[row] += c;
+            if (row == 0) {
+                step = 1;
+            }
+            if (row == num_rows - 1) {
+                step = -1;
+            }
+            row += step;
+        }
+        std::string res;
+        for (const std::string& str : zigzag) {
+            res += str;
+        }
+        return res;
+    }
+
     // 9: /problems/palindrome-number/
     static bool is_palindrome(int x) {
         std::string str_x = std::to_string(x);
