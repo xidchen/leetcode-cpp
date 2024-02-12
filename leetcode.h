@@ -25,20 +25,19 @@ public:
 
     // 3: /problems/longest-substring-without-repeating-characters/
     static int length_of_longest_substring(const std::string& s) {
-        std::string ss;
-        int ll = 0, cl = 0;
-        for (char x : s) {
-            auto it = std::find(ss.begin(), ss.end(), x);
-            if (it != ss.end()) {
-                ss = std::string(it + 1, ss.end()) + x;
-                cl = static_cast<int>(ss.length());
+        std::unordered_map<char, int> last_seen;
+        int start = 0, longest = 0;
+        for (int i = 0; i < s.length(); ++i) {
+            char c = s[i];
+            if (last_seen.find(c) != last_seen.end() &&
+                last_seen[c] >= start) {
+                start = last_seen[c] + 1;
             } else {
-                ss += x;
-                cl++;
-                ll = (cl > ll) ? cl : ll;
+                longest = std::max(longest, i - start + 1);
             }
+            last_seen[c] = i;
         }
-        return ll;
+        return longest;
     }
 
     // 6: /problems/zigzag-conversion/
