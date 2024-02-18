@@ -65,6 +65,17 @@ public:
         return res;
     }
 
+    // 7: /problems/reverse-integer/
+    static int reverse(int x) {
+        int y = x < 0 ? -x : x;
+        std::string str_y = std::to_string(y);
+        std::reverse(str_y.begin(), str_y.end());
+        long long reversed = std::stoll(str_y);
+        if (x < 0) reversed = -reversed;
+        if (reversed < INT_MIN || reversed > INT_MAX) return 0;
+        return static_cast<int>(reversed);
+    }
+
     // 9: /problems/palindrome-number/
     static bool is_palindrome(int x) {
         std::string str_x = std::to_string(x);

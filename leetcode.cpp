@@ -25,6 +25,12 @@ void convert() {
     std::cout << "Zigzag conversion: " << res << std::endl;
 }
 
+void reverse() {
+    int x = -123;
+    int res = Leetcode::reverse(x);
+    std::cout << "Reverse: " << res << std::endl;
+}
+
 void is_palindrom() {
     int x = 121;
     bool res = Leetcode::is_palindrome(x);
@@ -35,6 +41,7 @@ int main() {
     two_sum();
     length_of_longest_substring();
     convert();
+    reverse();
     is_palindrom();
     return 0;
 }
