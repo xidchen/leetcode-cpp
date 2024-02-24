@@ -40,6 +40,33 @@ public:
         return longest;
     }
 
+    // 5: /problems/longest-palindromic-substring/
+    static std::string longest_palindromic_substring(const std::string& s) {
+        if (s.length() < 2 || s == std::string(s.rbegin(), s.rend())) {
+            return s;
+        }
+        int start = -1, ml = 0;
+        for (int i = 0; i < s.length(); i++) {
+            std::string odd, even;
+            if (i - ml - 1 >= 0) {
+                odd = s.substr(i - ml - 1, ml + 2);
+            }
+            if (i - ml >= 0) {
+                even = s.substr(i - ml, ml + 1);
+            }
+            if (!odd.empty() && is_palindromic_string(odd)) {
+                start = i - ml - 1;
+                ml += 2;
+                continue;
+            }
+            if (!even.empty() && is_palindromic_string(even)) {
+                start = i - ml;
+                ml += 1;
+            }
+        }
+        return s.substr(start, ml);
+    }
+
     // 6: /problems/zigzag-conversion/
     static std::string convert(const std::string& s, int num_rows) {
         if (num_rows == 1 || s.length() < num_rows) {
@@ -80,6 +107,19 @@ public:
     static bool is_palindrome(int x) {
         std::string str_x = std::to_string(x);
         return str_x == std::string(str_x.rbegin(), str_x.rend());
+    }
+
+private:
+    static bool is_palindromic_string(const std::string& s) {
+        std::string::size_type left = 0, right = s.length() - 1;
+        while (left < right) {
+            if (s[left] != s[right]) {
+                return false;
+            }
+            ++left;
+            --right;
+        }
+        return true;
     }
 };
 

@@ -18,6 +18,12 @@ void length_of_longest_substring() {
     std::cout << "Length of longest substring: " << res << std::endl;
 }
 
+void longest_palindromic_substring() {
+    std::string input = "babad";
+    std::string res = Leetcode::longest_palindromic_substring(input);
+    std::cout << "Longest palindromic substring: " << res << std::endl;
+}
+
 void convert() {
     std::string input = "PAYPALISHIRING";
     int num_rows = 3;
@@ -40,6 +46,7 @@ void is_palindrom() {
 int main() {
     two_sum();
     length_of_longest_substring();
+    longest_palindromic_substring();
     convert();
     reverse();
     is_palindrom();
