@@ -42,7 +42,8 @@ public:
 
     // 5: /problems/longest-palindromic-substring/
     static std::string longest_palindromic_substring(const std::string& s) {
-        if (s.length() < 2 || s == std::string(s.rbegin(), s.rend())) {
+        if (s.length() < 2 || s == std::string(
+                s.rbegin(), s.rend())) {
             return s;
         }
         int start = -1, ml = 0;
@@ -54,12 +55,14 @@ public:
             if (i - ml >= 0) {
                 even = s.substr(i - ml, ml + 1);
             }
-            if (!odd.empty() && is_palindromic_string(odd)) {
+            if (!odd.empty() && odd == std::string(
+                    odd.rbegin(), odd.rend())) {
                 start = i - ml - 1;
                 ml += 2;
                 continue;
             }
-            if (!even.empty() && is_palindromic_string(even)) {
+            if (!even.empty() && even == std::string(
+                    even.rbegin(), even.rend())) {
                 start = i - ml;
                 ml += 1;
             }
@@ -109,18 +112,6 @@ public:
         return str_x == std::string(str_x.rbegin(), str_x.rend());
     }
 
-private:
-    static bool is_palindromic_string(const std::string& s) {
-        std::string::size_type left = 0, right = s.length() - 1;
-        while (left < right) {
-            if (s[left] != s[right]) {
-                return false;
-            }
-            ++left;
-            --right;
-        }
-        return true;
-    }
 };
 
 #endif
