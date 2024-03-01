@@ -37,9 +37,9 @@ void convert() {
 
 // 7: /problems/reverse-integer/
 void reverse() {
-    int x = -120;
+    int x = -2147483648;
     int res = Leetcode::reverse(x);
-    std::cout << "Reverse: " << res << std::endl;
+    std::cout << "Reverse integer: " << res << std::endl;
 }
 
 // 9: /problems/palindrome-number/

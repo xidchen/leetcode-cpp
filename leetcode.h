@@ -97,6 +97,7 @@ public:
 
     // 7: /problems/reverse-integer/
     static int reverse(int x) {
+        if (x == INT_MIN) return 0;
         bool negative = x < 0;
         x = abs(x);
         long long y = 0;
