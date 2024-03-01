@@ -37,7 +37,7 @@ void convert() {
 
 // 7: /problems/reverse-integer/
 void reverse() {
-    int x = -123;
+    int x = -120;
     int res = Leetcode::reverse(x);
     std::cout << "Reverse: " << res << std::endl;
 }

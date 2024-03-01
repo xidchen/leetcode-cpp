@@ -97,13 +97,15 @@ public:
 
     // 7: /problems/reverse-integer/
     static int reverse(int x) {
-        int y = x < 0 ? -x : x;
-        std::string str_y = std::to_string(y);
-        std::reverse(str_y.begin(), str_y.end());
-        long long reversed = std::stoll(str_y);
-        if (x < 0) reversed = -reversed;
-        if (reversed < INT_MIN || reversed > INT_MAX) return 0;
-        return static_cast<int>(reversed);
+        bool negative = x < 0;
+        x = abs(x);
+        long long y = 0;
+        while (x != 0) {
+            y = y * 10 + x % 10;
+            x /= 10;
+        }
+        if (y > INT_MAX) return 0;
+        return negative ? static_cast<int>(-y) : static_cast<int>(y);
     }
 
     // 9: /problems/palindrome-number/
