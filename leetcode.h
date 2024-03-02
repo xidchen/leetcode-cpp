@@ -114,8 +114,7 @@ public:
     static int my_atoi(std::string& s) {
         s.erase(0, s.find_first_not_of(' '));
         if (s.empty()) return 0;
-        int i = 0;
-        int sign = 1;
+        int i = 0, sign = 1;
         if (s[i] == '+' || s[i] == '-') sign = (s[i++] == '+') ? 1: -1;
         long long res = 0;
         while (i < s.length() && isdigit(s[i])) {
