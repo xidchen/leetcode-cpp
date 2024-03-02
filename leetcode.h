@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <unordered_map>
+#include <unordered_set>
 
 class Leetcode {
 public:
@@ -107,6 +108,22 @@ public:
         }
         if (y > INT_MAX) return 0;
         return negative ? static_cast<int>(-y) : static_cast<int>(y);
+    }
+
+    // 8: /problems/string-to-integer-atoi/
+    static int my_atoi(std::string& s) {
+        s.erase(0, s.find_first_not_of(' '));
+        if (s.empty()) return 0;
+        int i = 0;
+        int sign = 1;
+        if (s[i] == '+' || s[i] == '-') sign = (s[i++] == '+') ? 1: -1;
+        long long res = 0;
+        while (i < s.length() && isdigit(s[i])) {
+            res = res * 10 + (s[i++] - '0');
+            if (res * sign > INT_MAX) return INT_MAX;
+            if (res * sign < INT_MIN) return INT_MIN;
+        }
+        return static_cast<int>(res * sign);
     }
 
     // 9: /problems/palindrome-number/

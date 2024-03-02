@@ -42,6 +42,13 @@ void reverse() {
     std::cout << "Reverse integer: " << res << std::endl;
 }
 
+// 8: /problems/string-to-integer-atoi/
+void my_atoi() {
+    std::string s = " -273 degree ";
+    int res = Leetcode::my_atoi(s);
+    std::cout << "String to integer (atoi): " << res << std::endl;
+}
+
 // 9: /problems/palindrome-number/
 void is_palindrome() {
     int x = 121;
@@ -56,5 +63,6 @@ int main() {
     convert();
     reverse();
     is_palindrome();
+    my_atoi();
     return 0;
 }
