@@ -62,7 +62,7 @@ int main() {
     longest_palindromic_substring();
     convert();
     reverse();
-    is_palindrome();
     my_atoi();
+    is_palindrome();
     return 0;
 }

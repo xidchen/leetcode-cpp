@@ -127,8 +127,8 @@ public:
 
     // 9: /problems/palindrome-number/
     static bool is_palindrome(int x) {
-        std::string str_x = std::to_string(x);
-        return str_x == std::string(str_x.rbegin(), str_x.rend());
+        std::string s = std::to_string(x);
+        return s == std::string(s.rbegin(), s.rend());
     }
 
 };
