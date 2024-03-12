@@ -1,10 +1,11 @@
 #ifndef LEETCODE_CPP_LEETCODE_H
 #define LEETCODE_CPP_LEETCODE_H
 
+#include <functional>
 #include <string>
-#include <vector>
 #include <unordered_map>
 #include <unordered_set>
+#include <vector>
 
 class Leetcode {
 public:
@@ -129,6 +130,25 @@ public:
     static bool is_palindrome(int x) {
         std::string s = std::to_string(x);
         return s == std::string(s.rbegin(), s.rend());
+    }
+
+    // 10: /problems/regular-expression-matching/
+    static bool is_match(const std::string& s, const std::string& p) {
+        std::vector<std::vector<bool>> dp(
+                s.length() + 1,
+                std::vector<bool>(p.length() + 1, false));
+        dp[s.length()][p.length()] = true;
+        for (size_t i = s.length(); i != static_cast<size_t>(-1); --i) {
+            for (size_t j = p.length() - 1; j != static_cast<size_t>(-1); --j) {
+                bool first_match = i < s.length() && (p[j] == s[i] || p[j] == '.');
+                if (j + 1 < p.length() && p[j + 1] == '*') {
+                    dp[i][j] = dp[i][j + 2] || (first_match && dp[i + 1][j]);
+                } else {
+                    dp[i][j] = first_match && dp[i + 1][j + 1];
+                }
+            }
+        }
+        return dp[0][0];
     }
 
 };

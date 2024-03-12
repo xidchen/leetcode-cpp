@@ -56,6 +56,14 @@ void is_palindrome() {
     std::cout << "Is palindrome: " << std::boolalpha << res << std::endl;
 }
 
+// 10: /problems/regular-expression-matching/
+void is_match() {
+    std::string s = "aa";
+    std::string p = "a*";
+    bool res = Leetcode::is_match(s, p);
+    std::cout << "Regular expression matching: " << res << std::endl;
+}
+
 int main() {
     two_sum();
     length_of_longest_substring();
@@ -64,5 +72,6 @@ int main() {
     reverse();
     my_atoi();
     is_palindrome();
+    is_match();
     return 0;
 }
