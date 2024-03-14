@@ -151,6 +151,21 @@ public:
         return dp[0][0];
     }
 
+    // 11: /problems/container-with-most-water/
+    static int max_area(const std::vector<int>& height) {
+        int max_area = 0;
+        size_t i = 0, j = height.size() - 1;
+        while (i < j) {
+            max_area = std::max(
+                    max_area,
+                    std::min(static_cast<int>(height[i]), static_cast<int>(height[j])) *
+                    static_cast<int>(j - i));
+            if (height[i] < height[j]) i++;
+            else j--;
+        }
+        return max_area;
+    }
+
 };
 
 #endif

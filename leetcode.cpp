@@ -64,6 +64,13 @@ void is_match() {
     std::cout << "Regular expression matching: " << res << std::endl;
 }
 
+// 11: /problems/container-with-most-water/
+void max_area() {
+    std::vector<int> height = {1, 8, 6, 2, 5, 4, 8, 3, 7};
+    int res = Leetcode::max_area(height);
+    std::cout << "Container with most water: " << res << std::endl;
+}
+
 int main() {
     two_sum();
     length_of_longest_substring();
@@ -73,5 +80,6 @@ int main() {
     my_atoi();
     is_palindrome();
     is_match();
+    max_area();
     return 0;
 }
