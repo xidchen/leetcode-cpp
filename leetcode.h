@@ -166,6 +166,27 @@ public:
         return max_area;
     }
 
+    // 12: /problems/integer-to-roman/
+    static std::string int_to_roman(int num) {
+        std::vector<std::pair<int, std::string>> mapping {
+            {1000, "M"}, {900, "CM"},
+            {500, "D"}, {400, "CD"},
+            {100, "C"}, {90, "XC"},
+            {50, "L"}, {40, "XL"},
+            {10, "X"}, {9, "IX"},
+            {5, "V"}, {4, "IV"},
+            {1, "I"},
+        };
+        std::string romans;
+        for (const auto& pair : mapping) {
+            while (pair.first <= num) {
+                num -= pair.first;
+                romans += pair.second;
+            }
+        }
+        return romans;
+    }
+
 };
 
 #endif

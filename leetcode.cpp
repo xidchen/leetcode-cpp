@@ -71,6 +71,13 @@ void max_area() {
     std::cout << "Container with most water: " << res << std::endl;
 }
 
+// 12: /problems/integer-to-roman/
+void int_to_roman() {
+    int num = 2024;
+    std::string res = Leetcode::int_to_roman(num);
+    std::cout << "Integer to roman: " << res << std::endl;
+}
+
 int main() {
     two_sum();
     length_of_longest_substring();
@@ -81,5 +88,6 @@ int main() {
     is_palindrome();
     is_match();
     max_area();
+    int_to_roman();
     return 0;
 }
