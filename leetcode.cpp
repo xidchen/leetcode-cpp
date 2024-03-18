@@ -78,6 +78,14 @@ void int_to_roman() {
     std::cout << "Integer to roman: " << res << std::endl;
 }
 
+// 13: /problems/roman-to-integer/
+void roman_to_int() {
+    std::string s = "MMXXIV";
+    int res = Leetcode::roman_to_int(s);
+    std::cout << "Roman to integer: " << res << std::endl;
+}
+
+
 int main() {
     two_sum();
     length_of_longest_substring();
@@ -89,5 +97,6 @@ int main() {
     is_match();
     max_area();
     int_to_roman();
+    roman_to_int();
     return 0;
 }

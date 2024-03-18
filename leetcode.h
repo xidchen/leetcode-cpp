@@ -187,6 +187,27 @@ public:
         return romans;
     }
 
+    // 13: /problems/roman-to-integer/
+    static int roman_to_int(const std::string& s) {
+        std::unordered_map<char, int> d = {
+            {'I', 1}, {'V', 5},
+            {'X', 10}, {'L', 50},
+            {'C', 100}, {'D', 500},
+            {'M', 1000},
+        };
+        int integer = 0, prev_int = 0;
+        for (std::string::size_type i = s.size(); i-- > 0;) {
+            char roman = s[i];
+            if (d[roman] >= prev_int) {
+                prev_int = d[roman];
+                integer += d[roman];
+            } else {
+                integer -= d[roman];
+            }
+        }
+        return integer;
+    }
+
 };
 
 #endif
