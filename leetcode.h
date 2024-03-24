@@ -1,6 +1,7 @@
 #ifndef LEETCODE_CPP_LEETCODE_H
 #define LEETCODE_CPP_LEETCODE_H
 
+#include <algorithm>
 #include <functional>
 #include <string>
 #include <unordered_map>
@@ -206,6 +207,19 @@ public:
             }
         }
         return integer;
+    }
+
+    // 14: /problems/longest-common-prefix/
+    static std::string longest_common_prefix(std::vector<std::string>& strs) {
+        if (strs.empty()) return "";
+        if (strs.size() == 1) return strs[0];
+        std::sort(strs.begin(), strs.end());
+        std::string result;
+        for (size_t i = 0; i < strs[0].size() && i < strs.back().size(); i++) {
+            if (strs[0][i] == strs.back()[i]) result.push_back(strs[0][i]);
+            else break;
+        }
+        return result;
     }
 
 };

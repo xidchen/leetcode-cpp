@@ -85,6 +85,13 @@ void roman_to_int() {
     std::cout << "Roman to integer: " << res << std::endl;
 }
 
+// 14: /problems/longest-common-prefix/
+void longest_common_prefix() {
+    std::vector<std::string> strs = {"flower", "flow", "flight"};
+    std::string res = Leetcode::longest_common_prefix(strs);
+    std::cout << "Longest common integer: " << res << std::endl;
+}
+
 
 int main() {
     two_sum();
@@ -98,5 +105,6 @@ int main() {
     max_area();
     int_to_roman();
     roman_to_int();
+    longest_common_prefix();
     return 0;
 }
