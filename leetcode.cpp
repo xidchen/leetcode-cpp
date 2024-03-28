@@ -6,11 +6,12 @@ void two_sum() {
     std::vector<int> nums = {2, 7, 11, 15};
     int target = 9;
     std::vector<int> res = Leetcode::two_sum(nums, target);
-    std::cout << "Two sum: ";
-    for (int index : res) {
-        std::cout << index << " ";
+    std::cout << "Two sum: [";
+    for (size_t i = 0; i < res.size(); ++i) {
+        std::cout << res[i];
+        if (i < res.size() - 1) std::cout << ", ";
     }
-    std::cout << std::endl;
+    std::cout << "]" << std::endl;
 }
 
 // 3: /problems/longest-substring-without-repeating-characters/
@@ -92,6 +93,23 @@ void longest_common_prefix() {
     std::cout << "Longest common integer: " << res << std::endl;
 }
 
+// 15: /problems/3sum
+void three_sum() {
+    std::vector<int> nums = {-1, 0, 1, 2, -1, -4};
+    std::vector<std::vector<int>> res = Leetcode::three_sum(nums);
+    std::cout << "Three sum: [";
+    for (size_t i = 0; i < res.size(); ++i) {
+        std::cout << "[";
+        for (size_t j = 0; j < res[i].size(); ++j) {
+            std::cout << res[i][j];
+            if (j < res[i].size() - 1) std::cout << ", ";
+        }
+        std::cout << "]";
+        if (i < res.size() - 1) std::cout << ", ";
+    }
+    std::cout << "]" << std::endl;
+}
+
 
 int main() {
     two_sum();
@@ -106,5 +124,6 @@ int main() {
     int_to_roman();
     roman_to_int();
     longest_common_prefix();
+    three_sum();
     return 0;
 }

@@ -222,6 +222,44 @@ public:
         return result;
     }
 
+    // 15: /problems/3sum
+    static std::vector<std::vector<int>> three_sum(std::vector<int>& nums) {
+        std::unordered_map<int, int> dic;
+        std::vector<std::vector<int>> res;
+        for (int n : nums) dic[n]++;
+        std::vector<int> sorted_nums;
+        sorted_nums.reserve(dic.size());
+        for (auto& pair : dic) {
+            sorted_nums.push_back(pair.first);
+        }
+        std::sort(sorted_nums.begin(), sorted_nums.end());
+        for (int i = 0; i < sorted_nums.size(); ++i) {
+            int x = sorted_nums[i];
+            if (x == 0 && dic[x] > 2) res.push_back({0, 0, 0});
+            else if (x != 0 && dic[x] > 1 && dic.count(-2 * x) > 0) {
+                res.push_back({x, x, -2 * x});
+            }
+            if (x < 0) {
+                auto left = std::lower_bound(
+                        sorted_nums.begin() + i + 1,
+                        sorted_nums.end(),
+                        -x - *sorted_nums.rbegin());
+                auto right = std::upper_bound(
+                        sorted_nums.begin() + i + 1,
+                        sorted_nums.end(),
+                        x / -2);
+                for (auto it = left; it != right; ++it) {
+                    int y = *it;
+                    int z = -x - y;
+                    if (dic.count(z) > 0 && z != y) {
+                        res.push_back({x, y, z});
+                    }
+                }
+            }
+        }
+        return res;
+    }
+
 };
 
 #endif
