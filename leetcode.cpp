@@ -118,6 +118,18 @@ void three_sum_closest() {
     std::cout << "Three sum closest: " << res << std::endl;
 }
 
+// 17: /problems/letter-combinations-of-a-phone-number/
+void letter_combinations() {
+    std::string digits = "38";
+    std::vector<std::string> res = Leetcode::letter_combinations(digits);
+    std::cout << "Letter combinations: [";
+    for (size_t i = 0; i < res.size(); ++i) {
+        std::cout << res[i];
+        if (i < res.size() - 1) std::cout << ", ";
+    }
+    std::cout << "]" << std::endl;
+}
+
 
 int main() {
     two_sum();
@@ -134,5 +146,6 @@ int main() {
     longest_common_prefix();
     three_sum();
     three_sum_closest();
+    letter_combinations();
     return 0;
 }

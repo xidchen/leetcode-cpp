@@ -280,6 +280,37 @@ public:
         return res;
     }
 
+    // 17: /problems/letter-combinations-of-a-phone-number/
+    static std::vector<std::string> letter_combinations(std::string& digits) {
+        std::vector<std::string> results;
+        if (digits.empty() ||
+            digits.find('0') != std::string::npos ||
+            digits.find('1') != std::string::npos) {
+            return results;
+        }
+        std::unordered_map<char, std::vector<char>> mapping = {
+                {'2', {'a', 'b', 'c'}},
+                {'3', {'d', 'e', 'f'}},
+                {'4', {'g', 'h', 'i'}},
+                {'5', {'j', 'k', 'l'}},
+                {'6', {'m', 'n', 'o'}},
+                {'7', {'p', 'q', 'r', 's'}},
+                {'8', {'t', 'u', 'v'}},
+                {'9', {'w', 'x', 'y', 'z'}}
+        };
+        results.emplace_back("");
+        for (char digit : digits) {
+            std::vector<std::string> temp;
+            for (const std::string& result : results) {
+                for (char letter : mapping[digit]) {
+                    temp.push_back(result + letter);
+                }
+            }
+            results = temp;
+        }
+        return results;
+    }
+
 };
 
 #endif
