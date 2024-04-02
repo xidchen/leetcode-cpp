@@ -260,6 +260,26 @@ public:
         return res;
     }
 
+    // 16: /problems/3sum-closest/
+    static int three_sum_closest(std::vector<int>& nums, int target) {
+        int n = static_cast<int>(nums.size());
+        std::sort(nums.begin(), nums.end());
+        int res = nums[0] + nums[1] + nums[2];
+        for (int i = 0; i < n - 2; ++i) {
+            int j = i + 1, k = n - 1;
+            if (nums[i] + nums[j] + nums[j + 1] >= target) k = j + 1;
+            if (nums[i] + nums[k - 1] + nums[k] <= target) j = k - 1;
+            while (j < k) {
+                int s = nums[i] + nums[j] + nums[k];
+                if (abs(target - s) < (abs(target - res))) res = s;
+                if (s == target) return res;
+                if (s < target) ++j;
+                if (s > target) --k;
+            }
+        }
+        return res;
+    }
+
 };
 
 #endif

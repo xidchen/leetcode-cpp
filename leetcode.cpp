@@ -110,6 +110,14 @@ void three_sum() {
     std::cout << "]" << std::endl;
 }
 
+// 16: /problems/3sum-closest/
+void three_sum_closest() {
+    std::vector<int> nums = {4, 0, 5, -5, 3, 3, 0, -4, -5};
+    int target = -2;
+    int res = Leetcode::three_sum_closest(nums, target);
+    std::cout << "Three sum closest: " << res << std::endl;
+}
+
 
 int main() {
     two_sum();
@@ -125,5 +133,6 @@ int main() {
     roman_to_int();
     longest_common_prefix();
     three_sum();
+    three_sum_closest();
     return 0;
 }
