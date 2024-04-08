@@ -311,6 +311,48 @@ public:
         return results;
     }
 
+    // 18: /problems/4sum/
+    static std::vector<std::vector<int>> four_sum(std::vector<int>& nums, int target) {
+        std::vector<long long> nums64 (nums.begin(), nums.end());
+        std::sort(nums64.begin(), nums64.end());
+        return k_sum(nums64, target, 4);
+    }
+
+private:
+    static std::vector<std::vector<int>> k_sum(std::vector<long long>& n, long long t, long long k) {
+        std::vector<std::vector<int>> res;
+        if (n.size() < static_cast<size_t>(k) || t < n[0] * k || n[n.size() - 1] * k < t) return res;
+        if (k == 2) return two_sum(n, t);
+        for (size_t i = 0; i < n.size(); ++i) {
+            if (i == 0 || n[i - 1] != n[i]) {
+                auto start = n.begin();
+                std::advance(start, i + 1);
+                auto sliced_vector = std::vector<long long>(start, n.end());
+                for (auto& set : k_sum(sliced_vector, t - n[i], k - 1)) {
+                    set.insert(set.begin(), static_cast<int>(n[i]));
+                    res.push_back(set);
+                }
+            }
+        }
+        return res;
+    }
+
+    static std::vector<std::vector<int>> two_sum(std::vector<long long>& n, long long t) {
+        std::vector<std::vector<int>> res;
+        size_t lo = 0, hi = n.size() - 1;
+        while (lo < hi) {
+            long long sum = n[lo] + n[hi];
+            if (sum < t || (lo > 0 && n[lo] == n[lo - 1])) ++lo;
+            else if (sum > t || (hi < n.size() - 1 && n[hi] == n[hi + 1])) --hi;
+            else {
+                res.push_back({static_cast<int>(n[lo]), static_cast<int>(n[hi])});
+                ++lo;
+                --hi;
+            }
+        }
+        return res;
+    }
+
 };
 
 #endif

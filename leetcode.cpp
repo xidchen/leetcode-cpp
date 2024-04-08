@@ -130,6 +130,23 @@ void letter_combinations() {
     std::cout << "]" << std::endl;
 }
 
+// 18: /problems/4sum/
+void four_sum() {
+    std::vector<int> nums = {0,0,0,1000000000,1000000000,1000000000,1000000000};
+    int target = 1000000000;
+    std::vector<std::vector<int>> res = Leetcode::four_sum(nums, target);
+    std::cout << "Three sum: [";
+    for (size_t i = 0; i < res.size(); ++i) {
+        std::cout << "[";
+        for (size_t j = 0; j < res[i].size(); ++j) {
+            std::cout << res[i][j];
+            if (j < res[i].size() - 1) std::cout << ", ";
+        }
+        std::cout << "]";
+        if (i < res.size() - 1) std::cout << ", ";
+    }
+    std::cout << "]" << std::endl;
+}
 
 int main() {
     two_sum();
@@ -147,5 +164,6 @@ int main() {
     three_sum();
     three_sum_closest();
     letter_combinations();
+    four_sum();
     return 0;
 }
