@@ -1,169 +1,346 @@
-#include <iostream>
 #include "leetcode.h"
+#include <algorithm>
+#include <iostream>
+#include <string>
+#include <unordered_map>
+#include <vector>
 
-// 1: /problems/two-sum/
-void two_sum() {
-    std::vector<int> nums = {2, 7, 11, 15};
-    int target = 9;
-    std::vector<int> res = Leetcode::two_sum(nums, target);
-    std::cout << "Two sum: [";
-    for (size_t i = 0; i < res.size(); ++i) {
-        std::cout << res[i];
-        if (i < res.size() - 1) std::cout << ", ";
+// Private functions
+static std::vector<std::vector<int>> two_sum(std::vector<long long>& n, long long t) {
+    std::vector<std::vector<int>> res;
+    size_t lo = 0, hi = n.size() - 1;
+    while (lo < hi) {
+        long long sum = n[lo] + n[hi];
+        if (sum < t || (lo > 0 && n[lo] == n[lo - 1])) ++lo;
+        else if (sum > t || (hi < n.size() - 1 && n[hi] == n[hi + 1])) --hi;
+        else {
+            res.push_back({static_cast<int>(n[lo]), static_cast<int>(n[hi])});
+            ++lo;
+            --hi;
+        }
     }
-    std::cout << "]" << std::endl;
+    return res;
+}
+
+static std::vector<std::vector<int>> k_sum(std::vector<long long>& n, long long t, long long k) {
+    std::vector<std::vector<int>> res;
+    if (n.size() < static_cast<size_t>(k) || t < n[0] * k || n[n.size() - 1] * k < t) return res;
+    if (k == 2) return two_sum(n, t);
+    for (size_t i = 0; i < n.size(); ++i) {
+        if (i == 0 || n[i - 1] != n[i]) {
+            auto start = n.begin();
+            std::advance(start, i + 1);
+            auto sliced_vector = std::vector<long long>(start, n.end());
+            for (auto& set : k_sum(sliced_vector, t - n[i], k - 1)) {
+                set.insert(set.begin(), static_cast<int>(n[i]));
+                res.push_back(set);
+            }
+        }
+    }
+    return res;
+}
+
+// Public functions
+// 1: /problems/two-sum/
+std::vector<int> Leetcode::two_sum(std::vector<int>& nums, int target) {
+    std::unordered_map<int, int> dic;
+    for (int i = 0; i < nums.size(); ++i) {
+        if (dic.find(nums[i]) != dic.end()) {
+            return {dic[nums[i]], i};
+        }
+        dic[target - nums[i]] = i;
+    }
+    return {};
 }
 
 // 3: /problems/longest-substring-without-repeating-characters/
-void length_of_longest_substring() {
-    std::string input = "abcdefabc";
-    int res = Leetcode::length_of_longest_substring(input);
-    std::cout << "Length of longest substring: " << res << std::endl;
+int Leetcode::length_of_longest_substring(const std::string& s) {
+    std::unordered_map<char, int> last_seen;
+    int start = 0, longest = 0;
+    for (int i = 0; i < s.length(); ++i) {
+        char c = s[i];
+        if (last_seen.find(c) != last_seen.end() &&
+            last_seen[c] >= start) {
+            start = last_seen[c] + 1;
+        } else {
+            longest = std::max(longest, i - start + 1);
+        }
+        last_seen[c] = i;
+    }
+    return longest;
 }
 
 // 5: /problems/longest-palindromic-substring/
-void longest_palindromic_substring() {
-    std::string input = "babad";
-    std::string res = Leetcode::longest_palindromic_substring(input);
-    std::cout << "Longest palindromic substring: " << res << std::endl;
+std::string Leetcode::longest_palindromic_substring(const std::string& s) {
+    if (s.length() < 2 || s == std::string(
+            s.rbegin(), s.rend())) {
+        return s;
+    }
+    int start = -1, ml = 0;
+    for (int i = 0; i < s.length(); i++) {
+        std::string odd, even;
+        if (i - ml - 1 >= 0) {
+            odd = s.substr(i - ml - 1, ml + 2);
+        }
+        if (i - ml >= 0) {
+            even = s.substr(i - ml, ml + 1);
+        }
+        if (!odd.empty() && odd == std::string(
+                odd.rbegin(), odd.rend())) {
+            start = i - ml - 1;
+            ml += 2;
+            continue;
+        }
+        if (!even.empty() && even == std::string(
+                even.rbegin(), even.rend())) {
+            start = i - ml;
+            ml += 1;
+        }
+    }
+    return s.substr(start, ml);
 }
 
 // 6: /problems/zigzag-conversion/
-void convert() {
-    std::string input = "PAYPALISHIRING";
-    int num_rows = 3;
-    std::string res = Leetcode::convert(input, num_rows);
-    std::cout << "Zigzag conversion: " << res << std::endl;
+std::string Leetcode::convert(const std::string& s, int num_rows) {
+    if (num_rows == 1 || s.length() < num_rows) {
+        return s;
+    }
+    std::vector<std::string> zigzag(num_rows, "");
+    int row = 0;
+    int step = 1;
+    for (char c : s) {
+        zigzag[row] += c;
+        if (row == 0) {
+            step = 1;
+        }
+        if (row == num_rows - 1) {
+            step = -1;
+        }
+        row += step;
+    }
+    std::string res;
+    for (const std::string& str : zigzag) {
+        res += str;
+    }
+    return res;
 }
 
 // 7: /problems/reverse-integer/
-void reverse() {
-    int x = -2147483648;
-    int res = Leetcode::reverse(x);
-    std::cout << "Reverse integer: " << res << std::endl;
+int Leetcode::reverse(int x) {
+    if (x == INT_MIN) return 0;
+    bool negative = x < 0;
+    x = abs(x);
+    long long y = 0;
+    while (x != 0) {
+        y = y * 10 + x % 10;
+        x /= 10;
+    }
+    if (y > INT_MAX) return 0;
+    return negative ? static_cast<int>(-y) : static_cast<int>(y);
 }
 
 // 8: /problems/string-to-integer-atoi/
-void my_atoi() {
-    std::string s = " -273 degree ";
-    int res = Leetcode::my_atoi(s);
-    std::cout << "String to integer (atoi): " << res << std::endl;
+int Leetcode::my_atoi(std::string& s) {
+    s.erase(0, s.find_first_not_of(' '));
+    if (s.empty()) return 0;
+    int i = 0, sign = 1;
+    if (s[i] == '+' || s[i] == '-') sign = (s[i++] == '+') ? 1: -1;
+    long long res = 0;
+    while (i < s.length() && isdigit(s[i])) {
+        res = res * 10 + (s[i++] - '0');
+        if (res * sign > INT_MAX) return INT_MAX;
+        if (res * sign < INT_MIN) return INT_MIN;
+    }
+    return static_cast<int>(res * sign);
 }
 
 // 9: /problems/palindrome-number/
-void is_palindrome() {
-    int x = 121;
-    bool res = Leetcode::is_palindrome(x);
-    std::cout << "Is palindrome: " << std::boolalpha << res << std::endl;
+bool Leetcode::is_palindrome(int x) {
+    std::string s = std::to_string(x);
+    return s == std::string(s.rbegin(), s.rend());
 }
 
 // 10: /problems/regular-expression-matching/
-void is_match() {
-    std::string s = "aa";
-    std::string p = "a*";
-    bool res = Leetcode::is_match(s, p);
-    std::cout << "Regular expression matching: " << res << std::endl;
+bool Leetcode::is_match(const std::string& s, const std::string& p) {
+    std::vector<std::vector<bool>> dp(
+            s.length() + 1,
+            std::vector<bool>(p.length() + 1, false));
+    dp[s.length()][p.length()] = true;
+    for (size_t i = s.length(); i != static_cast<size_t>(-1); --i) {
+        for (size_t j = p.length() - 1; j != static_cast<size_t>(-1); --j) {
+            bool first_match = i < s.length() && (p[j] == s[i] || p[j] == '.');
+            if (j + 1 < p.length() && p[j + 1] == '*') {
+                dp[i][j] = dp[i][j + 2] || (first_match && dp[i + 1][j]);
+            } else {
+                dp[i][j] = first_match && dp[i + 1][j + 1];
+            }
+        }
+    }
+    return dp[0][0];
 }
 
 // 11: /problems/container-with-most-water/
-void max_area() {
-    std::vector<int> height = {1, 8, 6, 2, 5, 4, 8, 3, 7};
-    int res = Leetcode::max_area(height);
-    std::cout << "Container with most water: " << res << std::endl;
+int Leetcode::max_area(const std::vector<int>& height) {
+    int max_area = 0;
+    size_t i = 0, j = height.size() - 1;
+    while (i < j) {
+        max_area = std::max(
+                max_area,
+                std::min(static_cast<int>(height[i]), static_cast<int>(height[j])) *
+                static_cast<int>(j - i));
+        if (height[i] < height[j]) i++;
+        else j--;
+    }
+    return max_area;
 }
 
 // 12: /problems/integer-to-roman/
-void int_to_roman() {
-    int num = 2024;
-    std::string res = Leetcode::int_to_roman(num);
-    std::cout << "Integer to roman: " << res << std::endl;
+std::string Leetcode::int_to_roman(int num) {
+    std::vector<std::pair<int, std::string>> mapping {
+        {1000, "M"}, {900, "CM"},
+        {500, "D"}, {400, "CD"},
+        {100, "C"}, {90, "XC"},
+        {50, "L"}, {40, "XL"},
+        {10, "X"}, {9, "IX"},
+        {5, "V"}, {4, "IV"},
+        {1, "I"},
+    };
+    std::string romans;
+    for (const auto& pair : mapping) {
+        while (pair.first <= num) {
+            num -= pair.first;
+            romans += pair.second;
+        }
+    }
+    return romans;
 }
 
 // 13: /problems/roman-to-integer/
-void roman_to_int() {
-    std::string s = "MMXXIV";
-    int res = Leetcode::roman_to_int(s);
-    std::cout << "Roman to integer: " << res << std::endl;
+int Leetcode::roman_to_int(const std::string& s) {
+    std::unordered_map<char, int> d = {
+        {'I', 1}, {'V', 5},
+        {'X', 10}, {'L', 50},
+        {'C', 100}, {'D', 500},
+        {'M', 1000},
+    };
+    int integer = 0, prev_int = 0;
+    for (std::string::size_type i = s.size(); i-- > 0;) {
+        char roman = s[i];
+        if (d[roman] >= prev_int) {
+            prev_int = d[roman];
+            integer += d[roman];
+        } else {
+            integer -= d[roman];
+        }
+    }
+    return integer;
 }
 
 // 14: /problems/longest-common-prefix/
-void longest_common_prefix() {
-    std::vector<std::string> strs = {"flower", "flow", "flight"};
-    std::string res = Leetcode::longest_common_prefix(strs);
-    std::cout << "Longest common integer: " << res << std::endl;
+std::string Leetcode::longest_common_prefix(std::vector<std::string>& strs) {
+    if (strs.empty()) return "";
+    if (strs.size() == 1) return strs[0];
+    std::sort(strs.begin(), strs.end());
+    std::string result;
+    for (size_t i = 0; i < strs[0].size() && i < strs.back().size(); i++) {
+        if (strs[0][i] == strs.back()[i]) result.push_back(strs[0][i]);
+        else break;
+    }
+    return result;
 }
 
 // 15: /problems/3sum
-void three_sum() {
-    std::vector<int> nums = {-1, 0, 1, 2, -1, -4};
-    std::vector<std::vector<int>> res = Leetcode::three_sum(nums);
-    std::cout << "Three sum: [";
-    for (size_t i = 0; i < res.size(); ++i) {
-        std::cout << "[";
-        for (size_t j = 0; j < res[i].size(); ++j) {
-            std::cout << res[i][j];
-            if (j < res[i].size() - 1) std::cout << ", ";
-        }
-        std::cout << "]";
-        if (i < res.size() - 1) std::cout << ", ";
+std::vector<std::vector<int>> Leetcode::three_sum(std::vector<int>& nums) {
+    std::unordered_map<int, int> dic;
+    std::vector<std::vector<int>> res;
+    for (int n : nums) dic[n]++;
+    std::vector<int> sorted_nums;
+    sorted_nums.reserve(dic.size());
+    for (auto& pair : dic) {
+        sorted_nums.push_back(pair.first);
     }
-    std::cout << "]" << std::endl;
+    std::sort(sorted_nums.begin(), sorted_nums.end());
+    for (int i = 0; i < sorted_nums.size(); ++i) {
+        int x = sorted_nums[i];
+        if (x == 0 && dic[x] > 2) res.push_back({0, 0, 0});
+        else if (x != 0 && dic[x] > 1 && dic.count(-2 * x) > 0) {
+            res.push_back({x, x, -2 * x});
+        }
+        if (x < 0) {
+            auto left = std::lower_bound(
+                    sorted_nums.begin() + i + 1,
+                    sorted_nums.end(),
+                    -x - *sorted_nums.rbegin());
+            auto right = std::upper_bound(
+                    sorted_nums.begin() + i + 1,
+                    sorted_nums.end(),
+                    x / -2);
+            for (auto it = left; it != right; ++it) {
+                int y = *it;
+                int z = -x - y;
+                if (dic.count(z) > 0 && z != y) {
+                    res.push_back({x, y, z});
+                }
+            }
+        }
+    }
+    return res;
 }
 
 // 16: /problems/3sum-closest/
-void three_sum_closest() {
-    std::vector<int> nums = {4, 0, 5, -5, 3, 3, 0, -4, -5};
-    int target = -2;
-    int res = Leetcode::three_sum_closest(nums, target);
-    std::cout << "Three sum closest: " << res << std::endl;
+int Leetcode::three_sum_closest(std::vector<int>& nums, int target) {
+    int n = static_cast<int>(nums.size());
+    std::sort(nums.begin(), nums.end());
+    int res = nums[0] + nums[1] + nums[2];
+    for (int i = 0; i < n - 2; ++i) {
+        int j = i + 1, k = n - 1;
+        if (nums[i] + nums[j] + nums[j + 1] >= target) k = j + 1;
+        if (nums[i] + nums[k - 1] + nums[k] <= target) j = k - 1;
+        while (j < k) {
+            int s = nums[i] + nums[j] + nums[k];
+            if (abs(target - s) < (abs(target - res))) res = s;
+            if (s == target) return res;
+            if (s < target) ++j;
+            if (s > target) --k;
+        }
+    }
+    return res;
 }
 
 // 17: /problems/letter-combinations-of-a-phone-number/
-void letter_combinations() {
-    std::string digits = "38";
-    std::vector<std::string> res = Leetcode::letter_combinations(digits);
-    std::cout << "Letter combinations: [";
-    for (size_t i = 0; i < res.size(); ++i) {
-        std::cout << res[i];
-        if (i < res.size() - 1) std::cout << ", ";
+std::vector<std::string> Leetcode::letter_combinations(std::string& digits) {
+    std::vector<std::string> results;
+    if (digits.empty() ||
+        digits.find('0') != std::string::npos ||
+        digits.find('1') != std::string::npos) {
+        return results;
     }
-    std::cout << "]" << std::endl;
+    std::unordered_map<char, std::vector<char>> mapping = {
+            {'2', {'a', 'b', 'c'}},
+            {'3', {'d', 'e', 'f'}},
+            {'4', {'g', 'h', 'i'}},
+            {'5', {'j', 'k', 'l'}},
+            {'6', {'m', 'n', 'o'}},
+            {'7', {'p', 'q', 'r', 's'}},
+            {'8', {'t', 'u', 'v'}},
+            {'9', {'w', 'x', 'y', 'z'}}
+    };
+    results.emplace_back("");
+    for (char digit : digits) {
+        std::vector<std::string> temp;
+        for (const std::string& result : results) {
+            for (char letter : mapping[digit]) {
+                temp.push_back(result + letter);
+            }
+        }
+        results = temp;
+    }
+    return results;
 }
 
 // 18: /problems/4sum/
-void four_sum() {
-    std::vector<int> nums = {0,0,0,1000000000,1000000000,1000000000,1000000000};
-    int target = 1000000000;
-    std::vector<std::vector<int>> res = Leetcode::four_sum(nums, target);
-    std::cout << "Three sum: [";
-    for (size_t i = 0; i < res.size(); ++i) {
-        std::cout << "[";
-        for (size_t j = 0; j < res[i].size(); ++j) {
-            std::cout << res[i][j];
-            if (j < res[i].size() - 1) std::cout << ", ";
-        }
-        std::cout << "]";
-        if (i < res.size() - 1) std::cout << ", ";
-    }
-    std::cout << "]" << std::endl;
-}
-
-int main() {
-    two_sum();
-    length_of_longest_substring();
-    longest_palindromic_substring();
-    convert();
-    reverse();
-    my_atoi();
-    is_palindrome();
-    is_match();
-    max_area();
-    int_to_roman();
-    roman_to_int();
-    longest_common_prefix();
-    three_sum();
-    three_sum_closest();
-    letter_combinations();
-    four_sum();
-    return 0;
+std::vector<std::vector<int>> Leetcode::four_sum(std::vector<int>& nums, int target) {
+    std::vector<long long> nums64 (nums.begin(), nums.end());
+    std::sort(nums64.begin(), nums64.end());
+    return k_sum(nums64, target, 4);
 }
