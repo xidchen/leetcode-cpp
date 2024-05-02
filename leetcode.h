@@ -1,6 +1,8 @@
 #ifndef LEETCODE_H
 #define LEETCODE_H
 
+#include "listnode.h"
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -11,6 +13,14 @@ public:
 
     // 1: /problems/two-sum/
     static std::vector<int> two_sum(std::vector<int>& nums, int target);
+
+    // 2: /problems/add-two-numbers/
+    static std::shared_ptr<ListNode> add_two_numbers(
+        std::shared_ptr<ListNode> l1,
+        std::shared_ptr<ListNode> l2
+    );
+    static std::shared_ptr<ListNode> vector_to_linked_list(const std::vector<int>& nums);
+    static std::vector<int> linked_list_to_vector(std::shared_ptr<ListNode> node);
 
     // 3: /problems/longest-substring-without-repeating-characters/
     static int length_of_longest_substring(const std::string& s);

@@ -14,6 +14,20 @@ void two_sum() {
     std::cout << "]" << std::endl;
 }
 
+// 2: /problems/add-two-numbers/
+void add_two_numbers() {
+    std::shared_ptr l1 = Leetcode::vector_to_linked_list({9,9,9,9,9,9,9});
+    std::shared_ptr l2 = Leetcode::vector_to_linked_list({9,9,9,9});
+    std::shared_ptr result = Leetcode::add_two_numbers(l1, l2);
+    std::vector<int> res = Leetcode::linked_list_to_vector(result);
+    std::cout << "Add two numbers: [";
+    for (size_t i = 0; i < res.size(); ++i) {
+        std::cout << res[i];
+        if (i < res.size() - 1) std::cout << ", ";
+    }
+    std::cout << "]" << std::endl;
+}
+
 // 3: /problems/longest-substring-without-repeating-characters/
 void length_of_longest_substring() {
     std::string input = "abcdefabc";
@@ -150,6 +164,7 @@ void four_sum() {
 
 int main() {
     two_sum();
+    add_two_numbers();
     length_of_longest_substring();
     longest_palindromic_substring();
     convert();

@@ -1,4 +1,5 @@
 #include "leetcode.h"
+#include "listnode.h"
 #include <algorithm>
 #include <iostream>
 #include <string>
@@ -51,6 +52,49 @@ std::vector<int> Leetcode::two_sum(std::vector<int>& nums, int target) {
         dic[target - nums[i]] = i;
     }
     return {};
+}
+
+// 2: /problems/add_two_numbers/
+std::shared_ptr<ListNode> Leetcode::add_two_numbers(
+    std::shared_ptr<ListNode> l1,
+    std::shared_ptr<ListNode> l2
+) {
+    std::shared_ptr dummy = std::make_shared<ListNode>(0);
+    std::shared_ptr current = dummy;
+    int carry = 0;
+    while (l1 != nullptr || l2 != nullptr || carry > 0) {
+        if (l1 != nullptr) {
+            carry += l1->val;
+            l1 = l1->next;
+        }
+        if (l2 != nullptr) {
+            carry += l2->val;
+            l2 = l2->next;
+        }
+        current->next = std::make_shared<ListNode>(carry % 10);
+        current = current->next;
+        carry /= 10;
+    }
+    return dummy->next;
+}
+
+std::shared_ptr<ListNode> Leetcode::vector_to_linked_list(const std::vector<int>& nums) {
+    std::shared_ptr dummy = std::make_shared<ListNode>(0);
+    std::shared_ptr current = dummy;
+    for (int num : nums) {
+        current->next = std::make_shared<ListNode>(num);
+        current = current->next;
+    }
+    return dummy->next;
+}
+
+std::vector<int> Leetcode::linked_list_to_vector(std::shared_ptr<ListNode> node) {
+    std::vector<int> result;
+    while (node != nullptr) {
+        result.push_back(node->val);
+        node = node->next;
+    }
+    return result;
 }
 
 // 3: /problems/longest-substring-without-repeating-characters/
