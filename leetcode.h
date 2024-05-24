@@ -11,6 +11,9 @@ public:
     Leetcode() = default;
     virtual ~Leetcode() = default;
 
+    static std::shared_ptr<ListNode> vector_to_linked_list(const std::vector<int>& nums);
+    static std::vector<int> linked_list_to_vector(std::shared_ptr<ListNode> node);
+
     // 1: /problems/two-sum/
     static std::vector<int> two_sum(std::vector<int>& nums, int target);
 
@@ -19,8 +22,6 @@ public:
         std::shared_ptr<ListNode> l1,
         std::shared_ptr<ListNode> l2
     );
-    static std::shared_ptr<ListNode> vector_to_linked_list(const std::vector<int>& nums);
-    static std::vector<int> linked_list_to_vector(std::shared_ptr<ListNode> node);
 
     // 3: /problems/longest-substring-without-repeating-characters/
     static int length_of_longest_substring(const std::string& s);
@@ -66,6 +67,9 @@ public:
 
     // 18: /problems/4sum/
     static std::vector<std::vector<int>> four_sum(std::vector<int>& nums, int target);
+
+    // 19: /problems/remove-nth-node-from-end-of-list/
+    static std::shared_ptr<ListNode> remove_nth_from_end(std::shared_ptr<ListNode> head, int n);
 };
 
 #endif

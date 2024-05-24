@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <unordered_map>
+#include <utility>
 #include <vector>
 
 // Private functions
@@ -42,6 +43,25 @@ static std::vector<std::vector<int>> k_sum(std::vector<long long>& n, long long 
 }
 
 // Public functions
+std::shared_ptr<ListNode> Leetcode::vector_to_linked_list(const std::vector<int>& nums) {
+    std::shared_ptr dummy = std::make_shared<ListNode>(0);
+    std::shared_ptr current = dummy;
+    for (int num : nums) {
+        current->next = std::make_shared<ListNode>(num);
+        current = current->next;
+    }
+    return dummy->next;
+}
+
+std::vector<int> Leetcode::linked_list_to_vector(std::shared_ptr<ListNode> node) {
+    std::vector<int> result;
+    while (node != nullptr) {
+        result.push_back(node->val);
+        node = node->next;
+    }
+    return result;
+}
+
 // 1: /problems/two-sum/
 std::vector<int> Leetcode::two_sum(std::vector<int>& nums, int target) {
     std::unordered_map<int, int> dic;
@@ -76,25 +96,6 @@ std::shared_ptr<ListNode> Leetcode::add_two_numbers(
         carry /= 10;
     }
     return dummy->next;
-}
-
-std::shared_ptr<ListNode> Leetcode::vector_to_linked_list(const std::vector<int>& nums) {
-    std::shared_ptr dummy = std::make_shared<ListNode>(0);
-    std::shared_ptr current = dummy;
-    for (int num : nums) {
-        current->next = std::make_shared<ListNode>(num);
-        current = current->next;
-    }
-    return dummy->next;
-}
-
-std::vector<int> Leetcode::linked_list_to_vector(std::shared_ptr<ListNode> node) {
-    std::vector<int> result;
-    while (node != nullptr) {
-        result.push_back(node->val);
-        node = node->next;
-    }
-    return result;
 }
 
 // 3: /problems/longest-substring-without-repeating-characters/
@@ -387,4 +388,24 @@ std::vector<std::vector<int>> Leetcode::four_sum(std::vector<int>& nums, int tar
     std::vector<long long> nums64 (nums.begin(), nums.end());
     std::sort(nums64.begin(), nums64.end());
     return k_sum(nums64, target, 4);
+}
+
+// 19: /problems/remove-nth-node-from-end-of-list/
+std::shared_ptr<ListNode> Leetcode::remove_nth_from_end(
+    std::shared_ptr<ListNode> head, int n
+) {
+    std::shared_ptr<ListNode> dummy = std::make_shared<ListNode>(0);
+    dummy->next = std::move(head);
+    std::shared_ptr<ListNode> first = dummy;
+    std::shared_ptr<ListNode> second = dummy;
+    for (int i = 0; i < n; ++i) {
+        if (first->next != nullptr) first = first->next;
+        else return dummy->next;
+    }
+    while (first->next != nullptr) {
+        first = first->next;
+        second = second->next;
+    }
+    if (second->next != nullptr) second->next = second->next->next;
+    return dummy->next;
 }

@@ -162,6 +162,20 @@ void four_sum() {
     std::cout << "]" << std::endl;
 }
 
+// 19: /problems/remove-nth-node-from-end-of-list/
+void remove_nth_from_end() {
+    std::shared_ptr head = Leetcode::vector_to_linked_list({1,2,3,4,5});
+    int n = 2;
+    std::shared_ptr result = Leetcode::remove_nth_from_end(head, n);
+    std::vector<int> res = Leetcode::linked_list_to_vector(result);
+    std::cout << "Remove nth node from end of list: [";
+    for (size_t i = 0; i < res.size(); ++i) {
+        std::cout << res[i];
+        if (i < res.size() - 1) std::cout << ", ";
+    }
+    std::cout << "]" << std::endl;
+}
+
 int main() {
     two_sum();
     add_two_numbers();
@@ -180,5 +194,6 @@ int main() {
     three_sum_closest();
     letter_combinations();
     four_sum();
+    remove_nth_from_end();
     return 0;
 }
