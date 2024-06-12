@@ -2,6 +2,7 @@
 #include "listnode.h"
 #include <algorithm>
 #include <iostream>
+#include <stack>
 #include <string>
 #include <unordered_map>
 #include <utility>
@@ -408,4 +409,20 @@ std::shared_ptr<ListNode> Leetcode::remove_nth_from_end(
     }
     if (second->next != nullptr) second->next = second->next->next;
     return dummy->next;
+}
+
+// 20: /problems/valid-parentheses/
+bool Leetcode::is_valid(const std::string& s) {
+    std::unordered_map<char, char> d = {
+        {'(', ')'}, {'[', ']'}, {'{', '}'}
+    };
+    std::stack<char> stack;
+    for (char c : s) {
+        if (d.find(c) != d.end()) stack.push(c);
+        else {
+            if (stack.empty() || d[stack.top()] != c) return false;
+            stack.pop();
+        }
+    }
+    return stack.empty();
 }

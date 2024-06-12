@@ -176,6 +176,13 @@ void remove_nth_from_end() {
     std::cout << "]" << std::endl;
 }
 
+// 20: /problems/valid-parentheses/
+void is_valid() {
+    std::string s = "()[]{}";
+    bool res = Leetcode::is_valid(s);
+    std::cout << "Valid parentheses: " << std::boolalpha << res << std::endl;
+}
+
 int main() {
     two_sum();
     add_two_numbers();
@@ -195,5 +202,6 @@ int main() {
     letter_combinations();
     four_sum();
     remove_nth_from_end();
+    is_valid();
     return 0;
 }

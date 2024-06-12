@@ -70,6 +70,9 @@ public:
 
     // 19: /problems/remove-nth-node-from-end-of-list/
     static std::shared_ptr<ListNode> remove_nth_from_end(std::shared_ptr<ListNode> head, int n);
+
+    // 20: /problems/valid-parentheses/
+    static bool is_valid(const std::string& s);
 };
 
 #endif
