@@ -73,6 +73,12 @@ public:
 
     // 20: /problems/valid-parentheses/
     static bool is_valid(const std::string& s);
+
+    // 21: /problems/merge-two-sorted-lists/
+    static std::shared_ptr<ListNode> merge_two_lists(
+        std::shared_ptr<ListNode> l1,
+        std::shared_ptr<ListNode> l2
+    );
 };
 
 #endif

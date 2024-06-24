@@ -426,3 +426,24 @@ bool Leetcode::is_valid(const std::string& s) {
     }
     return stack.empty();
 }
+
+// 21: /problems/merge-two-sorted-lists/
+std::shared_ptr<ListNode> Leetcode::merge_two_lists(
+    std::shared_ptr<ListNode> l1,
+    std::shared_ptr<ListNode> l2
+) {
+    std::shared_ptr<ListNode> dummy = std::make_shared<ListNode>(0);
+    std::shared_ptr<ListNode> prev = dummy;
+    while (l1 && l2) {
+        if (l1->val < l2->val) {
+            prev->next = l1;
+            l1 = l1->next;
+        } else {
+            prev->next = l2;
+            l2 = l2->next;
+        }
+        prev = prev->next;
+    }
+    prev->next = l1 ? l1 : l2;
+    return dummy->next;
+}
