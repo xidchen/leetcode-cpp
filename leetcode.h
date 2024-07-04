@@ -79,6 +79,9 @@ public:
         std::shared_ptr<ListNode> l1,
         std::shared_ptr<ListNode> l2
     );
+
+    // 22: /problems/generate-parentheses/
+    static std::vector<std::string> generate_parenthesis(int n);
 };
 
 #endif

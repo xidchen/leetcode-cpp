@@ -197,6 +197,18 @@ void merge_two_lists() {
     std::cout << "]" << std::endl;
 }
 
+// 22: /problems/generate-parentheses/
+void generate_parenthesis() {
+    int n = 3;
+    std::vector<std::string> res = Leetcode::generate_parenthesis(n);
+    std::cout << "Generate parentheses: [";
+    for (size_t i = 0; i < res.size(); ++i) {
+        std::cout << res[i];
+        if (i < res.size() - 1) std::cout << ", ";
+    }
+    std::cout << "]" << std::endl;
+}
+
 int main() {
     two_sum();
     add_two_numbers();
@@ -218,5 +230,6 @@ int main() {
     remove_nth_from_end();
     is_valid();
     merge_two_lists();
+    generate_parenthesis();
     return 0;
 }

@@ -43,6 +43,17 @@ static std::vector<std::vector<int>> k_sum(std::vector<long long>& n, long long 
     return res;
 }
 
+static void backtrack_parenthesis(
+    std::vector<std::string>& result, const std::string& s, int left, int right, int n
+) {
+    if (s.length() == n * 2) {
+        result.push_back(s);
+        return;
+    }
+    if (left < n) backtrack_parenthesis(result, s + "(", left + 1, right, n);
+    if (right < left) backtrack_parenthesis(result, s + ")", left, right + 1, n);
+}
+
 // Public functions
 std::shared_ptr<ListNode> Leetcode::vector_to_linked_list(const std::vector<int>& nums) {
     std::shared_ptr dummy = std::make_shared<ListNode>(0);
@@ -446,4 +457,11 @@ std::shared_ptr<ListNode> Leetcode::merge_two_lists(
     }
     prev->next = l1 ? l1 : l2;
     return dummy->next;
+}
+
+// 22: /problems/generate-parentheses/
+std::vector<std::string> Leetcode::generate_parenthesis(int n) {
+    std::vector<std::string> result;
+    backtrack_parenthesis(result, "", 0, 0, n);
+    return result;
 }
