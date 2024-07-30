@@ -2,6 +2,7 @@
 #include "listnode.h"
 #include <algorithm>
 #include <climits>
+#include <queue>
 #include <stack>
 #include <string>
 #include <unordered_map>
@@ -464,4 +465,22 @@ std::vector<std::string> Leetcode::generate_parenthesis(int n) {
     std::vector<std::string> result;
     backtrack_parenthesis(result, "", 0, 0, n);
     return result;
+}
+
+// 23: /problems/merge-k-sorted-lists/
+std::shared_ptr<ListNode> Leetcode::merge_k_lists(std::vector<std::shared_ptr<ListNode>>& lists) {
+    std::priority_queue<std::shared_ptr<ListNode>, std::vector<std::shared_ptr<ListNode>>, Compare> heap;
+    for (const auto& list : lists) {
+        if (list != nullptr) heap.push(list);
+    }
+    auto dummy = std::make_shared<ListNode>(0);
+    auto prev = dummy;
+    while (!heap.empty()) {
+        auto node = heap.top();
+        heap.pop();
+        prev->next = node;
+        prev = prev->next;
+        if (node->next != nullptr) heap.push(node->next);
+    }
+    return dummy->next;
 }

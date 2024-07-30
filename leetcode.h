@@ -82,6 +82,17 @@ public:
 
     // 22: /problems/generate-parentheses/
     static std::vector<std::string> generate_parenthesis(int n);
+
+    // 23: /problems/merge-k-sorted-lists/
+    static std::shared_ptr<ListNode> merge_k_lists(std::vector<std::shared_ptr<ListNode>>& lists);
+
+private:
+    // 23: /problems/merge-k-sorted-lists/
+    struct Compare {
+        bool operator()(const std::shared_ptr<ListNode>& a, const std::shared_ptr<ListNode>& b) {
+            return a->val > b->val;
+        }
+    };
 };
 
 #endif
