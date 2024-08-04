@@ -226,6 +226,19 @@ void merge_k_lists() {
     std::cout << "]" << std::endl;
 }
 
+// 24: /problems/swap-nodes-in-pairs/
+void swap_pairs() {
+    std::shared_ptr head = Leetcode::vector_to_linked_list({1,2,3,4,5,6});
+    std::shared_ptr result = Leetcode::swap_pairs(head);
+    std::vector<int> res = Leetcode::linked_list_to_vector(result);
+    std::cout << "Swap nodes in pairs: [";
+    for (size_t i = 0; i < res.size(); ++i) {
+        std::cout << res[i];
+        if (i < res.size() - 1) std::cout << ", ";
+    }
+    std::cout << "]" << std::endl;
+}
+
 int main() {
     two_sum();
     add_two_numbers();
@@ -249,5 +262,6 @@ int main() {
     merge_two_lists();
     generate_parenthesis();
     merge_k_lists();
+    swap_pairs();
     return 0;
 }

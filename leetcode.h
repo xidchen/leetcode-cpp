@@ -86,6 +86,9 @@ public:
     // 23: /problems/merge-k-sorted-lists/
     static std::shared_ptr<ListNode> merge_k_lists(std::vector<std::shared_ptr<ListNode>>& lists);
 
+    // 24: /problems/swap-nodes-in-pairs/
+    static std::shared_ptr<ListNode> swap_pairs(std::shared_ptr<ListNode> head);
+
 private:
     // 23: /problems/merge-k-sorted-lists/
     struct Compare {

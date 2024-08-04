@@ -484,3 +484,19 @@ std::shared_ptr<ListNode> Leetcode::merge_k_lists(std::vector<std::shared_ptr<Li
     }
     return dummy->next;
 }
+
+// 24: /problems/swap-nodes-in-pairs/
+std::shared_ptr<ListNode> Leetcode::swap_pairs(std::shared_ptr<ListNode> head) {
+    std::shared_ptr<ListNode> dummy = std::make_shared<ListNode>(0);
+    dummy->next = std::move(head);
+    std::shared_ptr<ListNode> prev = dummy;
+    while (prev->next && prev->next->next) {
+        std::shared_ptr<ListNode> first = prev->next;
+        std::shared_ptr<ListNode> second = first->next;
+        first->next = second->next;
+        second->next = first;
+        prev->next = second;
+        prev = first;
+    }
+    return dummy->next;
+}
