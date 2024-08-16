@@ -500,3 +500,15 @@ std::shared_ptr<ListNode> Leetcode::swap_pairs(std::shared_ptr<ListNode> head) {
     }
     return dummy->next;
 }
+
+// 26: /problems/remove-duplicates-from-sorted-array/
+int Leetcode::remove_duplicates(std::vector<int>& nums) {
+    int next_new = 0;
+    for (int i = 0; i < nums.size(); ++i) {
+        if (i == 0 || nums[i] != nums[i - 1]) {
+            nums[next_new] = nums[i];
+            next_new += 1;
+        }
+    }
+    return next_new;
+}

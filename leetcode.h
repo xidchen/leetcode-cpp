@@ -89,6 +89,9 @@ public:
     // 24: /problems/swap-nodes-in-pairs/
     static std::shared_ptr<ListNode> swap_pairs(std::shared_ptr<ListNode> head);
 
+    // 26: /problems/remove-duplicates-from-sorted-array/
+    static int remove_duplicates(std::vector<int>& nums);
+
 private:
     // 23: /problems/merge-k-sorted-lists/
     struct Compare {

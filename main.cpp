@@ -239,6 +239,13 @@ void swap_pairs() {
     std::cout << "]" << std::endl;
 }
 
+// 26: /problems/remove-duplicates-from-sorted-array/
+void remove_duplicates() {
+    std::vector<int> nums = {0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
+    int res = Leetcode::remove_duplicates(nums);
+    std::cout << "Remove duplicates from sorted array: " << res << std::endl;
+}
+
 int main() {
     two_sum();
     add_two_numbers();
@@ -263,5 +270,6 @@ int main() {
     generate_parenthesis();
     merge_k_lists();
     swap_pairs();
+    remove_duplicates();
     return 0;
 }
