@@ -92,6 +92,9 @@ public:
     // 26: /problems/remove-duplicates-from-sorted-array/
     static int remove_duplicates(std::vector<int>& nums);
 
+    // 27: /problems/remove-element/
+    static int remove_element(std::vector<int>& nums, int val);
+
 private:
     // 23: /problems/merge-k-sorted-lists/
     struct Compare {

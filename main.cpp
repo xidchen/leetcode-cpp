@@ -246,6 +246,14 @@ void remove_duplicates() {
     std::cout << "Remove duplicates from sorted array: " << res << std::endl;
 }
 
+// 27: /problems/remove-element/
+void remove_element() {
+    std::vector<int> nums = {0, 1, 2, 2, 3, 0, 4, 2};
+    int val = 2;
+    int res = Leetcode::remove_element(nums, val);
+    std::cout << "Remove elements: " << res << std::endl;
+}
+
 int main() {
     two_sum();
     add_two_numbers();
@@ -271,5 +279,6 @@ int main() {
     merge_k_lists();
     swap_pairs();
     remove_duplicates();
+    remove_element();
     return 0;
 }
