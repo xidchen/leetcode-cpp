@@ -254,6 +254,14 @@ void remove_element() {
     std::cout << "Remove elements: " << res << std::endl;
 }
 
+// 28: /problems/find-the-index-of-the-first-occurrence-in-a-string/
+void str_str() {
+    std::string haystack = "sadbutsad";
+    std::string needle = "sad";
+    int res = Leetcode::str_str(haystack, needle);
+    std::cout << "Find the index of the first occurrence in a string: " << res << std::endl;
+}
+
 int main() {
     two_sum();
     add_two_numbers();
@@ -280,5 +288,6 @@ int main() {
     swap_pairs();
     remove_duplicates();
     remove_element();
+    str_str();
     return 0;
 }
