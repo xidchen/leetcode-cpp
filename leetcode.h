@@ -6,10 +6,10 @@
 #include <string>
 #include <vector>
 
-class Leetcode {
+class Leetcode final {
 public:
     Leetcode() = default;
-    virtual ~Leetcode() = default;
+    ~Leetcode() = default;
 
     static std::shared_ptr<ListNode> vector_to_linked_list(const std::vector<int>& nums);
     static std::vector<int> linked_list_to_vector(std::shared_ptr<ListNode> node);

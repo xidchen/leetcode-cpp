@@ -14,8 +14,7 @@ static std::vector<std::vector<int>> two_sum(const std::vector<long long>& n, co
     std::vector<std::vector<int>> res;
     size_t lo = 0, hi = n.size() - 1;
     while (lo < hi) {
-        long long sum = n[lo] + n[hi];
-        if (sum < t || (lo > 0 && n[lo] == n[lo - 1])) ++lo;
+        if (const long long sum = n[lo] + n[hi]; sum < t || (lo > 0 && n[lo] == n[lo - 1])) ++lo;
         else if (sum > t || (hi < n.size() - 1 && n[hi] == n[hi + 1])) --hi;
         else {
             res.push_back({static_cast<int>(n[lo]), static_cast<int>(n[hi])});
@@ -26,7 +25,7 @@ static std::vector<std::vector<int>> two_sum(const std::vector<long long>& n, co
     return res;
 }
 
-static std::vector<std::vector<int>> k_sum(std::vector<long long>& n, long long t, long long k) {
+static std::vector<std::vector<int>> k_sum(std::vector<long long>& n, const long long t, const long long k) {
     std::vector<std::vector<int>> res;
     if (n.size() < static_cast<size_t>(k) || t < n[0] * k || n[n.size() - 1] * k < t) return res;
     if (k == 2) return two_sum(n, t);
@@ -34,7 +33,7 @@ static std::vector<std::vector<int>> k_sum(std::vector<long long>& n, long long 
         if (i == 0 || n[i - 1] != n[i]) {
             auto start = n.begin();
             std::advance(start, i + 1);
-            auto sliced_vector = std::vector<long long>(start, n.end());
+            auto sliced_vector = std::vector(start, n.end());
             for (auto& set : k_sum(sliced_vector, t - n[i], k - 1)) {
                 set.insert(set.begin(), static_cast<int>(n[i]));
                 res.push_back(set);
@@ -45,7 +44,7 @@ static std::vector<std::vector<int>> k_sum(std::vector<long long>& n, long long 
 }
 
 static void backtrack_parenthesis(
-    std::vector<std::string>& result, const std::string& s, int left, int right, int n
+    std::vector<std::string>& result, const std::string& s, const int left, const int right, const int n
 ) {
     if (s.length() == n * 2) {
         result.push_back(s);
@@ -57,7 +56,7 @@ static void backtrack_parenthesis(
 
 // Public functions
 std::shared_ptr<ListNode> Leetcode::vector_to_linked_list(const std::vector<int>& nums) {
-    std::shared_ptr dummy = std::make_shared<ListNode>(0);
+    const auto dummy = std::make_shared<ListNode>(0);
     std::shared_ptr current = dummy;
     for (int num : nums) {
         current->next = std::make_shared<ListNode>(num);
@@ -76,7 +75,7 @@ std::vector<int> Leetcode::linked_list_to_vector(std::shared_ptr<ListNode> node)
 }
 
 // 1: /problems/two-sum/
-std::vector<int> Leetcode::two_sum(const std::vector<int>& nums, int target) {
+std::vector<int> Leetcode::two_sum(const std::vector<int>& nums, const int target) {
     std::unordered_map<int, int> dic;
     for (int i = 0; i < nums.size(); ++i) {
         if (dic.find(nums[i]) != dic.end()) {
@@ -92,7 +91,7 @@ std::shared_ptr<ListNode> Leetcode::add_two_numbers(
     std::shared_ptr<ListNode> l1,
     std::shared_ptr<ListNode> l2
 ) {
-    std::shared_ptr dummy = std::make_shared<ListNode>(0);
+    const auto dummy = std::make_shared<ListNode>(0);
     std::shared_ptr current = dummy;
     int carry = 0;
     while (l1 != nullptr || l2 != nullptr || carry > 0) {
@@ -130,8 +129,7 @@ int Leetcode::length_of_longest_substring(const std::string& s) {
 
 // 5: /problems/longest-palindromic-substring/
 std::string Leetcode::longest_palindromic_substring(const std::string& s) {
-    if (s.length() < 2 || s == std::string(
-            s.rbegin(), s.rend())) {
+    if (s.length() < 2 || s == std::string(s.rbegin(), s.rend())) {
         return s;
     }
     int start = -1, ml = 0;
@@ -159,14 +157,14 @@ std::string Leetcode::longest_palindromic_substring(const std::string& s) {
 }
 
 // 6: /problems/zigzag-conversion/
-std::string Leetcode::convert(const std::string& s, int num_rows) {
+std::string Leetcode::convert(const std::string& s, const int num_rows) {
     if (num_rows == 1 || s.length() < num_rows) {
         return s;
     }
     std::vector<std::string> zigzag(num_rows, "");
     int row = 0;
     int step = 1;
-    for (char c : s) {
+    for (const char c : s) {
         zigzag[row] += c;
         if (row == 0) {
             step = 1;
@@ -186,7 +184,7 @@ std::string Leetcode::convert(const std::string& s, int num_rows) {
 // 7: /problems/reverse-integer/
 int Leetcode::reverse(int x) {
     if (x == INT_MIN) return 0;
-    bool negative = x < 0;
+    const bool negative = x < 0;
     x = abs(x);
     long long y = 0;
     while (x != 0) {
@@ -213,7 +211,7 @@ int Leetcode::my_atoi(std::string& s) {
 }
 
 // 9: /problems/palindrome-number/
-bool Leetcode::is_palindrome(int x) {
+bool Leetcode::is_palindrome(const int x) {
     std::string s = std::to_string(x);
     return s == std::string(s.rbegin(), s.rend());
 }
@@ -221,12 +219,12 @@ bool Leetcode::is_palindrome(int x) {
 // 10: /problems/regular-expression-matching/
 bool Leetcode::is_match(const std::string& s, const std::string& p) {
     std::vector<std::vector<bool>> dp(
-            s.length() + 1,
-            std::vector<bool>(p.length() + 1, false));
+        s.length() + 1,
+        std::vector<bool>(p.length() + 1, false));
     dp[s.length()][p.length()] = true;
     for (size_t i = s.length(); i != static_cast<size_t>(-1); --i) {
         for (size_t j = p.length() - 1; j != static_cast<size_t>(-1); --j) {
-            bool first_match = i < s.length() && (p[j] == s[i] || p[j] == '.');
+            const bool first_match = i < s.length() && (p[j] == s[i] || p[j] == '.');
             if (j + 1 < p.length() && p[j + 1] == '*') {
                 dp[i][j] = dp[i][j + 2] || (first_match && dp[i + 1][j]);
             } else {
@@ -243,9 +241,8 @@ int Leetcode::max_area(const std::vector<int>& height) {
     size_t i = 0, j = height.size() - 1;
     while (i < j) {
         max_area = std::max(
-                max_area,
-                std::min(static_cast<int>(height[i]), static_cast<int>(height[j])) *
-                static_cast<int>(j - i));
+            max_area,
+            std::min(height[i], height[j]) * static_cast<int>(j - i));
         if (height[i] < height[j]) i++;
         else j--;
     }
@@ -264,10 +261,10 @@ std::string Leetcode::int_to_roman(int num) {
         {1, "I"},
     };
     std::string romans;
-    for (const auto& pair : mapping) {
-        while (pair.first <= num) {
-            num -= pair.first;
-            romans += pair.second;
+    for (const auto&[fst, snd] : mapping) {
+        while (fst <= num) {
+            num -= fst;
+            romans += snd;
         }
     }
     return romans;
@@ -283,8 +280,7 @@ int Leetcode::roman_to_int(const std::string& s) {
     };
     int integer = 0, prev_int = 0;
     for (std::string::size_type i = s.size(); i-- > 0;) {
-        char roman = s[i];
-        if (d[roman] >= prev_int) {
+        if (char roman = s[i]; d[roman] >= prev_int) {
             prev_int = d[roman];
             integer += d[roman];
         } else {
@@ -314,8 +310,8 @@ std::vector<std::vector<int>> Leetcode::three_sum(std::vector<int>& nums) {
     for (int n : nums) dic[n]++;
     std::vector<int> sorted_nums;
     sorted_nums.reserve(dic.size());
-    for (auto& pair : dic) {
-        sorted_nums.push_back(pair.first);
+    for (auto&[fst, snd] : dic) {
+        sorted_nums.push_back(fst);
     }
     std::sort(sorted_nums.begin(), sorted_nums.end());
     for (int i = 0; i < sorted_nums.size(); ++i) {
@@ -325,18 +321,17 @@ std::vector<std::vector<int>> Leetcode::three_sum(std::vector<int>& nums) {
             res.push_back({x, x, -2 * x});
         }
         if (x < 0) {
-            auto left = std::lower_bound(
-                    sorted_nums.begin() + i + 1,
-                    sorted_nums.end(),
-                    -x - *sorted_nums.rbegin());
+            const auto left = std::lower_bound(
+                sorted_nums.begin() + i + 1,
+                sorted_nums.end(),
+                -x - *sorted_nums.rbegin());
             auto right = std::upper_bound(
-                    sorted_nums.begin() + i + 1,
-                    sorted_nums.end(),
-                    x / -2);
+                sorted_nums.begin() + i + 1,
+                sorted_nums.end(),
+                x / -2);
             for (auto it = left; it != right; ++it) {
                 int y = *it;
-                int z = -x - y;
-                if (dic.count(z) > 0 && z != y) {
+                if (int z = -x - y; dic.count(z) > 0 && z != y) {
                     res.push_back({x, y, z});
                 }
             }
@@ -346,8 +341,8 @@ std::vector<std::vector<int>> Leetcode::three_sum(std::vector<int>& nums) {
 }
 
 // 16: /problems/3sum-closest/
-int Leetcode::three_sum_closest(std::vector<int>& nums, int target) {
-    int n = static_cast<int>(nums.size());
+int Leetcode::three_sum_closest(std::vector<int>& nums, const int target) {
+    const int n = static_cast<int>(nums.size());
     std::sort(nums.begin(), nums.end());
     int res = nums[0] + nums[1] + nums[2];
     for (int i = 0; i < n - 2; ++i) {
@@ -355,7 +350,7 @@ int Leetcode::three_sum_closest(std::vector<int>& nums, int target) {
         if (nums[i] + nums[j] + nums[j + 1] >= target) k = j + 1;
         if (nums[i] + nums[k - 1] + nums[k] <= target) j = k - 1;
         while (j < k) {
-            int s = nums[i] + nums[j] + nums[k];
+            const int s = nums[i] + nums[j] + nums[k];
             if (abs(target - s) < (abs(target - res))) res = s;
             if (s == target) return res;
             if (s < target) ++j;
@@ -374,20 +369,20 @@ std::vector<std::string> Leetcode::letter_combinations(std::string& digits) {
         return results;
     }
     std::unordered_map<char, std::vector<char>> mapping = {
-            {'2', {'a', 'b', 'c'}},
-            {'3', {'d', 'e', 'f'}},
-            {'4', {'g', 'h', 'i'}},
-            {'5', {'j', 'k', 'l'}},
-            {'6', {'m', 'n', 'o'}},
-            {'7', {'p', 'q', 'r', 's'}},
-            {'8', {'t', 'u', 'v'}},
-            {'9', {'w', 'x', 'y', 'z'}}
+        {'2', {'a', 'b', 'c'}},
+        {'3', {'d', 'e', 'f'}},
+        {'4', {'g', 'h', 'i'}},
+        {'5', {'j', 'k', 'l'}},
+        {'6', {'m', 'n', 'o'}},
+        {'7', {'p', 'q', 'r', 's'}},
+        {'8', {'t', 'u', 'v'}},
+        {'9', {'w', 'x', 'y', 'z'}}
     };
     results.emplace_back("");
     for (char digit : digits) {
         std::vector<std::string> temp;
         for (const std::string& result : results) {
-            for (char letter : mapping[digit]) {
+            for (const char letter : mapping[digit]) {
                 temp.push_back(result + letter);
             }
         }
@@ -397,7 +392,7 @@ std::vector<std::string> Leetcode::letter_combinations(std::string& digits) {
 }
 
 // 18: /problems/4sum/
-std::vector<std::vector<int>> Leetcode::four_sum(std::vector<int>& nums, int target) {
+std::vector<std::vector<int>> Leetcode::four_sum(std::vector<int>& nums, const int target) {
     std::vector<long long> nums64 (nums.begin(), nums.end());
     std::sort(nums64.begin(), nums64.end());
     return k_sum(nums64, target, 4);
@@ -405,9 +400,9 @@ std::vector<std::vector<int>> Leetcode::four_sum(std::vector<int>& nums, int tar
 
 // 19: /problems/remove-nth-node-from-end-of-list/
 std::shared_ptr<ListNode> Leetcode::remove_nth_from_end(
-    std::shared_ptr<ListNode> head, int n
+    std::shared_ptr<ListNode> head, const int n
 ) {
-    std::shared_ptr<ListNode> dummy = std::make_shared<ListNode>(0);
+    const auto dummy = std::make_shared<ListNode>(0);
     dummy->next = std::move(head);
     std::shared_ptr<ListNode> first = dummy;
     std::shared_ptr<ListNode> second = dummy;
@@ -444,7 +439,7 @@ std::shared_ptr<ListNode> Leetcode::merge_two_lists(
     std::shared_ptr<ListNode> l1,
     std::shared_ptr<ListNode> l2
 ) {
-    std::shared_ptr<ListNode> dummy = std::make_shared<ListNode>(0);
+    const auto dummy = std::make_shared<ListNode>(0);
     std::shared_ptr<ListNode> prev = dummy;
     while (l1 && l2) {
         if (l1->val < l2->val) {
@@ -473,10 +468,10 @@ std::shared_ptr<ListNode> Leetcode::merge_k_lists(std::vector<std::shared_ptr<Li
     for (const auto& list : lists) {
         if (list != nullptr) heap.push(list);
     }
-    auto dummy = std::make_shared<ListNode>(0);
+    const auto dummy = std::make_shared<ListNode>(0);
     auto prev = dummy;
     while (!heap.empty()) {
-        auto node = heap.top();
+        const auto node = heap.top();
         heap.pop();
         prev->next = node;
         prev = prev->next;
@@ -487,12 +482,12 @@ std::shared_ptr<ListNode> Leetcode::merge_k_lists(std::vector<std::shared_ptr<Li
 
 // 24: /problems/swap-nodes-in-pairs/
 std::shared_ptr<ListNode> Leetcode::swap_pairs(std::shared_ptr<ListNode> head) {
-    std::shared_ptr<ListNode> dummy = std::make_shared<ListNode>(0);
+    const auto dummy = std::make_shared<ListNode>(0);
     dummy->next = std::move(head);
     std::shared_ptr<ListNode> prev = dummy;
     while (prev->next && prev->next->next) {
-        std::shared_ptr<ListNode> first = prev->next;
-        std::shared_ptr<ListNode> second = first->next;
+        const std::shared_ptr<ListNode> first = prev->next;
+        const std::shared_ptr<ListNode> second = first->next;
         first->next = second->next;
         second->next = first;
         prev->next = second;
@@ -514,7 +509,7 @@ int Leetcode::remove_duplicates(std::vector<int>& nums) {
 }
 
 // 27: /problems/remove-element/
-int Leetcode::remove_element(std::vector<int> &nums, int val) {
+int Leetcode::remove_element(std::vector<int> &nums, const int val) {
     int k = 0;
     for (int i = 0; i < nums.size(); ++i) {
         if (nums[i] != val) {
