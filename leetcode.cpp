@@ -10,7 +10,7 @@
 #include <vector>
 
 // Private functions
-static std::vector<std::vector<int>> two_sum(std::vector<long long>& n, long long t) {
+static std::vector<std::vector<int>> two_sum(const std::vector<long long>& n, const long long t) {
     std::vector<std::vector<int>> res;
     size_t lo = 0, hi = n.size() - 1;
     while (lo < hi) {
@@ -76,7 +76,7 @@ std::vector<int> Leetcode::linked_list_to_vector(std::shared_ptr<ListNode> node)
 }
 
 // 1: /problems/two-sum/
-std::vector<int> Leetcode::two_sum(std::vector<int>& nums, int target) {
+std::vector<int> Leetcode::two_sum(const std::vector<int>& nums, int target) {
     std::unordered_map<int, int> dic;
     for (int i = 0; i < nums.size(); ++i) {
         if (dic.find(nums[i]) != dic.end()) {

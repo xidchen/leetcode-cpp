@@ -15,7 +15,7 @@ public:
     static std::vector<int> linked_list_to_vector(std::shared_ptr<ListNode> node);
 
     // 1: /problems/two-sum/
-    static std::vector<int> two_sum(std::vector<int>& nums, int target);
+    static std::vector<int> two_sum(const std::vector<int>& nums, int target);
 
     // 2: /problems/add-two-numbers/
     static std::shared_ptr<ListNode> add_two_numbers(
@@ -98,7 +98,7 @@ public:
 private:
     // 23: /problems/merge-k-sorted-lists/
     struct Compare {
-        bool operator()(const std::shared_ptr<ListNode>& a, const std::shared_ptr<ListNode>& b) {
+        bool operator()(const std::shared_ptr<ListNode>& a, const std::shared_ptr<ListNode>& b) const {
             return a->val > b->val;
         }
     };
