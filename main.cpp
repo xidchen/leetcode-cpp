@@ -256,7 +256,7 @@ void remove_element() {
 
 // 28: /problems/find-the-index-of-the-first-occurrence-in-a-string/
 void str_str() {
-    const std::string haystack = "sadbutsad";
+    const std::string haystack = "sadness";
     const std::string needle = "sad";
     const int res = Leetcode::str_str(haystack, needle);
     std::cout << "Find the index of the first occurrence in a string: " << res << std::endl;
