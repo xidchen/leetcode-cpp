@@ -262,6 +262,14 @@ void str_str() {
     std::cout << "Find the index of the first occurrence in a string: " << res << std::endl;
 }
 
+// 29: /problems/divide-two-integers/
+void divide() {
+    const int dividend = 7;
+    const int divisor = -3;
+    const int res = Leetcode::divide(dividend, divisor);
+    std::cout << "Divide two integers: " << res << std::endl;
+}
+
 int main() {
     two_sum();
     add_two_numbers();
@@ -289,5 +297,6 @@ int main() {
     remove_duplicates();
     remove_element();
     str_str();
+    divide();
     return 0;
 }

@@ -98,6 +98,9 @@ public:
     // 28: /problems/find-the-index-of-the-first-occurrence-in-a-string/
     static int str_str(const std::string& haystack, const std::string& needle);
 
+    // 29: /problems/divide-two-integers/
+    static int divide(int dividend, int divisor);
+
 private:
     // 23: /problems/merge-k-sorted-lists/
     struct Compare {

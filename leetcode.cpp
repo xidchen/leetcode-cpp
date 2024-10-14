@@ -526,3 +526,29 @@ int Leetcode::str_str(const std::string& haystack, const std::string& needle) {
     if (found == std::string::npos) return -1;
     return static_cast<int>(found);
 }
+
+// 29: /problems/divide-two-integers/
+int Leetcode::divide(int dividend, int divisor) {
+    if (dividend == INT_MIN && divisor == -1) return INT_MAX;
+    if (dividend == INT_MIN && divisor == 1) return INT_MIN;
+    bool diff_sign = (dividend < 0) ^ (divisor < 0);
+    long long abs_dividend = std::abs(static_cast<long long>(dividend));
+    long long abs_divisor = std::abs(static_cast<long long>(divisor));
+    int res = 0;
+    long long max_divisor = abs_divisor;
+    int shift_count = 1;
+    while (abs_dividend >= (max_divisor << 1)) {
+        max_divisor <<= 1;
+        shift_count <<= 1;
+    }
+    while (shift_count >= 1) {
+        if (abs_dividend >= max_divisor) {
+            abs_dividend -= max_divisor;
+            res += shift_count;
+        }
+        shift_count >>= 1;
+        max_divisor >>= 1;
+    }
+    if (diff_sign) res = -res;
+    return std::max(std::min(res, INT_MAX), INT_MIN);
+}
