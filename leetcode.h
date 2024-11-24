@@ -101,6 +101,9 @@ public:
     // 29: /problems/divide-two-integers/
     static int divide(int dividend, int divisor);
 
+    // 30: /problems/substring-with-concatenation-of-all-words/
+    static std::vector<int> find_substring(const std::string& s, const std::vector<std::string>& words);
+
 private:
     // 23: /problems/merge-k-sorted-lists/
     struct Compare {

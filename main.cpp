@@ -264,10 +264,23 @@ void str_str() {
 
 // 29: /problems/divide-two-integers/
 void divide() {
-    const int dividend = 7;
-    const int divisor = -3;
+    constexpr int dividend = 7;
+    constexpr int divisor = -3;
     const int res = Leetcode::divide(dividend, divisor);
     std::cout << "Divide two integers: " << res << std::endl;
+}
+
+// 30: /problems/substring-with-concatenation-of-all-words/
+void find_substring() {
+    const std::string s = "barfoothefoobarman";
+    const std::vector<std::string> words = {"foo", "bar"};
+    const std::vector<int> res = Leetcode::find_substring(s, words);
+    std::cout << "Substring with concatenation of all words: [";
+    for (size_t i = 0; i < res.size(); ++i) {
+        std::cout << res[i];
+        if (i < res.size() - 1) std::cout << ", ";
+    }
+    std::cout << "]" << std::endl;
 }
 
 int main() {
@@ -298,5 +311,6 @@ int main() {
     remove_element();
     str_str();
     divide();
+    find_substring();
     return 0;
 }

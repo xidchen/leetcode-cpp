@@ -528,12 +528,12 @@ int Leetcode::str_str(const std::string& haystack, const std::string& needle) {
 }
 
 // 29: /problems/divide-two-integers/
-int Leetcode::divide(int dividend, int divisor) {
+int Leetcode::divide(const int dividend, const int divisor) {
     if (dividend == INT_MIN && divisor == -1) return INT_MAX;
     if (dividend == INT_MIN && divisor == 1) return INT_MIN;
-    bool diff_sign = (dividend < 0) ^ (divisor < 0);
+    const bool diff_sign = (dividend < 0) ^ (divisor < 0);
     long long abs_dividend = std::abs(static_cast<long long>(dividend));
-    long long abs_divisor = std::abs(static_cast<long long>(divisor));
+    const long long abs_divisor = std::abs(static_cast<long long>(divisor));
     int res = 0;
     long long max_divisor = abs_divisor;
     int shift_count = 1;
@@ -551,4 +551,41 @@ int Leetcode::divide(int dividend, int divisor) {
     }
     if (diff_sign) res = -res;
     return std::max(std::min(res, INT_MAX), INT_MIN);
+}
+
+// 30: /problems/substring-with-concatenation-of-all-words/
+std::vector<int> Leetcode::find_substring(const std::string& s, const std::vector<std::string>& words) {
+    std::vector<int> res;
+    if (words.empty() || s.length() < words.size() * words[0].length()) return res;
+    const int wc = static_cast<int>(words.size());
+    const int wl = static_cast<int>(words[0].length());
+    const int sl = static_cast<int>(s.length());
+    std::pmr::unordered_map<std::string, int> wd;
+    for (const auto& w : words) wd[w]++;
+    for (int i = 0; i < wl; ++i) {
+        int start = i, cnt = 0;
+        std::pmr::unordered_map<std::string, int> tmp_dict;
+        for (int j = i; j <= sl - wl; j += wl) {
+            if (const std::string word = s.substr(j, wl); wd.find(word) != wd.end()) {
+                cnt++;
+                tmp_dict[word]++;
+                while (tmp_dict[word] > wd[word]) {
+                    tmp_dict[s.substr(start, wl)]--;
+                    start += wl;
+                    cnt--;
+                }
+                if (cnt == wc) {
+                    res.push_back(start);
+                    tmp_dict[s.substr(start, wl)]--;
+                    start += wl;
+                    cnt--;
+                }
+            } else {
+                start = j + wl;
+                cnt = 0;
+                tmp_dict.clear();
+            }
+        }
+    }
+    return res;
 }
