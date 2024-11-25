@@ -560,11 +560,11 @@ std::vector<int> Leetcode::find_substring(const std::string& s, const std::vecto
     const int wc = static_cast<int>(words.size());
     const int wl = static_cast<int>(words[0].length());
     const int sl = static_cast<int>(s.length());
-    std::pmr::unordered_map<std::string, int> wd;
+    std::unordered_map<std::string, int> wd;
     for (const auto& w : words) wd[w]++;
     for (int i = 0; i < wl; ++i) {
         int start = i, cnt = 0;
-        std::pmr::unordered_map<std::string, int> tmp_dict;
+        std::unordered_map<std::string, int> tmp_dict;
         for (int j = i; j <= sl - wl; j += wl) {
             if (const std::string word = s.substr(j, wl); wd.find(word) != wd.end()) {
                 cnt++;
