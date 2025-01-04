@@ -283,6 +283,18 @@ void find_substring() {
     std::cout << "]" << std::endl;
 }
 
+// 31: /problems/next-permutation/
+void next_permutation() {
+    std::vector nums = {4, 5, 3, 2, 1};
+    Leetcode::next_permutation(nums);
+    std::cout << "Next permutation: [";
+    for (size_t i = 0; i < nums.size(); ++i) {
+        std::cout << nums[i];
+        if (i < nums.size() - 1) std::cout << ", ";
+    }
+    std::cout << "]" << std::endl;
+}
+
 int main() {
     two_sum();
     add_two_numbers();
@@ -312,5 +324,6 @@ int main() {
     str_str();
     divide();
     find_substring();
+    next_permutation();
     return 0;
 }

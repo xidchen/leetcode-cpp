@@ -589,3 +589,18 @@ std::vector<int> Leetcode::find_substring(const std::string& s, const std::vecto
     }
     return res;
 }
+
+// 31: /problems/next-permutation/
+void Leetcode::next_permutation(std::vector<int>& nums) {
+    if (nums.empty()) return;
+    std::size_t i = nums.size();
+    if (i < 2) return;
+    i -= 2;
+    while (i != static_cast<std::size_t>(-1) && nums[i] >= nums[i + 1]) i--;
+    if (i != static_cast<std::size_t>(-1)) {
+        std::size_t j = nums.size() - 1;
+        while (nums[j] <= nums[i]) j--;
+        std::swap(nums[i], nums[j]);
+    }
+    std::reverse(nums.begin() + static_cast<std::ptrdiff_t>(i + 1), nums.end());
+}
