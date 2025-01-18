@@ -107,6 +107,9 @@ public:
     // 31: /problems/next-permutation/
     static void next_permutation(std::vector<int>& nums);
 
+    // 32: /problems/longest-valid-parentheses/
+    static int longest_valid_parentheses(const std::string& s);
+
 private:
     // 23: /problems/merge-k-sorted-lists/
     struct Compare {

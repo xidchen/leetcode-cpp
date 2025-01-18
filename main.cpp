@@ -295,6 +295,13 @@ void next_permutation() {
     std::cout << "]" << std::endl;
 }
 
+// 32: /problems/longest-valid-parentheses/
+void longest_valid_parentheses() {
+    const std::string s = ")()())";
+    const int res = Leetcode::longest_valid_parentheses(s);
+    std::cout << "Longest valid parentheses: " << res << std::endl;
+}
+
 int main() {
     two_sum();
     add_two_numbers();
@@ -325,5 +332,6 @@ int main() {
     divide();
     find_substring();
     next_permutation();
+    longest_valid_parentheses();
     return 0;
 }

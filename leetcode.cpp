@@ -604,3 +604,20 @@ void Leetcode::next_permutation(std::vector<int>& nums) {
     }
     std::reverse(nums.begin() + static_cast<std::ptrdiff_t>(i + 1), nums.end());
 }
+
+// 32: /problems/longest-valid-parentheses/
+int Leetcode::longest_valid_parentheses(const std::string &s) {
+    std::stack<int> stack;
+    stack.push(-1);
+    int max_len = 0;
+    for (int i = 0; i < s.size(); ++i) {
+        if (s[i] == '(') stack.push(i);
+        else {
+            stack.pop();
+            if (stack.empty()) stack.push(i);
+            else max_len = std::max(max_len, i - stack.top());
+        }
+    }
+    return max_len;
+}
+
