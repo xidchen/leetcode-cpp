@@ -302,6 +302,14 @@ void longest_valid_parentheses() {
     std::cout << "Longest valid parentheses: " << res << std::endl;
 }
 
+// 33: /problems/search-in-rotated-sorted-array/
+void search() {
+    std::vector nums = {4, 5, 6, 7, 0, 1, 2};
+    constexpr int target = 0;
+    const int res = Leetcode::search(nums, target);
+    std::cout << "Search in rotated sorted array: " << res << std::endl;
+}
+
 int main() {
     two_sum();
     add_two_numbers();
@@ -333,5 +341,6 @@ int main() {
     find_substring();
     next_permutation();
     longest_valid_parentheses();
+    search();
     return 0;
 }

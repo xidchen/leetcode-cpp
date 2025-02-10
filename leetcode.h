@@ -110,6 +110,9 @@ public:
     // 32: /problems/longest-valid-parentheses/
     static int longest_valid_parentheses(const std::string& s);
 
+    // 33: /problems/search-in-rotated-sorted-array/
+    static int search(const std::vector<int>& nums, int target);
+
 private:
     // 23: /problems/merge-k-sorted-lists/
     struct Compare {
