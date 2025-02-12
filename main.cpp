@@ -304,10 +304,23 @@ void longest_valid_parentheses() {
 
 // 33: /problems/search-in-rotated-sorted-array/
 void search() {
-    std::vector nums = {4, 5, 6, 7, 0, 1, 2};
+    const std::vector nums = {4, 5, 6, 7, 0, 1, 2};
     constexpr int target = 0;
     const int res = Leetcode::search(nums, target);
     std::cout << "Search in rotated sorted array: " << res << std::endl;
+}
+
+// 34: /problems/find-first-and-last-position-of-element-in-sorted-array/
+void search_range() {
+    const std::vector nums = {5, 7, 7, 8, 8, 10};
+    constexpr int target = 8;
+    const std::vector<int> res = Leetcode::search_range(nums, target);
+    std::cout << "Find first and last position of element in sorted array: [";
+    for (size_t i = 0; i < res.size(); ++i) {
+        std::cout << res[i];
+        if (i < res.size() - 1) std::cout << ", ";
+    }
+    std::cout << "]" << std::endl;
 }
 
 int main() {
@@ -342,5 +355,6 @@ int main() {
     next_permutation();
     longest_valid_parentheses();
     search();
+    search_range();
     return 0;
 }

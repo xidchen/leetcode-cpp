@@ -2,12 +2,14 @@
 #include "listnode.h"
 #include <algorithm>
 #include <climits>
+#include <functional>
 #include <queue>
 #include <stack>
 #include <string>
 #include <unordered_map>
 #include <utility>
 #include <vector>
+#include <bits/ios_base.h>
 
 // Private functions
 static std::vector<std::vector<int>> two_sum(const std::vector<long long>& n, const long long t) {
@@ -637,4 +639,20 @@ int Leetcode::search(const std::vector<int>& nums, const int target) {
         }
     }
     return -1;
+}
+
+// 34: /problems/find-first-and-last-position-of-element-in-sorted-array/
+std::vector<int> Leetcode::search_range(const std::vector<int>& nums, const int target) {
+    auto binary = [&](const double tgt, int left, int right) -> int {
+        while (left <= right) {
+            if (const int mid = (left + right) / 2; nums[mid] < tgt) left = mid + 1;
+            else right = mid - 1;
+        }
+        return left;
+    };
+    const int n = static_cast<int>(nums.size());
+    const int lower = binary(static_cast<double>(target) - 0.5, 0, n - 1);
+    const int upper = binary(static_cast<double>(target) + 0.5, 0, n - 1);
+    if (lower == upper) return std::vector{-1, -1};
+    return std::vector{lower, upper - 1};
 }

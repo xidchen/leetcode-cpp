@@ -113,6 +113,9 @@ public:
     // 33: /problems/search-in-rotated-sorted-array/
     static int search(const std::vector<int>& nums, int target);
 
+    // 34: /problems/find-first-and-last-position-of-element-in-sorted-array/
+    static std::vector<int> search_range(const std::vector<int>& nums, int target);
+
 private:
     // 23: /problems/merge-k-sorted-lists/
     struct Compare {
