@@ -9,7 +9,6 @@
 #include <unordered_map>
 #include <utility>
 #include <vector>
-#include <bits/ios_base.h>
 
 // Private functions
 static std::vector<std::vector<int>> two_sum(const std::vector<long long>& n, const long long t) {
@@ -655,4 +654,17 @@ std::vector<int> Leetcode::search_range(const std::vector<int>& nums, const int 
     const int upper = binary(static_cast<double>(target) + 0.5, 0, n - 1);
     if (lower == upper) return std::vector{-1, -1};
     return std::vector{lower, upper - 1};
+}
+
+// 35: /problems/search-insert-position/
+int Leetcode::search_insert(const std::vector<int>& nums, const int target) {
+    int left = 0;
+    int right = static_cast<int>(nums.size()) - 1;
+    while (left <= right) {
+        const int mid = (left + right) / 2;
+        if (nums[mid] == target) return mid;
+        if (nums[mid] < target) left = mid + 1;
+        else right = mid - 1;
+    }
+    return left;
 }

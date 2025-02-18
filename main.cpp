@@ -323,6 +323,14 @@ void search_range() {
     std::cout << "]" << std::endl;
 }
 
+// 35: /problems/search-insert-position/
+void search_insert() {
+    const std::vector nums = {1, 3, 5, 6};
+    constexpr int target = 0;
+    const int res = Leetcode::search_insert(nums, target);
+    std::cout << "Search insert position: " << res << std::endl;
+}
+
 int main() {
     two_sum();
     add_two_numbers();
@@ -356,5 +364,6 @@ int main() {
     longest_valid_parentheses();
     search();
     search_range();
+    search_insert();
     return 0;
 }

@@ -116,6 +116,9 @@ public:
     // 34: /problems/find-first-and-last-position-of-element-in-sorted-array/
     static std::vector<int> search_range(const std::vector<int>& nums, int target);
 
+    // 35: /problems/search-insert-position/
+    static int search_insert(const std::vector<int>& nums, int target);
+
 private:
     // 23: /problems/merge-k-sorted-lists/
     struct Compare {
