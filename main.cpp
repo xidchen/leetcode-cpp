@@ -331,6 +331,23 @@ void search_insert() {
     std::cout << "Search insert position: " << res << std::endl;
 }
 
+// 36: /problems/valid-sudoku/
+void is_valid_sudoku() {
+    const std::vector<std::vector<char>> board = {
+        {'5','3','.','.','7','.','.','.','.'},
+        {'6','.','.','1','9','5','.','.','.'},
+        {'.','9','8','.','.','.','.','6','.'},
+        {'8','.','.','.','6','.','.','.','3'},
+        {'4','.','.','8','.','3','.','.','1'},
+        {'7','.','.','.','2','.','.','.','6'},
+        {'.','6','.','.','.','.','2','8','.'},
+        {'.','.','.','4','1','9','.','.','5'},
+        {'.','.','.','.','8','.','.','7','9'},
+    };
+    const bool res = Leetcode::is_valid_sudoku(board);
+    std::cout << "Valid sudoku: " << std::boolalpha << res << std::endl;
+}
+
 int main() {
     two_sum();
     add_two_numbers();
@@ -365,5 +382,6 @@ int main() {
     search();
     search_range();
     search_insert();
+    is_valid_sudoku();
     return 0;
 }

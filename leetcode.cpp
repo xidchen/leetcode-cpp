@@ -668,3 +668,22 @@ int Leetcode::search_insert(const std::vector<int>& nums, const int target) {
     }
     return left;
 }
+
+// 36: /problems/valid-sudoku/
+bool Leetcode::is_valid_sudoku(const std::vector<std::vector<char>>& board) {
+    std::vector<std::vector<char>> rows(9), cols(9), boxes(9);
+    for (int r = 0; r < 9; ++r) {
+        for (int c = 0; c < 9; ++c) {
+            char digit = board[r][c];
+            if (digit == '.') continue;
+            int b = r / 3 * 3 + c / 3;
+            if (std::find(rows[r].begin(), rows[r].end(), digit) != rows[r].end() ||
+            std::find(cols[c].begin(), cols[c].end(), digit) != cols[c].end() ||
+            std::find(boxes[b].begin(), boxes[b].end(), digit) != boxes[b].end()) return false;
+            rows[r].push_back(digit);
+            cols[c].push_back(digit);
+            boxes[b].push_back(digit);
+        }
+    }
+    return true;
+}

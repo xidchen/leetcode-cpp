@@ -119,6 +119,9 @@ public:
     // 35: /problems/search-insert-position/
     static int search_insert(const std::vector<int>& nums, int target);
 
+    // 36: /problems/valid-sudoku/
+    static bool is_valid_sudoku(const std::vector<std::vector<char>>& board);
+
 private:
     // 23: /problems/merge-k-sorted-lists/
     struct Compare {
