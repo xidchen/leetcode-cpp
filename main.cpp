@@ -239,6 +239,20 @@ void swap_pairs() {
     std::cout << "]" << std::endl;
 }
 
+// 25: /problems/reverse-nodes-in-k-group/
+void reverse_k_group() {
+    const std::shared_ptr head = Leetcode::vector_to_linked_list({1,2,3,4,5});
+    constexpr int k = 2;
+    const std::shared_ptr result = Leetcode::reverse_k_group(head, k);
+    const std::vector<int> res = Leetcode::linked_list_to_vector(result);
+    std::cout << "Reverse nodes in k group: [";
+    for (size_t i = 0; i < res.size(); ++i) {
+        std::cout << res[i];
+        if (i < res.size() - 1) std::cout << ", ";
+    }
+    std::cout << "]" << std::endl;
+}
+
 // 26: /problems/remove-duplicates-from-sorted-array/
 void remove_duplicates() {
     std::vector nums = {0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
@@ -372,6 +386,7 @@ int main() {
     generate_parenthesis();
     merge_k_lists();
     swap_pairs();
+    reverse_k_group();
     remove_duplicates();
     remove_element();
     str_str();

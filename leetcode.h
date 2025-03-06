@@ -89,6 +89,9 @@ public:
     // 24: /problems/swap-nodes-in-pairs/
     static std::shared_ptr<ListNode> swap_pairs(std::shared_ptr<ListNode> head);
 
+    // 25: /problems/reverse-nodes-in-k-group/
+    static std::shared_ptr<ListNode> reverse_k_group(std::shared_ptr<ListNode> head, int k);
+
     // 26: /problems/remove-duplicates-from-sorted-array/
     static int remove_duplicates(std::vector<int>& nums);
 

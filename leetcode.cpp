@@ -497,6 +497,24 @@ std::shared_ptr<ListNode> Leetcode::swap_pairs(std::shared_ptr<ListNode> head) {
     return dummy->next;
 }
 
+// 25: /problems/reverse-nodes-in-k-group/
+std::shared_ptr<ListNode> Leetcode::reverse_k_group(std::shared_ptr<ListNode> head, const int k) {
+    if (k < 2) return head;
+    std::shared_ptr<ListNode> node = head;
+    for (int i = 0; i < k; ++i) {
+        if (!node) return head;
+        node = node->next;
+    }
+    std::shared_ptr<ListNode> prev = reverse_k_group(node, k);
+    for (int i = 0; i < k; ++i) {
+        std::shared_ptr<ListNode> temp = head->next;
+        head->next = prev;
+        prev = head;
+        head = temp;
+    }
+    return prev;
+}
+
 // 26: /problems/remove-duplicates-from-sorted-array/
 int Leetcode::remove_duplicates(std::vector<int>& nums) {
     int next_new = 0;
