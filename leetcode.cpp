@@ -4,6 +4,7 @@
 #include <climits>
 #include <functional>
 #include <queue>
+#include <sstream>
 #include <stack>
 #include <string>
 #include <unordered_map>
@@ -705,3 +706,22 @@ bool Leetcode::is_valid_sudoku(const std::vector<std::vector<char>>& board) {
     }
     return true;
 }
+
+// 38： /problems/count-and-say/
+std::string Leetcode::count_and_say(const int n) {
+    std::vector<int> seq = {1};
+    for (int i = 1; i < n; ++i) {
+        std::vector<int> next;
+        for (int num : seq) {
+            if (next.empty() || next.back() != num) {
+                next.push_back(1);
+                next.push_back(num);
+            } else next[next.size() - 2]++;
+        }
+        seq = std::move(next);
+    }
+    std::ostringstream oss;
+    for (int num : seq) oss << num;
+    return oss.str();
+}
+

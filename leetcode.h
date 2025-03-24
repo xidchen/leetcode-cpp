@@ -125,6 +125,9 @@ public:
     // 36: /problems/valid-sudoku/
     static bool is_valid_sudoku(const std::vector<std::vector<char>>& board);
 
+    // 38： /problems/count-and-say/
+    static std::string count_and_say(int n);
+
 private:
     // 23: /problems/merge-k-sorted-lists/
     struct Compare {

@@ -362,6 +362,13 @@ void is_valid_sudoku() {
     std::cout << "Valid sudoku: " << std::boolalpha << res << std::endl;
 }
 
+// 38： /problems/count-and-say/
+void count_and_say() {
+    constexpr int n = 5;
+    const std::string res = Leetcode::count_and_say(n);
+    std::cout << "Count and say: " << res << std::endl;
+}
+
 int main() {
     two_sum();
     add_two_numbers();
@@ -398,5 +405,6 @@ int main() {
     search_range();
     search_insert();
     is_valid_sudoku();
+    count_and_say();
     return 0;
 }
