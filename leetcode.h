@@ -125,6 +125,9 @@ public:
     // 36: /problems/valid-sudoku/
     static bool is_valid_sudoku(const std::vector<std::vector<char>>& board);
 
+    // 37: /problems/sudoku-solver/
+    static void solve_sudoku(std::vector<std::vector<char>>& board);
+
     // 38： /problems/count-and-say/
     static std::string count_and_say(int n);
 

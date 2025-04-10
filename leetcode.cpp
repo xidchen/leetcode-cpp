@@ -4,11 +4,13 @@
 #include <climits>
 #include <functional>
 #include <queue>
+#include <set>
 #include <sstream>
 #include <stack>
 #include <string>
 #include <unordered_map>
 #include <utility>
+#include <variant>
 #include <vector>
 
 // Private functions
@@ -55,6 +57,92 @@ static void backtrack_parenthesis(
     if (left < n) backtrack_parenthesis(result, s + "(", left + 1, right, n);
     if (right < left) backtrack_parenthesis(result, s + ")", left, right + 1, n);
 }
+
+static void eliminate(std::vector<std::vector<std::variant<char, std::set<char>>>> &board, int r, int c) {
+    char digit = std::get<char>(board[r][c]);
+    for (int i = 0; i < 9; i++) {
+        if (std::holds_alternative<std::set<char>>(board[i][c])) {
+            std::get<std::set<char>>(board[i][c]).erase(digit);
+        }
+        if (std::holds_alternative<std::set<char>>(board[r][i])) {
+            std::get<std::set<char>>(board[r][i]).erase(digit);
+        }
+    }
+    int box_start_row = 3 * (r / 3);
+    int box_start_col = 3 * (c / 3);
+    for (int box_row = box_start_row; box_row < box_start_row + 3; box_row++) {
+        for (int box_col = box_start_col; box_col < box_start_col + 3; box_col++) {
+            if (std::holds_alternative<std::set<char>>(board[box_row][box_col])) {
+                std::get<std::set<char>>(board[box_row][box_col]).erase(digit);
+            }
+        }
+    }
+}
+
+static void find_new(std::vector<std::vector<std::variant<char, std::set<char>>>>& board,
+              std::vector<std::pair<int, int>>& new_digits) {
+    for (int r = 0; r < 9; r++) {
+        for (int c = 0; c < 9; c++) {
+            if (std::holds_alternative<std::set<char>>(board[r][c])) {
+                auto& possibilities = std::get<std::set<char>>(board[r][c]);
+                if (possibilities.size() == 1) {
+                    char digit = *possibilities.begin();
+                    board[r][c] = digit;
+                    new_digits.emplace_back(r, c);
+                }
+            }
+        }
+    }
+}
+
+static bool is_valid(const std::vector<std::vector<std::variant<char, std::set<char>>>>& board,
+              int r, int c, char digit) {
+    for (int i = 0; i < 9; i++) {
+        if (std::holds_alternative<char>(board[r][i]) && std::get<char>(board[r][i]) == digit) {
+            return false;
+        }
+        if (std::holds_alternative<char>(board[i][c]) && std::get<char>(board[i][c]) == digit) {
+            return false;
+        }
+    }
+    int box_start_row = 3 * (r / 3);
+    int box_start_col = 3 * (c / 3);
+    for (int box_row = box_start_row; box_row < box_start_row + 3; box_row++) {
+        for (int box_col = box_start_col; box_col < box_start_col + 3; box_col++) {
+            if (std::holds_alternative<char>(board[box_row][box_col]) &&
+                std::get<char>(board[box_row][box_col]) == digit) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+static bool solve_recursive(std::vector<std::vector<std::variant<char, std::set<char>>>>& board) {
+    for (int r = 0; r < 9; r++) {
+        for (int c = 0; c < 9; c++) {
+            if (!std::holds_alternative<std::set<char>>(board[r][c])) {
+                continue;
+            }
+            auto possibilities = std::get<std::set<char>>(board[r][c]);
+            if (possibilities.empty()) {
+                return false;
+            }
+            for (char digit : possibilities) {
+                if (is_valid(board, r, c, digit)) {
+                    board[r][c] = digit;
+                    if (solve_recursive(board)) {
+                        return true;
+                    }
+                    board[r][c] = possibilities;
+                }
+            }
+            return false;
+        }
+    }
+    return true;
+}
+
 
 // Public functions
 std::shared_ptr<ListNode> Leetcode::vector_to_linked_list(const std::vector<int>& nums) {
@@ -707,6 +795,43 @@ bool Leetcode::is_valid_sudoku(const std::vector<std::vector<char>>& board) {
     return true;
 }
 
+// 37: /problems/sudoku-solver/
+void Leetcode::solve_sudoku(std::vector<std::vector<char>> &board) {
+    std::vector<std::pair<int, int>> new_digits;
+    std::vector<std::vector<std::variant<char, std::set<char>>>> working_board(
+            9, std::vector<std::variant<char, std::set<char>>>(9));
+    for (int row = 0; row < 9; row++) {
+        for (int col = 0; col < 9; col++) {
+            if (board[row][col] == '.') {
+                std::set<char> possibilities;
+                for (char d = '1'; d <= '9'; d++) {
+                    possibilities.insert(d);
+                }
+                working_board[row][col] = possibilities;
+            } else {
+                working_board[row][col] = board[row][col];
+                new_digits.emplace_back(row, col);
+            }
+        }
+    }
+    while (!new_digits.empty()) {
+        std::vector<std::pair<int, int>> current_digits = std::move(new_digits);
+        new_digits.clear();
+        for (const auto& [r, c] : current_digits) {
+            eliminate(working_board, r, c);
+        }
+        find_new(working_board, new_digits);
+    }
+    solve_recursive(working_board);
+    for (int row = 0; row < 9; row++) {
+        for (int col = 0; col < 9; col++) {
+            if (std::holds_alternative<char>(working_board[row][col])) {
+                board[row][col] = std::get<char>(working_board[row][col]);
+            }
+        }
+    }
+}
+
 // 38： /problems/count-and-say/
 std::string Leetcode::count_and_say(const int n) {
     std::vector<int> seq = {1};
@@ -724,4 +849,3 @@ std::string Leetcode::count_and_say(const int n) {
     for (int num : seq) oss << num;
     return oss.str();
 }
-

@@ -362,6 +362,33 @@ void is_valid_sudoku() {
     std::cout << "Valid sudoku: " << std::boolalpha << res << std::endl;
 }
 
+// 37: /problems/sudoku-solver/
+void solve_sudoku() {
+    std::vector<std::vector<char>> board = {
+        {'4','5','.','.','.','9','3','.','1'},
+        {'.','.','.','.','8','.','9','.','.'},
+        {'.','2','.','.','.','.','.','.','.'},
+        {'.','.','2','.','.','4','.','.','.'},
+        {'.','.','8','.','.','.','.','.','3'},
+        {'3','4','.','.','7','.','.','5','.'},
+        {'1','9','.','.','.','8','.','.','5'},
+        {'.','.','3','.','.','.','.','.','.'},
+        {'.','.','.','6','.','.','.','7','.'},
+    };
+    Leetcode::solve_sudoku(board);
+    std::cout << "Sudoku solver: [" << std::endl;
+    for (size_t i = 0; i < board.size(); ++i) {
+        std::cout << "\t[";
+        for (size_t j = 0; j < board[i].size(); ++j) {
+            std::cout << "'" << board[i][j] << "'";
+            if (j < board[i].size() - 1) std::cout << ", ";
+        }
+        std::cout << "]";
+        if (i < board.size() - 1) std::cout << std::endl;
+    }
+    std::cout << std::endl << "]" << std::endl;
+}
+
 // 38： /problems/count-and-say/
 void count_and_say() {
     constexpr int n = 5;
@@ -405,6 +432,7 @@ int main() {
     search_range();
     search_insert();
     is_valid_sudoku();
+    solve_sudoku();
     count_and_say();
     return 0;
 }
