@@ -71,7 +71,7 @@ static bool solve_board(
         if (row != -1) break;
     }
     if (row == -1) return true;
-    int box_idx = (row / 3) * 3 + col / 3;
+    const int box_idx = (row / 3) * 3 + col / 3;
     for (int digit = 0; digit < 9; digit++) {
         if (!row_used[row][digit] && !col_used[col][digit] && !box_used[box_idx][digit]) {
             board[row][col] = static_cast<char>('1' + digit);
@@ -750,8 +750,8 @@ void Leetcode::solve_sudoku(std::vector<std::vector<char>> &board) {
     for (int r = 0; r < 9; r++) {
         for (int c = 0; c < 9; c++) {
             if (board[r][c] != '.') {
-                int digit = board[r][c] - '1';
-                int box_idx = (r / 3) * 3 + c / 3;
+                const int digit = board[r][c] - '1';
+                const int box_idx = (r / 3) * 3 + c / 3;
                 row_used[r][digit] = true;
                 col_used[c][digit] = true;
                 box_used[box_idx][digit] = true;
@@ -775,6 +775,6 @@ std::string Leetcode::count_and_say(const int n) {
         seq = std::move(next);
     }
     std::ostringstream oss;
-    for (int num : seq) oss << num;
+    for (const int num : seq) oss << num;
     return oss.str();
 }
