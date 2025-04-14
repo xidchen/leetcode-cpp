@@ -389,7 +389,7 @@ void solve_sudoku() {
     std::cout << std::endl << "]" << std::endl;
 }
 
-// 38： /problems/count-and-say/
+// 38: /problems/count-and-say/
 void count_and_say() {
     constexpr int n = 5;
     const std::string res = Leetcode::count_and_say(n);
