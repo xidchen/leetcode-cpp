@@ -396,7 +396,7 @@ void count_and_say() {
     std::cout << "Count and say: " << res << std::endl;
 }
 
-int main() {
+auto main() -> int {
     two_sum();
     add_two_numbers();
     length_of_longest_substring();
