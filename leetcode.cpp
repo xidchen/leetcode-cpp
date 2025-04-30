@@ -255,9 +255,7 @@ bool Leetcode::is_palindrome(const int x) {
 
 // 10: /problems/regular-expression-matching/
 bool Leetcode::is_match(const std::string& s, const std::string& p) {
-    std::vector<std::vector<bool>> dp(
-        s.length() + 1,
-        std::vector<bool>(p.length() + 1, false));
+    std::vector dp(s.length() + 1, std::vector<bool>(p.length() + 1, false));
     dp[s.length()][p.length()] = true;
     for (size_t i = s.length(); i != static_cast<size_t>(-1); --i) {
         for (size_t j = p.length() - 1; j != static_cast<size_t>(-1); --j) {
@@ -341,7 +339,7 @@ std::string Leetcode::longest_common_prefix(std::vector<std::string>& strs) {
 }
 
 // 15: /problems/3sum
-std::vector<std::vector<int>> Leetcode::three_sum(std::vector<int>& nums) {
+std::vector<std::vector<int>> Leetcode::three_sum(const std::vector<int>& nums) {
     std::unordered_map<int, int> dic;
     std::vector<std::vector<int>> res;
     for (int n : nums) dic[n]++;
@@ -398,7 +396,7 @@ int Leetcode::three_sum_closest(std::vector<int>& nums, const int target) {
 }
 
 // 17: /problems/letter-combinations-of-a-phone-number/
-std::vector<std::string> Leetcode::letter_combinations(std::string& digits) {
+std::vector<std::string> Leetcode::letter_combinations(const std::string& digits) {
     std::vector<std::string> results;
     if (digits.empty() ||
         digits.find('0') != std::string::npos ||
@@ -493,14 +491,14 @@ std::shared_ptr<ListNode> Leetcode::merge_two_lists(
 }
 
 // 22: /problems/generate-parentheses/
-std::vector<std::string> Leetcode::generate_parenthesis(int n) {
+std::vector<std::string> Leetcode::generate_parenthesis(const int n) {
     std::vector<std::string> result;
     backtrack_parenthesis(result, "", 0, 0, n);
     return result;
 }
 
 // 23: /problems/merge-k-sorted-lists/
-std::shared_ptr<ListNode> Leetcode::merge_k_lists(std::vector<std::shared_ptr<ListNode>>& lists) {
+std::shared_ptr<ListNode> Leetcode::merge_k_lists(const std::vector<std::shared_ptr<ListNode>>& lists) {
     std::priority_queue<std::shared_ptr<ListNode>, std::vector<std::shared_ptr<ListNode>>, Compare> heap;
     for (const auto& list : lists) {
         if (list != nullptr) heap.push(list);
@@ -543,7 +541,7 @@ std::shared_ptr<ListNode> Leetcode::reverse_k_group(std::shared_ptr<ListNode> he
     }
     std::shared_ptr<ListNode> prev = reverse_k_group(node, k);
     for (int i = 0; i < k; ++i) {
-        std::shared_ptr<ListNode> temp = head->next;
+        const std::shared_ptr<ListNode> temp = head->next;
         head->next = prev;
         prev = head;
         head = temp;
@@ -763,7 +761,7 @@ void Leetcode::solve_sudoku(std::vector<std::vector<char>> &board) {
 
 // 38： /problems/count-and-say/
 std::string Leetcode::count_and_say(const int n) {
-    std::vector<int> seq = {1};
+    std::vector seq = {1};
     for (int i = 1; i < n; ++i) {
         std::vector<int> next;
         for (int num : seq) {

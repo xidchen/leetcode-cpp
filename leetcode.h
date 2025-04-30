@@ -11,130 +11,130 @@ public:
     Leetcode() = default;
     ~Leetcode() = default;
 
-    static std::shared_ptr<ListNode> vector_to_linked_list(const std::vector<int>& nums);
-    static std::vector<int> linked_list_to_vector(std::shared_ptr<ListNode> node);
+    static auto vector_to_linked_list(const std::vector<int>& nums) -> std::shared_ptr<ListNode>;
+    static auto linked_list_to_vector(std::shared_ptr<ListNode> node) -> std::vector<int>;
 
     // 1: /problems/two-sum/
-    static std::vector<int> two_sum(const std::vector<int>& nums, int target);
+    static auto two_sum(const std::vector<int>& nums, int target) -> std::vector<int>;
 
     // 2: /problems/add-two-numbers/
-    static std::shared_ptr<ListNode> add_two_numbers(
+    static auto add_two_numbers(
         std::shared_ptr<ListNode> l1,
         std::shared_ptr<ListNode> l2
-    );
+    ) -> std::shared_ptr<ListNode>;
 
     // 3: /problems/longest-substring-without-repeating-characters/
-    static int length_of_longest_substring(const std::string& s);
+    static auto length_of_longest_substring(const std::string& s) -> int;
 
     // 5: /problems/longest-palindromic-substring/
-    static std::string longest_palindromic_substring(const std::string& s);
+    static auto longest_palindromic_substring(const std::string& s) -> std::string;
 
     // 6: /problems/zigzag-conversion/
-    static std::string convert(const std::string& s, int num_rows);
+    static auto convert(const std::string& s, int num_rows) -> std::string;
 
     // 7: /problems/reverse-integer/
-    static int reverse(int x);
+    static auto reverse(int x) -> int;
 
     // 8: /problems/string-to-integer-atoi/
-    static int my_atoi(std::string& s);
+    static auto my_atoi(std::string& s) -> int;
 
     // 9: /problems/palindrome-number/
-    static bool is_palindrome(int x);
+    static auto is_palindrome(int x) -> bool;
 
     // 10: /problems/regular-expression-matching/
-    static bool is_match(const std::string& s, const std::string& p);
+    static auto is_match(const std::string& s, const std::string& p) -> bool;
 
     // 11: /problems/container-with-most-water/
-    static int max_area(const std::vector<int>& height);
+    static auto max_area(const std::vector<int>& height) -> int;
 
     // 12: /problems/integer-to-roman/
-    static std::string int_to_roman(int num);
+    static auto int_to_roman(int num) -> std::string;
 
     // 13: /problems/roman-to-integer/
-    static int roman_to_int(const std::string& s);
+    static auto roman_to_int(const std::string& s) -> int;
 
     // 14: /problems/longest-common-prefix/
-    static std::string longest_common_prefix(std::vector<std::string>& strs);
+    static auto longest_common_prefix(std::vector<std::string>& strs) -> std::string;
 
     // 15: /problems/3sum
-    static std::vector<std::vector<int>> three_sum(std::vector<int>& nums);
+    static auto three_sum(const std::vector<int> &nums) -> std::vector<std::vector<int>>;
 
     // 16: /problems/3sum-closest/
-    static int three_sum_closest(std::vector<int>& nums, int target);
+    static auto three_sum_closest(std::vector<int>& nums, int target) -> int;
 
     // 17: /problems/letter-combinations-of-a-phone-number/
-    static std::vector<std::string> letter_combinations(std::string& digits);
+    static auto letter_combinations(const std::string& digits) -> std::vector<std::string>;
 
     // 18: /problems/4sum/
-    static std::vector<std::vector<int>> four_sum(std::vector<int>& nums, int target);
+    static auto four_sum(std::vector<int>& nums, int target) -> std::vector<std::vector<int>>;
 
     // 19: /problems/remove-nth-node-from-end-of-list/
-    static std::shared_ptr<ListNode> remove_nth_from_end(std::shared_ptr<ListNode> head, int n);
+    static auto remove_nth_from_end(std::shared_ptr<ListNode> head, int n) -> std::shared_ptr<ListNode>;
 
     // 20: /problems/valid-parentheses/
-    static bool is_valid(const std::string& s);
+    static auto is_valid(const std::string& s) -> bool;
 
     // 21: /problems/merge-two-sorted-lists/
-    static std::shared_ptr<ListNode> merge_two_lists(
+    static auto merge_two_lists(
         std::shared_ptr<ListNode> l1,
         std::shared_ptr<ListNode> l2
-    );
+    ) -> std::shared_ptr<ListNode>;
 
     // 22: /problems/generate-parentheses/
-    static std::vector<std::string> generate_parenthesis(int n);
+    static auto generate_parenthesis(int n) -> std::vector<std::string>;
 
     // 23: /problems/merge-k-sorted-lists/
-    static std::shared_ptr<ListNode> merge_k_lists(std::vector<std::shared_ptr<ListNode>>& lists);
+    static auto merge_k_lists(const std::vector<std::shared_ptr<ListNode>>& lists) -> std::shared_ptr<ListNode>;
 
     // 24: /problems/swap-nodes-in-pairs/
-    static std::shared_ptr<ListNode> swap_pairs(std::shared_ptr<ListNode> head);
+    static auto swap_pairs(std::shared_ptr<ListNode> head) -> std::shared_ptr<ListNode>;
 
     // 25: /problems/reverse-nodes-in-k-group/
-    static std::shared_ptr<ListNode> reverse_k_group(std::shared_ptr<ListNode> head, int k);
+    static auto reverse_k_group(std::shared_ptr<ListNode> head, int k) -> std::shared_ptr<ListNode>;
 
     // 26: /problems/remove-duplicates-from-sorted-array/
-    static int remove_duplicates(std::vector<int>& nums);
+    static auto remove_duplicates(std::vector<int>& nums) -> int;
 
     // 27: /problems/remove-element/
-    static int remove_element(std::vector<int>& nums, int val);
+    static auto remove_element(std::vector<int>& nums, int val) -> int;
 
     // 28: /problems/find-the-index-of-the-first-occurrence-in-a-string/
-    static int str_str(const std::string& haystack, const std::string& needle);
+    static auto str_str(const std::string& haystack, const std::string& needle) -> int;
 
     // 29: /problems/divide-two-integers/
-    static int divide(int dividend, int divisor);
+    static auto divide(int dividend, int divisor) -> int;
 
     // 30: /problems/substring-with-concatenation-of-all-words/
-    static std::vector<int> find_substring(const std::string& s, const std::vector<std::string>& words);
+    static auto find_substring(const std::string& s, const std::vector<std::string>& words) -> std::vector<int>;
 
     // 31: /problems/next-permutation/
     static void next_permutation(std::vector<int>& nums);
 
     // 32: /problems/longest-valid-parentheses/
-    static int longest_valid_parentheses(const std::string& s);
+    static auto longest_valid_parentheses(const std::string& s) -> int;
 
     // 33: /problems/search-in-rotated-sorted-array/
-    static int search(const std::vector<int>& nums, int target);
+    static auto search(const std::vector<int>& nums, int target) -> int;
 
     // 34: /problems/find-first-and-last-position-of-element-in-sorted-array/
-    static std::vector<int> search_range(const std::vector<int>& nums, int target);
+    static auto search_range(const std::vector<int>& nums, int target) -> std::vector<int>;
 
     // 35: /problems/search-insert-position/
-    static int search_insert(const std::vector<int>& nums, int target);
+    static auto search_insert(const std::vector<int>& nums, int target) -> int;
 
     // 36: /problems/valid-sudoku/
-    static bool is_valid_sudoku(const std::vector<std::vector<char>>& board);
+    static auto is_valid_sudoku(const std::vector<std::vector<char>>& board) -> bool;
 
     // 37: /problems/sudoku-solver/
     static void solve_sudoku(std::vector<std::vector<char>>& board);
 
     // 38： /problems/count-and-say/
-    static std::string count_and_say(int n);
+    static auto count_and_say(int n) -> std::string;
 
 private:
     // 23: /problems/merge-k-sorted-lists/
     struct Compare {
-        bool operator()(const std::shared_ptr<ListNode>& a, const std::shared_ptr<ListNode>& b) const {
+        auto operator()(const std::shared_ptr<ListNode>& a, const std::shared_ptr<ListNode>& b) const -> bool {
             return a->val > b->val;
         }
     };

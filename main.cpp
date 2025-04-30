@@ -109,7 +109,7 @@ void longest_common_prefix() {
 
 // 15: /problems/3sum
 void three_sum() {
-    std::vector nums = {-1, 0, 1, 2, -1, -4};
+    const std::vector nums = {-1, 0, 1, 2, -1, -4};
     const std::vector<std::vector<int>> res = Leetcode::three_sum(nums);
     std::cout << "Three sum: [";
     for (size_t i = 0; i < res.size(); ++i) {
@@ -134,7 +134,7 @@ void three_sum_closest() {
 
 // 17: /problems/letter-combinations-of-a-phone-number/
 void letter_combinations() {
-    std::string digits = "38";
+    const std::string digits = "38";
     const std::vector<std::string> res = Leetcode::letter_combinations(digits);
     std::cout << "Letter combinations: [";
     for (size_t i = 0; i < res.size(); ++i) {
