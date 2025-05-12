@@ -131,6 +131,9 @@ public:
     // 38： /problems/count-and-say/
     static auto count_and_say(int n) -> std::string;
 
+    // 39: /problems/combination-sum/
+    static auto combination_sum(const std::vector<int>& candidates, int target) -> std::vector<std::vector<int>>;
+
 private:
     // 23: /problems/merge-k-sorted-lists/
     struct Compare {

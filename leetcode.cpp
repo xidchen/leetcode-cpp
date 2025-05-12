@@ -776,3 +776,25 @@ std::string Leetcode::count_and_say(const int n) {
     for (const int num : seq) oss << num;
     return oss.str();
 }
+
+// 39: /problems/combination-sum/
+std::vector<std::vector<int>> Leetcode::combination_sum(const std::vector<int>& candidates, const int target) {
+    std::vector<std::vector<int>> res;
+    std::vector<int> path;
+    std::function<void(int, int)> backtrack = [&](const int nxt, const int r) {
+        if (r == 0) {
+            res.push_back(path);
+            return;
+        }
+        if (nxt == candidates.size()) return;
+        int i = 0;
+        while (r - i * candidates[nxt] >= 0) {
+            for (int j = 0; j < i; ++j) path.push_back(candidates[nxt]);
+            backtrack(nxt + 1, r - i * candidates[nxt]);
+            for (int j = 0; j < i; ++j) path.pop_back();
+            i++;
+        }
+    };
+    backtrack(0, target);
+    return res;
+}

@@ -396,6 +396,24 @@ void count_and_say() {
     std::cout << "Count and say: " << res << std::endl;
 }
 
+// 39: /problems/combination-sum/
+void combination_sum() {
+    const std::vector candidates = {2, 3, 5};
+    constexpr int target = 8;
+    const std::vector<std::vector<int>> res = Leetcode::combination_sum(candidates, target);
+    std::cout << "Combination sum: [";
+    for (size_t i = 0; i < res.size(); ++i) {
+        std::cout << "[";
+        for (size_t j = 0; j < res[i].size(); ++j) {
+            std::cout << res[i][j];
+            if (j < res[i].size() - 1) std::cout << ", ";
+        }
+        std::cout << "]";
+        if (i < res.size() - 1) std::cout << ", ";
+    }
+    std::cout << "]" << std::endl;
+}
+
 auto main() -> int {
     two_sum();
     add_two_numbers();
@@ -434,5 +452,6 @@ auto main() -> int {
     is_valid_sudoku();
     solve_sudoku();
     count_and_say();
+    combination_sum();
     return 0;
 }
