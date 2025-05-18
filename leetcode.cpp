@@ -12,7 +12,7 @@
 #include <vector>
 
 // Private functions
-static std::vector<std::vector<int>> two_sum(const std::vector<long long>& n, const long long t) {
+static auto two_sum(const std::vector<long long>& n, const long long t) -> std::vector<std::vector<int>> {
     std::vector<std::vector<int>> res;
     size_t lo = 0, hi = n.size() - 1;
     while (lo < hi) {
@@ -27,7 +27,7 @@ static std::vector<std::vector<int>> two_sum(const std::vector<long long>& n, co
     return res;
 }
 
-static std::vector<std::vector<int>> k_sum(std::vector<long long>& n, const long long t, const long long k) {
+static auto k_sum(std::vector<long long>& n, const long long t, const long long k) -> std::vector<std::vector<int>> {
     std::vector<std::vector<int>> res;
     if (n.size() < static_cast<size_t>(k) || t < n[0] * k || n[n.size() - 1] * k < t) return res;
     if (k == 2) return two_sum(n, t);
