@@ -798,3 +798,26 @@ std::vector<std::vector<int>> Leetcode::combination_sum(const std::vector<int>& 
     backtrack(0, target);
     return res;
 }
+
+// 40: /problems/combination-sum-ii/
+std::vector<std::vector<int>> Leetcode::combination_sum_2(const std::vector<int> &candidates, const int target) {
+    std::vector<std::vector<int>> res;
+    std::vector<int> current;
+    std::vector<int> sorted_candidates = candidates;
+    std::sort(sorted_candidates.begin(), sorted_candidates.end());
+    std::function<void(int, int)> backtrack = [&](const int start, const int remain) {
+        if (remain == 0) {
+            res.push_back(current);
+            return;
+        }
+        for (int i = start; i < sorted_candidates.size(); i++) {
+            if (i > start && sorted_candidates[i] == sorted_candidates[i - 1]) continue;
+            if (sorted_candidates[i] > remain) break;
+            current.push_back(sorted_candidates[i]);
+            backtrack(i + 1, remain - sorted_candidates[i]);
+            current.pop_back();
+        }
+    };
+    backtrack(0, target);
+    return res;
+}

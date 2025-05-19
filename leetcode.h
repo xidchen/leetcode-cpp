@@ -134,6 +134,9 @@ public:
     // 39: /problems/combination-sum/
     static auto combination_sum(const std::vector<int>& candidates, int target) -> std::vector<std::vector<int>>;
 
+    // 40: /problems/combination-sum-ii/
+    static auto combination_sum_2(const std::vector<int>& candidates, int target) -> std::vector<std::vector<int>>;
+
 private:
     // 23: /problems/merge-k-sorted-lists/
     struct Compare {
