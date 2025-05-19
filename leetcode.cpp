@@ -56,9 +56,9 @@ static void backtrack_parenthesis(
     if (right < left) backtrack_parenthesis(result, s + ")", left, right + 1, n);
 }
 
-static bool solve_board(
+static auto solve_board(
     std::vector<std::vector<char>>& board, bool row_used[9][9], bool col_used[9][9], bool box_used[9][9]
-) {
+) -> bool {
     int row = -1, col = -1;
     for (int r = 0; r < 9; r++) {
         for (int c = 0; c < 9; c++) {
