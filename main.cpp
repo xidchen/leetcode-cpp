@@ -432,6 +432,13 @@ void combination_sum_2() {
     std::cout << "]" << std::endl;
 }
 
+// 41: /problems/first-missing-positive/
+void first_missing_positive() {
+    const std::vector nums = {3, 4, -1, 1};
+    const int res = Leetcode::first_missing_positive(nums);
+    std::cout << "First missing positive: " << res << std::endl;
+}
+
 auto main() -> int {
     two_sum();
     add_two_numbers();
@@ -472,5 +479,6 @@ auto main() -> int {
     count_and_say();
     combination_sum();
     combination_sum_2();
+    first_missing_positive();
     return 0;
 }

@@ -137,6 +137,9 @@ public:
     // 40: /problems/combination-sum-ii/
     static auto combination_sum_2(const std::vector<int>& candidates, int target) -> std::vector<std::vector<int>>;
 
+    // 41: /problems/first-missing-positive/
+    static auto first_missing_positive(const std::vector<int>& nums) -> int;
+
 private:
     // 23: /problems/merge-k-sorted-lists/
     struct Compare {
