@@ -12,7 +12,9 @@
 #include <vector>
 
 // Private functions
-static auto two_sum(const std::vector<long long>& n, const long long t) -> std::vector<std::vector<int>> {
+static auto two_sum(
+    const std::vector<long long>& n, const long long t
+) -> std::vector<std::vector<int>> {
     std::vector<std::vector<int>> res;
     size_t lo = 0, hi = n.size() - 1;
     while (lo < hi) {
@@ -27,7 +29,9 @@ static auto two_sum(const std::vector<long long>& n, const long long t) -> std::
     return res;
 }
 
-static auto k_sum(std::vector<long long>& n, const long long t, const long long k) -> std::vector<std::vector<int>> {
+static auto k_sum(
+    std::vector<long long>& n, const long long t, const long long k
+) -> std::vector<std::vector<int>> {
     std::vector<std::vector<int>> res;
     if (n.size() < static_cast<size_t>(k) || t < n[0] * k || n[n.size() - 1] * k < t) return res;
     if (k == 2) return two_sum(n, t);
@@ -46,7 +50,8 @@ static auto k_sum(std::vector<long long>& n, const long long t, const long long 
 }
 
 static void backtrack_parenthesis(
-    std::vector<std::string>& result, const std::string& s, const int left, const int right, const int n
+    std::vector<std::string>& result, const std::string& s,
+    const int left, const int right, const int n
 ) {
     if (s.length() == static_cast<size_t>(n) * 2) {
         result.push_back(s);
@@ -95,7 +100,9 @@ static auto solve_board(
 
 
 // Public functions
-std::shared_ptr<ListNode> Leetcode::vector_to_linked_list(const std::vector<int>& nums) {
+auto Leetcode::vector_to_linked_list(
+    const std::vector<int>& nums
+) -> std::shared_ptr<ListNode> {
     const auto dummy = std::make_shared<ListNode>(0);
     std::shared_ptr current = dummy;
     for (int num : nums) {
@@ -105,7 +112,9 @@ std::shared_ptr<ListNode> Leetcode::vector_to_linked_list(const std::vector<int>
     return dummy->next;
 }
 
-std::vector<int> Leetcode::linked_list_to_vector(std::shared_ptr<ListNode> node) {
+auto Leetcode::linked_list_to_vector(
+    std::shared_ptr<ListNode> node
+) -> std::vector<int> {
     std::vector<int> result;
     while (node != nullptr) {
         result.push_back(node->val);
@@ -115,7 +124,9 @@ std::vector<int> Leetcode::linked_list_to_vector(std::shared_ptr<ListNode> node)
 }
 
 // 1: /problems/two-sum/
-std::vector<int> Leetcode::two_sum(const std::vector<int>& nums, const int target) {
+auto Leetcode::two_sum(
+    const std::vector<int>& nums, const int target
+) -> std::vector<int> {
     std::unordered_map<int, int> dic;
     for (int i = 0; i < nums.size(); ++i) {
         if (dic.find(nums[i]) != dic.end()) {
@@ -127,10 +138,10 @@ std::vector<int> Leetcode::two_sum(const std::vector<int>& nums, const int targe
 }
 
 // 2: /problems/add_two_numbers/
-std::shared_ptr<ListNode> Leetcode::add_two_numbers(
+auto Leetcode::add_two_numbers(
     std::shared_ptr<ListNode> l1,
     std::shared_ptr<ListNode> l2
-) {
+) -> std::shared_ptr<ListNode> {
     const auto dummy = std::make_shared<ListNode>(0);
     std::shared_ptr current = dummy;
     int carry = 0;
@@ -151,7 +162,7 @@ std::shared_ptr<ListNode> Leetcode::add_two_numbers(
 }
 
 // 3: /problems/longest-substring-without-repeating-characters/
-int Leetcode::length_of_longest_substring(const std::string& s) {
+auto Leetcode::length_of_longest_substring(const std::string& s) -> int {
     std::unordered_map<char, int> last_seen;
     int start = 0, longest = 0;
     for (int i = 0; i < s.length(); ++i) {
@@ -168,7 +179,7 @@ int Leetcode::length_of_longest_substring(const std::string& s) {
 }
 
 // 5: /problems/longest-palindromic-substring/
-std::string Leetcode::longest_palindromic_substring(const std::string& s) {
+auto Leetcode::longest_palindromic_substring(const std::string& s) -> std::string {
     if (s.length() < 2 || s == std::string(s.rbegin(), s.rend())) {
         return s;
     }
@@ -197,7 +208,7 @@ std::string Leetcode::longest_palindromic_substring(const std::string& s) {
 }
 
 // 6: /problems/zigzag-conversion/
-std::string Leetcode::convert(const std::string& s, const int num_rows) {
+auto Leetcode::convert(const std::string& s, const int num_rows) -> std::string {
     if (num_rows == 1 || s.length() < num_rows) {
         return s;
     }
@@ -222,7 +233,7 @@ std::string Leetcode::convert(const std::string& s, const int num_rows) {
 }
 
 // 7: /problems/reverse-integer/
-int Leetcode::reverse(int x) {
+auto Leetcode::reverse(int x) -> int {
     if (x == INT_MIN) return 0;
     const bool negative = x < 0;
     x = abs(x);
@@ -236,7 +247,7 @@ int Leetcode::reverse(int x) {
 }
 
 // 8: /problems/string-to-integer-atoi/
-int Leetcode::my_atoi(std::string& s) {
+auto Leetcode::my_atoi(std::string& s) -> int {
     s.erase(0, s.find_first_not_of(' '));
     if (s.empty()) return 0;
     int i = 0, sign = 1;
@@ -251,13 +262,13 @@ int Leetcode::my_atoi(std::string& s) {
 }
 
 // 9: /problems/palindrome-number/
-bool Leetcode::is_palindrome(const int x) {
+auto Leetcode::is_palindrome(const int x) -> bool {
     std::string s = std::to_string(x);
     return s == std::string(s.rbegin(), s.rend());
 }
 
 // 10: /problems/regular-expression-matching/
-bool Leetcode::is_match(const std::string& s, const std::string& p) {
+auto Leetcode::is_match(const std::string& s, const std::string& p) -> bool {
     std::vector dp(s.length() + 1, std::vector<bool>(p.length() + 1, false));
     dp[s.length()][p.length()] = true;
     for (size_t i = s.length(); i != static_cast<size_t>(-1); --i) {
@@ -274,7 +285,7 @@ bool Leetcode::is_match(const std::string& s, const std::string& p) {
 }
 
 // 11: /problems/container-with-most-water/
-int Leetcode::max_area(const std::vector<int>& height) {
+auto Leetcode::max_area(const std::vector<int>& height) -> int {
     int max_area = 0;
     size_t i = 0, j = height.size() - 1;
     while (i < j) {
@@ -288,7 +299,7 @@ int Leetcode::max_area(const std::vector<int>& height) {
 }
 
 // 12: /problems/integer-to-roman/
-std::string Leetcode::int_to_roman(int num) {
+auto Leetcode::int_to_roman(int num) -> std::string {
     std::vector<std::pair<int, std::string>> mapping {
         {1000, "M"}, {900, "CM"},
         {500, "D"}, {400, "CD"},
@@ -309,7 +320,7 @@ std::string Leetcode::int_to_roman(int num) {
 }
 
 // 13: /problems/roman-to-integer/
-int Leetcode::roman_to_int(const std::string& s) {
+auto Leetcode::roman_to_int(const std::string& s) -> int {
     std::unordered_map<char, int> d = {
         {'I', 1}, {'V', 5},
         {'X', 10}, {'L', 50},
@@ -329,7 +340,7 @@ int Leetcode::roman_to_int(const std::string& s) {
 }
 
 // 14: /problems/longest-common-prefix/
-std::string Leetcode::longest_common_prefix(std::vector<std::string>& strs) {
+auto Leetcode::longest_common_prefix(std::vector<std::string>& strs) -> std::string {
     if (strs.empty()) return "";
     if (strs.size() == 1) return strs[0];
     std::sort(strs.begin(), strs.end());
@@ -342,7 +353,7 @@ std::string Leetcode::longest_common_prefix(std::vector<std::string>& strs) {
 }
 
 // 15: /problems/3sum
-std::vector<std::vector<int>> Leetcode::three_sum(const std::vector<int>& nums) {
+auto Leetcode::three_sum(const std::vector<int>& nums) -> std::vector<std::vector<int>> {
     std::unordered_map<int, int> dic;
     std::vector<std::vector<int>> res;
     for (int n : nums) dic[n]++;
@@ -379,7 +390,7 @@ std::vector<std::vector<int>> Leetcode::three_sum(const std::vector<int>& nums) 
 }
 
 // 16: /problems/3sum-closest/
-int Leetcode::three_sum_closest(std::vector<int>& nums, const int target) {
+auto Leetcode::three_sum_closest(std::vector<int>& nums, const int target) -> int {
     const int n = static_cast<int>(nums.size());
     std::sort(nums.begin(), nums.end());
     int res = nums[0] + nums[1] + nums[2];
@@ -399,7 +410,9 @@ int Leetcode::three_sum_closest(std::vector<int>& nums, const int target) {
 }
 
 // 17: /problems/letter-combinations-of-a-phone-number/
-std::vector<std::string> Leetcode::letter_combinations(const std::string& digits) {
+auto Leetcode::letter_combinations(
+    const std::string& digits
+) -> std::vector<std::string> {
     std::vector<std::string> results;
     if (digits.empty() ||
         digits.find('0') != std::string::npos ||
@@ -430,16 +443,18 @@ std::vector<std::string> Leetcode::letter_combinations(const std::string& digits
 }
 
 // 18: /problems/4sum/
-std::vector<std::vector<int>> Leetcode::four_sum(std::vector<int>& nums, const int target) {
+auto Leetcode::four_sum(
+    std::vector<int>& nums, const int target
+) -> std::vector<std::vector<int>> {
     std::vector<long long> nums64 (nums.begin(), nums.end());
     std::sort(nums64.begin(), nums64.end());
     return k_sum(nums64, target, 4);
 }
 
 // 19: /problems/remove-nth-node-from-end-of-list/
-std::shared_ptr<ListNode> Leetcode::remove_nth_from_end(
+auto Leetcode::remove_nth_from_end(
     std::shared_ptr<ListNode> head, const int n
-) {
+) -> std::shared_ptr<ListNode> {
     const auto dummy = std::make_shared<ListNode>(0);
     dummy->next = std::move(head);
     std::shared_ptr<ListNode> first = dummy;
@@ -457,7 +472,7 @@ std::shared_ptr<ListNode> Leetcode::remove_nth_from_end(
 }
 
 // 20: /problems/valid-parentheses/
-bool Leetcode::is_valid(const std::string& s) {
+auto Leetcode::is_valid(const std::string& s) -> bool {
     std::unordered_map<char, char> d = {
         {'(', ')'}, {'[', ']'}, {'{', '}'}
     };
@@ -473,10 +488,10 @@ bool Leetcode::is_valid(const std::string& s) {
 }
 
 // 21: /problems/merge-two-sorted-lists/
-std::shared_ptr<ListNode> Leetcode::merge_two_lists(
+auto Leetcode::merge_two_lists(
     std::shared_ptr<ListNode> l1,
     std::shared_ptr<ListNode> l2
-) {
+) -> std::shared_ptr<ListNode> {
     const auto dummy = std::make_shared<ListNode>(0);
     std::shared_ptr<ListNode> prev = dummy;
     while (l1 && l2) {
@@ -494,14 +509,16 @@ std::shared_ptr<ListNode> Leetcode::merge_two_lists(
 }
 
 // 22: /problems/generate-parentheses/
-std::vector<std::string> Leetcode::generate_parenthesis(const int n) {
+auto Leetcode::generate_parenthesis(const int n) -> std::vector<std::string> {
     std::vector<std::string> result;
     backtrack_parenthesis(result, "", 0, 0, n);
     return result;
 }
 
 // 23: /problems/merge-k-sorted-lists/
-std::shared_ptr<ListNode> Leetcode::merge_k_lists(const std::vector<std::shared_ptr<ListNode>>& lists) {
+auto Leetcode::merge_k_lists(
+    const std::vector<std::shared_ptr<ListNode>>& lists
+) -> std::shared_ptr<ListNode> {
     std::priority_queue<std::shared_ptr<ListNode>, std::vector<std::shared_ptr<ListNode>>, Compare> heap;
     for (const auto& list : lists) {
         if (list != nullptr) heap.push(list);
@@ -519,7 +536,7 @@ std::shared_ptr<ListNode> Leetcode::merge_k_lists(const std::vector<std::shared_
 }
 
 // 24: /problems/swap-nodes-in-pairs/
-std::shared_ptr<ListNode> Leetcode::swap_pairs(std::shared_ptr<ListNode> head) {
+auto Leetcode::swap_pairs(std::shared_ptr<ListNode> head) -> std::shared_ptr<ListNode> {
     const auto dummy = std::make_shared<ListNode>(0);
     dummy->next = std::move(head);
     std::shared_ptr<ListNode> prev = dummy;
@@ -535,7 +552,9 @@ std::shared_ptr<ListNode> Leetcode::swap_pairs(std::shared_ptr<ListNode> head) {
 }
 
 // 25: /problems/reverse-nodes-in-k-group/
-std::shared_ptr<ListNode> Leetcode::reverse_k_group(std::shared_ptr<ListNode> head, const int k) {
+auto Leetcode::reverse_k_group(
+    std::shared_ptr<ListNode> head, const int k
+) -> std::shared_ptr<ListNode> {
     if (k < 2) return head;
     std::shared_ptr<ListNode> node = head;
     for (int i = 0; i < k; ++i) {
@@ -553,7 +572,7 @@ std::shared_ptr<ListNode> Leetcode::reverse_k_group(std::shared_ptr<ListNode> he
 }
 
 // 26: /problems/remove-duplicates-from-sorted-array/
-int Leetcode::remove_duplicates(std::vector<int>& nums) {
+auto Leetcode::remove_duplicates(std::vector<int>& nums) -> int {
     int next_new = 0;
     for (int i = 0; i < nums.size(); ++i) {
         if (i == 0 || nums[i] != nums[i - 1]) {
@@ -565,7 +584,7 @@ int Leetcode::remove_duplicates(std::vector<int>& nums) {
 }
 
 // 27: /problems/remove-element/
-int Leetcode::remove_element(std::vector<int> &nums, const int val) {
+auto Leetcode::remove_element(std::vector<int> &nums, const int val) -> int {
     int k = 0;
     for (int i = 0; i < nums.size(); ++i) {
         if (nums[i] != val) {
@@ -577,14 +596,14 @@ int Leetcode::remove_element(std::vector<int> &nums, const int val) {
 }
 
 // 28: /problems/find-the-index-of-the-first-occurrence-in-a-string/
-int Leetcode::str_str(const std::string& haystack, const std::string& needle) {
+auto Leetcode::str_str(const std::string& haystack, const std::string& needle) -> int {
     const size_t found = haystack.find(needle);
     if (found == std::string::npos) return -1;
     return static_cast<int>(found);
 }
 
 // 29: /problems/divide-two-integers/
-int Leetcode::divide(const int dividend, const int divisor) {
+auto Leetcode::divide(const int dividend, const int divisor) -> int {
     if (dividend == INT_MIN && divisor == -1) return INT_MAX;
     if (dividend == INT_MIN && divisor == 1) return INT_MIN;
     const bool diff_sign = (dividend < 0) ^ (divisor < 0);
@@ -610,7 +629,9 @@ int Leetcode::divide(const int dividend, const int divisor) {
 }
 
 // 30: /problems/substring-with-concatenation-of-all-words/
-std::vector<int> Leetcode::find_substring(const std::string& s, const std::vector<std::string>& words) {
+auto Leetcode::find_substring(
+    const std::string& s, const std::vector<std::string>& words
+) -> std::vector<int> {
     std::vector<int> res;
     if (words.empty() || s.length() < words.size() * words[0].length()) return res;
     const int wc = static_cast<int>(words.size());
@@ -662,7 +683,7 @@ void Leetcode::next_permutation(std::vector<int>& nums) {
 }
 
 // 32: /problems/longest-valid-parentheses/
-int Leetcode::longest_valid_parentheses(const std::string &s) {
+auto Leetcode::longest_valid_parentheses(const std::string &s) -> int {
     std::stack<int> stack;
     stack.push(-1);
     int max_len = 0;
@@ -678,7 +699,7 @@ int Leetcode::longest_valid_parentheses(const std::string &s) {
 }
 
 // 33: /problems/search-in-rotated-sorted-array/
-int Leetcode::search(const std::vector<int>& nums, const int target) {
+auto Leetcode::search(const std::vector<int>& nums, const int target) -> int {
     int left = 0;
     int right = static_cast<int>(nums.size()) - 1;
     while (left <= right) {
@@ -696,7 +717,9 @@ int Leetcode::search(const std::vector<int>& nums, const int target) {
 }
 
 // 34: /problems/find-first-and-last-position-of-element-in-sorted-array/
-std::vector<int> Leetcode::search_range(const std::vector<int>& nums, const int target) {
+auto Leetcode::search_range(
+    const std::vector<int>& nums, const int target
+) -> std::vector<int> {
     auto binary = [&](const double tgt, int left, int right) -> int {
         while (left <= right) {
             if (const int mid = (left + right) / 2; nums[mid] < tgt) left = mid + 1;
@@ -712,7 +735,7 @@ std::vector<int> Leetcode::search_range(const std::vector<int>& nums, const int 
 }
 
 // 35: /problems/search-insert-position/
-int Leetcode::search_insert(const std::vector<int>& nums, const int target) {
+auto Leetcode::search_insert(const std::vector<int>& nums, const int target) -> int {
     int left = 0;
     int right = static_cast<int>(nums.size()) - 1;
     while (left <= right) {
@@ -725,13 +748,15 @@ int Leetcode::search_insert(const std::vector<int>& nums, const int target) {
 }
 
 // 36: /problems/valid-sudoku/
-bool Leetcode::is_valid_sudoku(const std::vector<std::vector<char>>& board) {
+auto Leetcode::is_valid_sudoku(
+    const std::vector<std::vector<char>>& board
+) -> bool {
     std::vector<std::vector<char>> rows(9), cols(9), boxes(9);
     for (int r = 0; r < 9; ++r) {
         for (int c = 0; c < 9; ++c) {
             char digit = board[r][c];
             if (digit == '.') continue;
-            int b = r / 3 * 3 + c / 3;
+            const int b = r / 3 * 3 + c / 3;
             if (std::find(rows[r].begin(), rows[r].end(), digit) != rows[r].end() ||
             std::find(cols[c].begin(), cols[c].end(), digit) != cols[c].end() ||
             std::find(boxes[b].begin(), boxes[b].end(), digit) != boxes[b].end()) return false;
@@ -763,7 +788,7 @@ void Leetcode::solve_sudoku(std::vector<std::vector<char>> &board) {
 }
 
 // 38： /problems/count-and-say/
-std::string Leetcode::count_and_say(const int n) {
+auto Leetcode::count_and_say(const int n) -> std::string {
     std::vector seq = {1};
     for (int i = 1; i < n; ++i) {
         std::vector<int> next;
@@ -781,7 +806,9 @@ std::string Leetcode::count_and_say(const int n) {
 }
 
 // 39: /problems/combination-sum/
-std::vector<std::vector<int>> Leetcode::combination_sum(const std::vector<int>& candidates, const int target) {
+auto Leetcode::combination_sum(
+    const std::vector<int>& candidates, const int target
+) -> std::vector<std::vector<int>> {
     std::vector<std::vector<int>> res;
     std::vector<int> path;
     std::function<void(int, int)> backtrack = [&](const int nxt, const int r) {
@@ -803,7 +830,9 @@ std::vector<std::vector<int>> Leetcode::combination_sum(const std::vector<int>& 
 }
 
 // 40: /problems/combination-sum-ii/
-std::vector<std::vector<int>> Leetcode::combination_sum_2(const std::vector<int> &candidates, const int target) {
+auto Leetcode::combination_sum_2(
+    const std::vector<int> &candidates, const int target
+) -> std::vector<std::vector<int>> {
     std::vector<std::vector<int>> res;
     std::vector<int> current;
     std::vector<int> sorted_candidates = candidates;
@@ -826,7 +855,7 @@ std::vector<std::vector<int>> Leetcode::combination_sum_2(const std::vector<int>
 }
 
 // 41: /problems/first-missing-positive/
-int Leetcode::first_missing_positive(const std::vector<int>& nums) {
+auto Leetcode::first_missing_positive(const std::vector<int>& nums) -> int {
     std::vector<int> arr = nums;
     const int n = static_cast<int>(arr.size());
     for (int i = 0; i < n; ++i) {
@@ -841,7 +870,7 @@ int Leetcode::first_missing_positive(const std::vector<int>& nums) {
 }
 
 // 42: /problems/trapping-rain-water/
-int Leetcode::trap(const std::vector<int>& height) {
+auto Leetcode::trap(const std::vector<int>& height) -> int {
     int left = 0;
     int right = static_cast<int>(height.size()) - 1;
     int left_max = 0, right_max = 0;
