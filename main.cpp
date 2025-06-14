@@ -439,6 +439,13 @@ void first_missing_positive() {
     std::cout << "First missing positive: " << res << std::endl;
 }
 
+// 42: /problems/trapping-rain-water/
+void trap() {
+    const std::vector height = {4, 2, 0, 3, 2, 5};
+    const int res = Leetcode::trap(height);
+    std::cout << "Trapping rain water: " << res << std::endl;
+}
+
 auto main() -> int {
     two_sum();
     add_two_numbers();
@@ -480,5 +487,6 @@ auto main() -> int {
     combination_sum();
     combination_sum_2();
     first_missing_positive();
+    trap();
     return 0;
 }

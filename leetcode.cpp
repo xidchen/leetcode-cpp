@@ -836,3 +836,23 @@ int Leetcode::first_missing_positive(const std::vector<int>& nums) {
     }
     return n + 1;
 }
+
+// 42: /problems/trapping-rain-water/
+int Leetcode::trap(const std::vector<int>& height) {
+    int left = 0;
+    int right = static_cast<int>(height.size()) - 1;
+    int left_max = 0, right_max = 0;
+    int res = 0;
+    while (left < right) {
+        if (height[left] < height[right]) {
+            if (height[left] >= left_max) left_max = height[left];
+            else res += left_max - height[left];
+            left++;
+        } else {
+            if (height[right] >= right_max) right_max = height[right];
+            else res += right_max - height[right];
+            right--;
+        }
+    }
+    return res;
+}

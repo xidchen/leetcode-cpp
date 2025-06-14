@@ -140,10 +140,13 @@ public:
     // 41: /problems/first-missing-positive/
     static auto first_missing_positive(const std::vector<int>& nums) -> int;
 
+    // 42: /problems/trapping-rain-water/
+    static auto trap(const std::vector<int>& height) -> int;
+
 private:
     // 23: /problems/merge-k-sorted-lists/
     struct Compare {
-        auto operator()(const std::shared_ptr<ListNode>& a, const std::shared_ptr<ListNode>& b) const -> bool {
+        auto operator()(const std::shared_ptr<ListNode> &a, const std::shared_ptr<ListNode> &b) const -> bool {
             return a->val > b->val;
         }
     };
