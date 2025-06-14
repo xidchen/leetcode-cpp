@@ -57,7 +57,10 @@ static void backtrack_parenthesis(
 }
 
 static auto solve_board(
-    std::vector<std::vector<char>>& board, bool row_used[9][9], bool col_used[9][9], bool box_used[9][9]
+    std::vector<std::vector<char>>& board,
+    std::array<std::array<bool, 9>, 9>& row_used,
+    std::array<std::array<bool, 9>, 9>& col_used,
+    std::array<std::array<bool, 9>, 9>& box_used
 ) -> bool {
     int row = -1, col = -1;
     for (int r = 0; r < 9; r++) {
@@ -742,9 +745,9 @@ bool Leetcode::is_valid_sudoku(const std::vector<std::vector<char>>& board) {
 
 // 37: /problems/sudoku-solver/
 void Leetcode::solve_sudoku(std::vector<std::vector<char>> &board) {
-    bool row_used[9][9] = {{false}};
-    bool col_used[9][9] = {{false}};
-    bool box_used[9][9] = {{false}};
+    std::array<std::array<bool, 9>, 9> row_used = {{false}};
+    std::array<std::array<bool, 9>, 9> col_used = {{false}};
+    std::array<std::array<bool, 9>, 9> box_used = {{false}};
     for (int r = 0; r < 9; r++) {
         for (int c = 0; c < 9; c++) {
             if (board[r][c] != '.') {
