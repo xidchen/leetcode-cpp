@@ -48,7 +48,7 @@ static auto k_sum(std::vector<long long>& n, const long long t, const long long 
 static void backtrack_parenthesis(
     std::vector<std::string>& result, const std::string& s, const int left, const int right, const int n
 ) {
-    if (s.length() == n * 2) {
+    if (s.length() == static_cast<size_t>(n) * 2) {
         result.push_back(s);
         return;
     }
