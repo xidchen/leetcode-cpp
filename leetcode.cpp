@@ -888,3 +888,26 @@ auto Leetcode::trap(const std::vector<int>& height) -> int {
     }
     return res;
 }
+
+// 43: /problems/multiply-strings/
+auto Leetcode::multiply(const std::string& num1, const std::string& num2) -> std::string {
+    if (num1 == "0" || num2 == "0") return "0";
+    const int m = static_cast<int>(num1.size());
+    const int n = static_cast<int>(num2.size());
+    std::vector<int> res(m + n, 0);
+    for (int i = m - 1; i >= 0; i--) {
+        for (int j = n - 1; j >= 0; j--) {
+            int product = (num1[i] - '0') * (num2[j] - '0');
+            const int sum = product + res[i + j + 1];
+            res[i + j + 1] = sum % 10;
+            res[i + j] += sum / 10;
+        }
+    }
+    std::string res_str;
+    bool leading_zero = true;
+    for (int digit : res) {
+        if (digit != 0) leading_zero = false;
+        if (!leading_zero) res_str += static_cast<char>('0' + digit);
+    }
+    return res_str.empty() ? "0" : res_str;
+}

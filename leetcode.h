@@ -143,6 +143,9 @@ public:
     // 42: /problems/trapping-rain-water/
     static auto trap(const std::vector<int>& height) -> int;
 
+    // 43: /problems/multiply-strings/
+    static auto multiply(const std::string& num1, const std::string& num2) -> std::string;
+
 private:
     // 23: /problems/merge-k-sorted-lists/
     struct Compare {

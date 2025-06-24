@@ -446,6 +446,14 @@ void trap() {
     std::cout << "Trapping rain water: " << res << std::endl;
 }
 
+// 43: /problems/multiply-strings/
+void multiply() {
+    const std::string num1 = "123";
+    const std::string num2 = "456";
+    const std::string res = Leetcode::multiply(num1, num2);
+    std::cout << "Multiply strings: " << res << std::endl;
+}
+
 auto main() -> int {
     two_sum();
     add_two_numbers();
@@ -488,5 +496,6 @@ auto main() -> int {
     combination_sum_2();
     first_missing_positive();
     trap();
+    multiply();
     return 0;
 }
