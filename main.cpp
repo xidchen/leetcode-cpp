@@ -454,6 +454,14 @@ void multiply() {
     std::cout << "Multiply strings: " << res << std::endl;
 }
 
+// 44: /problems/wildcard-matching/
+void is_match_wildcard() {
+    const std::string s = "aa";
+    const std::string p = "a*";
+    const bool res = Leetcode::is_match_wildcard(s, p);
+    std::cout << "Wildcard matching: " << std::boolalpha << res << std::endl;
+}
+
 auto main() -> int {
     two_sum();
     add_two_numbers();
@@ -497,5 +505,6 @@ auto main() -> int {
     first_missing_positive();
     trap();
     multiply();
+    is_match_wildcard();
     return 0;
 }

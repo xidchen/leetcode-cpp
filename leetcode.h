@@ -146,6 +146,9 @@ public:
     // 43: /problems/multiply-strings/
     static auto multiply(const std::string& num1, const std::string& num2) -> std::string;
 
+    // 44: /problems/wildcard-matching/
+    static auto is_match_wildcard(const std::string& s, const std::string& p) -> bool;
+
 private:
     // 23: /problems/merge-k-sorted-lists/
     struct Compare {
