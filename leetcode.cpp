@@ -914,21 +914,23 @@ auto Leetcode::multiply(const std::string& num1, const std::string& num2) -> std
 
 // 44: /problems/wildcard-matching/
 auto Leetcode::is_match_wildcard(const std::string& s, const std::string& p) -> bool {
-    const int m = static_cast<int>(s.size());
-    const int n = static_cast<int>(p.size());
-    std::vector<std::vector<bool>> dp(m + 1, std::vector<bool>(n + 1, false));
-    dp[0][0] = true;
-    for (int j = 1; j <= n; ++j) {
-        if (p[j - 1] == '*') dp[0][j] = dp[0][j - 1];
-    }
-    for (int i = 1; i <= m; ++i) {
-        for (int j = 1; j <= n; ++j) {
-            if (p[j - 1] == '*') {
-                dp[i][j] = dp[i][j - 1] || dp[i - 1][j];
-            } else if (p[j - 1] == '?' || s[i - 1] == p[j - 1]) {
-                dp[i][j] = dp[i - 1][j - 1];
-            }
+    int s_idx = 0, p_idx = 0;
+    int star_p = -1, star_s = -1;
+    while (s_idx < static_cast<int>(s.size())) {
+        if (p_idx < p.length() && (p[p_idx] == '?' || p[p_idx] == s[s_idx])) {
+            s_idx++;
+            p_idx++;
         }
+        else if (p_idx < p.length() && p[p_idx] == '*') {
+            star_p = p_idx++;
+            star_s = s_idx;
+        }
+        else if (star_p != -1) {
+            p_idx = star_p + 1;
+            s_idx = ++star_s;
+        }
+        else return false;
     }
-    return dp[m][n];
+    while (p_idx < p.length() && p[p_idx] == '*') p_idx++;
+    return p_idx == p.length();
 }
