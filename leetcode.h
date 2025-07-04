@@ -149,6 +149,9 @@ public:
     // 44: /problems/wildcard-matching/
     static auto is_match_wildcard(const std::string& s, const std::string& p) -> bool;
 
+    // 45: /problems/jump-game-ii/
+    static auto jump(const std::vector<int> &nums) -> int;
+
 private:
     // 23: /problems/merge-k-sorted-lists/
     struct Compare {

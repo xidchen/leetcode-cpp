@@ -934,3 +934,16 @@ auto Leetcode::is_match_wildcard(const std::string& s, const std::string& p) -> 
     while (p_idx < p.length() && p[p_idx] == '*') p_idx++;
     return p_idx == p.length();
 }
+
+// 45: /problems/jump-game-ii/
+auto Leetcode::jump(const std::vector<int>& nums) -> int {
+    int jumps = 0, current_end = 0, farthest = 0;
+    for (int i = 0; i < static_cast<int>(nums.size()) - 1; i++) {
+        farthest = std::max(farthest, i + nums[i]);
+        if (i == current_end) {
+            jumps++;
+            current_end = farthest;
+        }
+    }
+    return jumps;
+}

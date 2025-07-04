@@ -462,6 +462,13 @@ void is_match_wildcard() {
     std::cout << "Wildcard matching: " << std::boolalpha << res << std::endl;
 }
 
+// 45: /problems/jump-game-ii/
+void jump() {
+    const std::vector nums = {2, 3, 1, 1, 4};
+    const int res = Leetcode::jump(nums);
+    std::cout << "Jump game II: " << res << std::endl;
+}
+
 auto main() -> int {
     two_sum();
     add_two_numbers();
@@ -506,5 +513,6 @@ auto main() -> int {
     trap();
     multiply();
     is_match_wildcard();
+    jump();
     return 0;
 }
