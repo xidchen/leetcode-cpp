@@ -98,6 +98,19 @@ static auto solve_board(
     return false;
 }
 
+static void backtrack_permute(
+    std::vector<int>& nums, int start, std::vector<std::vector<int>>& res
+) {
+    if (start == static_cast<int>(nums.size())) {res.push_back(nums);}
+    else {
+        for (int i = start; i < static_cast<int>(nums.size()); i++) {
+            std::swap(nums[start], nums[i]);
+            backtrack_permute(nums, start + 1, res);
+            std::swap(nums[start], nums[i]);
+        }
+    }
+}
+
 
 // Public functions
 auto Leetcode::vector_to_linked_list(
@@ -894,10 +907,10 @@ auto Leetcode::multiply(const std::string& num1, const std::string& num2) -> std
     if (num1 == "0" || num2 == "0") return "0";
     const int m = static_cast<int>(num1.size());
     const int n = static_cast<int>(num2.size());
-    std::vector<int> res(m + n, 0);
+    std::vector res(m + n, 0);
     for (int i = m - 1; i >= 0; i--) {
         for (int j = n - 1; j >= 0; j--) {
-            int product = (num1[i] - '0') * (num2[j] - '0');
+            const int product = (num1[i] - '0') * (num2[j] - '0');
             const int sum = product + res[i + j + 1];
             res[i + j + 1] = sum % 10;
             res[i + j] += sum / 10;
@@ -905,7 +918,7 @@ auto Leetcode::multiply(const std::string& num1, const std::string& num2) -> std
     }
     std::string res_str;
     bool leading_zero = true;
-    for (int digit : res) {
+    for (const int digit : res) {
         if (digit != 0) leading_zero = false;
         if (!leading_zero) res_str += static_cast<char>('0' + digit);
     }
@@ -946,4 +959,11 @@ auto Leetcode::jump(const std::vector<int>& nums) -> int {
         }
     }
     return jumps;
+}
+
+// 46: /problems/permutations/
+auto Leetcode::permute(std::vector<int>& nums) -> std::vector<std::vector<int>> {
+    std::vector<std::vector<int>> res;
+    backtrack_permute(nums, 0, res);
+    return res;
 }

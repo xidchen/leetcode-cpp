@@ -152,6 +152,9 @@ public:
     // 45: /problems/jump-game-ii/
     static auto jump(const std::vector<int> &nums) -> int;
 
+    // 46: /problems/permutations/
+    static auto permute(std::vector<int>& nums) -> std::vector<std::vector<int>>;
+
 private:
     // 23: /problems/merge-k-sorted-lists/
     struct Compare {

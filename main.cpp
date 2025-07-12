@@ -469,6 +469,23 @@ void jump() {
     std::cout << "Jump game II: " << res << std::endl;
 }
 
+// 46: /problems/permutations/
+void permute() {
+    std::vector nums = {1, 2, 3};
+    const std::vector<std::vector<int>> res = Leetcode::permute(nums);
+    std::cout << "Permutations: [";
+    for (const auto & r : res) {
+        std::cout << "[";
+        for (size_t j = 0; j < r.size(); ++j) {
+            std::cout << r[j];
+            if (j < r.size() - 1) std::cout << ", ";
+        }
+        std::cout << "]";
+        if (r != res.back()) std::cout << ", ";
+    }
+    std::cout << "]" << std::endl;
+}
+
 auto main() -> int {
     two_sum();
     add_two_numbers();
@@ -514,5 +531,6 @@ auto main() -> int {
     multiply();
     is_match_wildcard();
     jump();
+    permute();
     return 0;
 }
