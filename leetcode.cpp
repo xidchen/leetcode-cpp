@@ -8,6 +8,7 @@
 #include <stack>
 #include <string>
 #include <unordered_map>
+#include <unordered_set>
 #include <utility>
 #include <vector>
 
@@ -108,6 +109,23 @@ static void backtrack_permute(
             backtrack_permute(nums, start + 1, res);
             std::swap(nums[start], nums[i]);
         }
+    }
+}
+
+static void backtrack_permute_unique(
+    std::vector<int>& nums, int start, std::vector<std::vector<int>>& res
+) {
+    std::unordered_set<int> used;
+    if (start == static_cast<int>(nums.size())) {
+        res.push_back(nums);
+        return;
+    }
+    for (int i = start; i < static_cast<int>(nums.size()); i++) {
+        if (used.find(nums[i]) != used.end()) continue;
+        used.insert(nums[i]);
+        std::swap(nums[start], nums[i]);
+        backtrack_permute_unique(nums, start + 1, res);
+        std::swap(nums[start], nums[i]);
     }
 }
 
@@ -965,5 +983,12 @@ auto Leetcode::jump(const std::vector<int>& nums) -> int {
 auto Leetcode::permute(std::vector<int>& nums) -> std::vector<std::vector<int>> {
     std::vector<std::vector<int>> res;
     backtrack_permute(nums, 0, res);
+    return res;
+}
+
+// 47: /problems/permutations-ii/
+auto Leetcode::permute_unique(std::vector<int> &nums) -> std::vector<std::vector<int>> {
+    std::vector<std::vector<int>> res;
+    backtrack_permute_unique(nums, 0, res);
     return res;
 }

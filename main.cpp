@@ -486,6 +486,23 @@ void permute() {
     std::cout << "]" << std::endl;
 }
 
+// 47: /problems/permutations-ii/
+void permute_unique() {
+    std::vector nums = {1, 1, 2};
+    const std::vector<std::vector<int>> res = Leetcode::permute_unique(nums);
+    std::cout << "Permutations II: [";
+    for (const auto & r : res) {
+        std::cout << "[";
+        for (size_t j = 0; j < r.size(); ++j) {
+            std::cout << r[j];
+            if (j < r.size() - 1) std::cout << ", ";
+        }
+        std::cout << "]";
+        if (r != res.back()) std::cout << ", ";
+    }
+    std::cout << "]" << std::endl;
+}
+
 auto main() -> int {
     two_sum();
     add_two_numbers();
@@ -532,5 +549,6 @@ auto main() -> int {
     is_match_wildcard();
     jump();
     permute();
+    permute_unique();
     return 0;
 }

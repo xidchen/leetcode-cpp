@@ -155,6 +155,9 @@ public:
     // 46: /problems/permutations/
     static auto permute(std::vector<int>& nums) -> std::vector<std::vector<int>>;
 
+    // 47: /problems/permutations-ii/
+    static auto permute_unique(std::vector<int>& nums) -> std::vector<std::vector<int>>;
+
 private:
     // 23: /problems/merge-k-sorted-lists/
     struct Compare {
