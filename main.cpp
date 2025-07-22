@@ -503,6 +503,28 @@ void permute_unique() {
     std::cout << "]" << std::endl;
 }
 
+// 48: /problems/rotate-image/
+void rotate() {
+    std::vector<std::vector<int>> matrix = {
+        {5, 1, 9, 11},
+        {2, 4, 8, 10},
+        {13, 3, 6, 7},
+        {15, 14, 12, 16},
+    };
+    Leetcode::rotate(matrix);
+    std::cout << "Rotate image: [";
+    for (size_t i = 0; i < matrix.size(); ++i) {
+        std::cout << "[";
+        for (size_t j = 0; j < matrix[i].size(); ++j) {
+            std::cout << matrix[i][j];
+            if (j < matrix[i].size() - 1) std::cout << ", ";
+        }
+        std::cout << "]";
+        if (i < matrix.size() - 1) std::cout << ", ";
+    }
+    std::cout << "]" << std::endl;
+}
+
 auto main() -> int {
     two_sum();
     add_two_numbers();
@@ -550,5 +572,6 @@ auto main() -> int {
     jump();
     permute();
     permute_unique();
+    rotate();
     return 0;
 }

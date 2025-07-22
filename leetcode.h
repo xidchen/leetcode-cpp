@@ -158,6 +158,9 @@ public:
     // 47: /problems/permutations-ii/
     static auto permute_unique(std::vector<int>& nums) -> std::vector<std::vector<int>>;
 
+    // 48: /problems/rotate-image/
+    static auto rotate(std::vector<std::vector<int>>& matrix) -> void;
+
 private:
     // 23: /problems/merge-k-sorted-lists/
     struct Compare {

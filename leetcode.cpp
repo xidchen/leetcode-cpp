@@ -992,3 +992,16 @@ auto Leetcode::permute_unique(std::vector<int> &nums) -> std::vector<std::vector
     backtrack_permute_unique(nums, 0, res);
     return res;
 }
+
+// 48: /problems/rotate-image/
+auto Leetcode::rotate(std::vector<std::vector<int>>& matrix) -> void {
+    const int n = static_cast<int>(matrix.size());
+    for (int i = 0; i < n; ++i) {
+        for (int j = i + 1; j < n; ++j) {
+            std::swap(matrix[i][j], matrix[j][i]);
+        }
+    }
+    for (int i = 0; i < n; ++i) {
+        std::reverse(matrix[i].begin(), matrix[i].end());
+    }
+}
