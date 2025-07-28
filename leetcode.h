@@ -161,6 +161,9 @@ public:
     // 48: /problems/rotate-image/
     static auto rotate(std::vector<std::vector<int>>& matrix) -> void;
 
+    // 49: /problems/group-anagrams/
+    static auto group_anagrams(const std::vector<std::string> &strs) -> std::vector<std::vector<std::string>>;
+
 private:
     // 23: /problems/merge-k-sorted-lists/
     struct Compare {

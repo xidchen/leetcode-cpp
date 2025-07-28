@@ -525,6 +525,23 @@ void rotate() {
     std::cout << "]" << std::endl;
 }
 
+// 49: /problems/group-anagrams/
+void group_anagrams() {
+    const std::vector<std::string> strs = {"eat", "tea", "tan", "ate", "nat", "bat"};
+    const auto res = Leetcode::group_anagrams(strs);
+    std::cout << "Group anagrams: [";
+    for (size_t i = 0; i < res.size(); ++i) {
+        std::cout << "[";
+        for (size_t j = 0; j < res[i].size(); ++j) {
+            std::cout << res[i][j];
+            if (j < res[i].size() - 1) std::cout << ", ";
+        }
+        std::cout << "]";
+        if (i < res.size() - 1) std::cout << ", ";
+    }
+    std::cout << "]" << std::endl;
+}
+
 auto main() -> int {
     two_sum();
     add_two_numbers();
@@ -573,5 +590,6 @@ auto main() -> int {
     permute();
     permute_unique();
     rotate();
+    group_anagrams();
     return 0;
 }

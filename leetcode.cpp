@@ -1005,3 +1005,19 @@ auto Leetcode::rotate(std::vector<std::vector<int>>& matrix) -> void {
         std::reverse(matrix[i].begin(), matrix[i].end());
     }
 }
+
+// 49: /problems/group-anagrams/
+auto Leetcode::group_anagrams(const std::vector<std::string>& strs) -> std::vector<std::vector<std::string>> {
+    std::unordered_map<std::string, std::vector<std::string>> anagram_groups;
+    for (const std::string &str : strs) {
+        std::string key = str;
+        std::sort(key.begin(), key.end());
+        anagram_groups[key].push_back(str);
+    }
+    std::vector<std::vector<std::string>> res;
+    res.reserve(anagram_groups.size());
+    for (const auto &[key, value] : anagram_groups) {
+        res.push_back(value);
+    }
+    return res;
+}
