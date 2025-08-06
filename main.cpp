@@ -542,6 +542,14 @@ void group_anagrams() {
     std::cout << "]" << std::endl;
 }
 
+// 50: /problems/powx-n/
+void my_pow() {
+    constexpr double x = 2.0;
+    constexpr int n = 10;
+    const double res = Leetcode::my_pow(x, n);
+    std::cout << "Pow(" << x << ", " << n << "): " << res << std::endl;
+}
+
 auto main() -> int {
     two_sum();
     add_two_numbers();
@@ -591,5 +599,6 @@ auto main() -> int {
     permute_unique();
     rotate();
     group_anagrams();
+    my_pow();
     return 0;
 }

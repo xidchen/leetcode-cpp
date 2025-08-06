@@ -1021,3 +1021,21 @@ auto Leetcode::group_anagrams(const std::vector<std::string>& strs) -> std::vect
     }
     return res;
 }
+
+// 50: /problems/powx-n/
+auto Leetcode::my_pow(double x, int n) -> double {
+    if (n == 0) return 1;
+    double base = x;
+    long long exp = n;
+    if (exp < 0) {
+        base = 1 / base;
+        exp = -exp;
+    }
+    double res = 1;
+    while (exp > 0) {
+        if (exp & 1) res *= base;
+        base *= base;
+        exp >>= 1;
+    }
+    return res;
+}

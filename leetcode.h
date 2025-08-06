@@ -164,6 +164,9 @@ public:
     // 49: /problems/group-anagrams/
     static auto group_anagrams(const std::vector<std::string> &strs) -> std::vector<std::vector<std::string>>;
 
+    // 50: /problems/powx-n/
+    static auto my_pow(double x, int n) -> double;
+
 private:
     // 23: /problems/merge-k-sorted-lists/
     struct Compare {
