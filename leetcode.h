@@ -167,6 +167,9 @@ public:
     // 50: /problems/powx-n/
     static auto my_pow(double x, int n) -> double;
 
+    // 51: /problems/n-queens/
+    static auto solve_n_queens(int n) -> std::vector<std::vector<std::string>>;
+
 private:
     // 23: /problems/merge-k-sorted-lists/
     struct Compare {

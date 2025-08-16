@@ -1039,3 +1039,30 @@ auto Leetcode::my_pow(double x, int n) -> double {
     }
     return res;
 }
+
+// 51: /problems/n-queens/
+auto Leetcode::solve_n_queens(const int n) -> std::vector<std::vector<std::string>> {
+    std::vector<std::vector<std::string>> res;
+    std::vector queens(n, -1);
+    std::function<void(int, int, int, int)> backtrack =
+        [&](const int row, const int cols, const int diag1, const int diag2) {
+        if (row == n) {
+            std::vector board(n, std::string(n, '.'));
+            for (int i = 0; i < n; ++i) {
+                board[i][queens[i]] = 'Q';
+            }
+            res.push_back(std::move(board));
+            return;
+        }
+        int available = ((1 << n) - 1) & ~(cols | diag1 | diag2);
+        while (available) {
+            const int pos = available & -available;
+            available ^= pos;
+            const int col = __builtin_ctz(pos);
+            queens[row] = col;
+            backtrack(row + 1, cols | pos, (diag1 | pos) << 1, (diag2 | pos) >> 1);
+        }
+    };
+    backtrack(0, 0, 0, 0);
+    return res;
+}
