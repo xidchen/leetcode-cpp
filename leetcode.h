@@ -165,7 +165,7 @@ public:
     static auto group_anagrams(const std::vector<std::string> &strs) -> std::vector<std::vector<std::string>>;
 
     // 50: /problems/powx-n/
-    static auto my_pow(double x, int n) -> double;
+    static auto my_pow(double base_value, int exponent) -> double;
 
     // 51: /problems/n-queens/
     static auto solve_n_queens(int n) -> std::vector<std::vector<std::string>>;
