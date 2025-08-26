@@ -1076,7 +1076,7 @@ auto Leetcode::total_n_queens(const int n) -> int {
             count++;
             return;
         }
-        int available = ((1 << n) - 1) & ~(cols | diag1 | diag2);
+        int available = (1 << n) - 1 & ~(cols | diag1 | diag2);
         while (available) {
             const int pos = available & -available;
             available ^= pos;
