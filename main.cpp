@@ -554,7 +554,7 @@ void my_pow() {
 void solve_n_queens() {
     constexpr int n = 4;
     const std::vector<std::vector<std::string>> res = Leetcode::solve_n_queens(n);
-    std::cout << "N-queens: [";
+    std::cout << "Solve " << n << "-Queens: [";
     for (size_t i = 0; i < res.size(); ++i) {
         std::cout << "[";
         for (size_t j = 0; j < res[i].size(); ++j) {
@@ -565,6 +565,13 @@ void solve_n_queens() {
         if (i < res.size() - 1) std::cout << ", ";
     }
     std::cout << "]" << std::endl;
+}
+
+// 52: /problems/n-queens-ii/
+void total_n_queens() {
+    constexpr int n = 4;
+    const int res = Leetcode::total_n_queens(n);
+    std::cout << "Total " << n << "-Queens: " << res << std::endl;
 }
 
 auto main() -> int {
@@ -618,5 +625,6 @@ auto main() -> int {
     group_anagrams();
     my_pow();
     solve_n_queens();
+    total_n_queens();
     return 0;
 }

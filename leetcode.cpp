@@ -1066,3 +1066,23 @@ auto Leetcode::solve_n_queens(const int n) -> std::vector<std::vector<std::strin
     backtrack(0, 0, 0, 0);
     return res;
 }
+
+// 52: /problems/n-queens-ii/
+auto Leetcode::total_n_queens(const int n) -> int {
+    int count = 0;
+    std::function<void(int, int, int, int)> backtrack =
+        [&](const int row, const int cols, const int diag1, const int diag2) {
+        if (row == n) {
+            count++;
+            return;
+        }
+        int available = ((1 << n) - 1) & ~(cols | diag1 | diag2);
+        while (available) {
+            const int pos = available & -available;
+            available ^= pos;
+            backtrack(row + 1, cols | pos, (diag1 | pos) << 1, (diag2 | pos) >> 1);
+        }
+    };
+    backtrack(0, 0, 0, 0);
+    return count;
+}

@@ -170,6 +170,9 @@ public:
     // 51: /problems/n-queens/
     static auto solve_n_queens(int n) -> std::vector<std::vector<std::string>>;
 
+    // 52: /problems/n-queens-ii/
+    static auto total_n_queens(int n) -> int;
+
 private:
     // 23: /problems/merge-k-sorted-lists/
     struct Compare {
