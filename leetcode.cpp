@@ -1086,3 +1086,14 @@ auto Leetcode::total_n_queens(const int n) -> int {
     backtrack(0, 0, 0, 0);
     return count;
 }
+
+// 53: /problems/maximum-subarray/
+auto Leetcode::max_sub_array(const std::vector<int>& nums) -> int {
+    int current_max = nums[0], global_max = nums[0];
+    for (int i = 1; i < static_cast<int>(nums.size()); ++i) {
+        if (current_max > 0) current_max += nums[i];
+        else current_max = nums[i];
+        if (current_max > global_max) global_max = current_max;
+    }
+    return global_max;
+}

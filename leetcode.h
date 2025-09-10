@@ -173,6 +173,9 @@ public:
     // 52: /problems/n-queens-ii/
     static auto total_n_queens(int n) -> int;
 
+    // 53: /problems/maximum-subarray/
+    static auto max_sub_array(const std::vector<int>& nums) -> int;
+
 private:
     // 23: /problems/merge-k-sorted-lists/
     struct Compare {

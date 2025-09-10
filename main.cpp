@@ -574,6 +574,13 @@ void total_n_queens() {
     std::cout << "Total " << n << "-Queens: " << res << std::endl;
 }
 
+// 53: /problems/maximum-subarray/
+void max_sub_array() {
+    const std::vector nums = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
+    const int res = Leetcode::max_sub_array(nums);
+    std::cout << "Maximum subarray: " << res << std::endl;
+}
+
 auto main() -> int {
     two_sum();
     add_two_numbers();
@@ -626,5 +633,6 @@ auto main() -> int {
     my_pow();
     solve_n_queens();
     total_n_queens();
+    max_sub_array();
     return 0;
 }
