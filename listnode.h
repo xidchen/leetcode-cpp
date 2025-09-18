@@ -6,7 +6,7 @@
 struct ListNode {
     int val;
     std::shared_ptr<ListNode> next;
-    explicit ListNode(int x): val(x), next(nullptr) {}
+    explicit ListNode(const int x): val(x), next(nullptr) {}
 };
 
 #endif

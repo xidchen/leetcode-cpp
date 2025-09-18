@@ -583,7 +583,7 @@ void max_sub_array() {
 
 // 54: /problems/spiral-matrix/
 void spiral_order() {
-    std::vector<std::vector<int>> matrix = {
+    const std::vector<std::vector<int>> matrix = {
         {1, 2, 3},
         {4, 5, 6},
         {7, 8, 9},

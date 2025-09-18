@@ -177,7 +177,7 @@ public:
     static auto max_sub_array(const std::vector<int>& nums) -> int;
 
     // 54: /problems/spiral-matrix/
-    static auto spiral_order(std::vector<std::vector<int>>& matrix) -> std::vector<int>;
+    static auto spiral_order(const std::vector<std::vector<int>>& matrix) -> std::vector<int>;
 
 private:
     // 23: /problems/merge-k-sorted-lists/
