@@ -1097,3 +1097,26 @@ auto Leetcode::max_sub_array(const std::vector<int>& nums) -> int {
     }
     return global_max;
 }
+
+// 54: /problems/spiral-matrix/
+auto Leetcode::spiral_order(std::vector<std::vector<int>>& matrix) -> std::vector<int> {
+    if (matrix.empty() || matrix[0].empty()) return {};
+    std::vector<int> res;
+    std::vector<std::vector<int>> mat = matrix;
+    while (!mat.empty()) {
+        res.insert(res.end(), mat[0].begin(), mat[0].end());
+        mat.erase(mat.begin());
+        if (!mat.empty() && !mat[0].empty()) {
+            int rows = static_cast<int>(mat.size());
+            int cols = static_cast<int>(mat[0].size());
+            std::vector<std::vector<int>> rotated(cols, std::vector<int>(rows));
+            for (int i = 0; i < rows; ++i) {
+                for (int j = 0; j < cols; ++j) {
+                    rotated[cols - j - 1][i] = mat[i][j];
+                }
+            }
+            mat = std::move(rotated);
+        }
+    }
+    return res;
+}

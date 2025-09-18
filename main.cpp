@@ -581,6 +581,22 @@ void max_sub_array() {
     std::cout << "Maximum subarray: " << res << std::endl;
 }
 
+// 54: /problems/spiral-matrix/
+void spiral_order() {
+    std::vector<std::vector<int>> matrix = {
+        {1, 2, 3},
+        {4, 5, 6},
+        {7, 8, 9},
+    };
+    const std::vector<int> res = Leetcode::spiral_order(matrix);
+    std::cout << "Spiral matrix: [";
+    for (size_t i = 0; i < res.size(); ++i) {
+        std::cout << res[i];
+        if (i < res.size() - 1) std::cout << ", ";
+    }
+    std::cout << "]" << std::endl;
+}
+
 auto main() -> int {
     two_sum();
     add_two_numbers();
@@ -634,5 +650,6 @@ auto main() -> int {
     solve_n_queens();
     total_n_queens();
     max_sub_array();
+    spiral_order();
     return 0;
 }
