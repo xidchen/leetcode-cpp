@@ -179,6 +179,9 @@ public:
     // 54: /problems/spiral-matrix/
     static auto spiral_order(const std::vector<std::vector<int>>& matrix) -> std::vector<int>;
 
+    // 55: /problems/jump-game/
+    static auto can_jump(const std::vector<int>& nums) -> bool;
+
 private:
     // 23: /problems/merge-k-sorted-lists/
     struct Compare {

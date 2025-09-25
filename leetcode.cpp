@@ -1120,3 +1120,13 @@ auto Leetcode::spiral_order(const std::vector<std::vector<int>>& matrix) -> std:
     }
     return res;
 }
+
+// 55: /problems/jump-game/
+auto Leetcode::can_jump(const std::vector<int>& nums) -> bool {
+    int max_reach = 0;
+    for (int i = 0; i < static_cast<int>(nums.size()); ++i) {
+        if (i > max_reach) return false;
+        max_reach = std::max(max_reach, i + nums[i]);
+    }
+    return true;
+}

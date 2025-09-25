@@ -597,6 +597,13 @@ void spiral_order() {
     std::cout << "]" << std::endl;
 }
 
+// 55: /problems/jump-game/
+void can_jump() {
+    const std::vector nums = {3, 2, 1, 0, 4};
+    const bool res = Leetcode::can_jump(nums);
+    std::cout << "Jump game: " << std::boolalpha << res << std::endl;
+}
+
 auto main() -> int {
     two_sum();
     add_two_numbers();
@@ -651,5 +658,6 @@ auto main() -> int {
     total_n_queens();
     max_sub_array();
     spiral_order();
+    can_jump();
     return 0;
 }
