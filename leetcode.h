@@ -182,6 +182,9 @@ public:
     // 55: /problems/jump-game/
     static auto can_jump(const std::vector<int>& nums) -> bool;
 
+    // 56: /problems/merge-intervals/
+    static auto merge_intervals(const std::vector<std::vector<int>>& intervals) -> std::vector<std::vector<int>>;
+
 private:
     // 23: /problems/merge-k-sorted-lists/
     struct Compare {

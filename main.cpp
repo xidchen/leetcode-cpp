@@ -604,6 +604,28 @@ void can_jump() {
     std::cout << "Jump game: " << std::boolalpha << res << std::endl;
 }
 
+// 56: /problems/merge-intervals/
+void merge_intervals() {
+    const std::vector<std::vector<int>> intervals = {
+        {1, 3},
+        {8, 10},
+        {2, 6},
+        {15, 18},
+    };
+    const std::vector<std::vector<int>> res = Leetcode::merge_intervals(intervals);
+    std::cout << "Merge intervals: [";
+    for (size_t i = 0; i < res.size(); ++i) {
+        std::cout << "[";
+        for (size_t j = 0; j < res[i].size(); ++j) {
+            std::cout << res[i][j];
+            if (j < res[i].size() - 1) std::cout << ", ";
+        }
+        std::cout << "]";
+        if (i < res.size() - 1) std::cout << ", ";
+    }
+    std::cout << "]" << std::endl;
+}
+
 auto main() -> int {
     two_sum();
     add_two_numbers();
@@ -659,5 +681,6 @@ auto main() -> int {
     max_sub_array();
     spiral_order();
     can_jump();
+    merge_intervals();
     return 0;
 }

@@ -1130,3 +1130,26 @@ auto Leetcode::can_jump(const std::vector<int>& nums) -> bool {
     }
     return true;
 }
+
+// 56: /problems/merge-intervals/
+auto Leetcode::merge_intervals(const std::vector<std::vector<int>>& intervals) -> std::vector<std::vector<int>> {
+    auto sorted_intervals = intervals;
+    std::sort(
+        sorted_intervals.begin(),
+        sorted_intervals.end(),
+        [](const auto &a, const auto &b) { return a[0] < b[0]; }
+    );
+    std::vector<std::vector<int>> merged;
+    merged.reserve(sorted_intervals.size());
+    merged.push_back(sorted_intervals[0]);
+    for (int i = 1; i < static_cast<int>(sorted_intervals.size()); ++i) {
+        if (sorted_intervals[i][0] <= merged.back()[1]) {
+            if (merged.back()[1] < sorted_intervals[i][1]) {
+                merged.back()[1] = sorted_intervals[i][1];
+            }
+        } else {
+            merged.push_back(sorted_intervals[i]);
+        }
+    }
+    return merged;
+}
