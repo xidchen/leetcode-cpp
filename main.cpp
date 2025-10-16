@@ -626,6 +626,30 @@ void merge_intervals() {
     std::cout << "]" << std::endl;
 }
 
+// 57: /problems/insert-interval/
+void insert_interval() {
+    const std::vector<std::vector<int>> intervals = {
+        {1, 2},
+        {3, 5},
+        {6, 7},
+        {8, 10},
+        {12, 16},
+    };
+    std::vector new_interval = {4, 8};
+    const std::vector<std::vector<int>> res = Leetcode::insert_interval(intervals, new_interval);
+    std::cout << "Insert interval: [";
+    for (size_t i = 0; i < res.size(); ++i) {
+        std::cout << "[";
+        for (size_t j = 0; j < res[i].size(); ++j) {
+            std::cout << res[i][j];
+            if (j < res[i].size() - 1) std::cout << ", ";
+        }
+        std::cout << "]";
+        if (i < res.size() - 1) std::cout << ", ";
+    }
+    std::cout << "]" << std::endl;
+}
+
 auto main() -> int {
     two_sum();
     add_two_numbers();
@@ -682,5 +706,6 @@ auto main() -> int {
     spiral_order();
     can_jump();
     merge_intervals();
+    insert_interval();
     return 0;
 }

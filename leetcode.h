@@ -185,6 +185,9 @@ public:
     // 56: /problems/merge-intervals/
     static auto merge_intervals(const std::vector<std::vector<int>>& intervals) -> std::vector<std::vector<int>>;
 
+    // 57: /problems/insert-interval/
+    static auto insert_interval(const std::vector<std::vector<int>>& intervals, std::vector<int>& new_interval) -> std::vector<std::vector<int>>;
+
 private:
     // 23: /problems/merge-k-sorted-lists/
     struct Compare {

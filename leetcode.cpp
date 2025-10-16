@@ -1153,3 +1153,23 @@ auto Leetcode::merge_intervals(const std::vector<std::vector<int>>& intervals) -
     }
     return merged;
 }
+
+// 57: /problems/insert-interval/
+auto Leetcode::insert_interval(const std::vector<std::vector<int>>& intervals, std::vector<int>& new_interval) -> std::vector<std::vector<int>> {
+    std::vector<std::vector<int>> res;
+    int i = 0;
+    const int n = static_cast<int>(intervals.size());
+    while (i < n && intervals[i][1] < new_interval[0]) {
+        res.push_back(intervals[i++]);
+    }
+    while (i < n && intervals[i][0] <= new_interval[1]) {
+        new_interval[0] = std::min(new_interval[0], intervals[i][0]);
+        new_interval[1] = std::max(new_interval[1], intervals[i][1]);
+        i++;
+    }
+    res.push_back(new_interval);
+    while (i < n) {
+        res.push_back(intervals[i++]);
+    }
+    return res;
+}
