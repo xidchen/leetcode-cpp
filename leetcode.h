@@ -188,6 +188,9 @@ public:
     // 57: /problems/insert-interval/
     static auto insert_interval(const std::vector<std::vector<int>>& intervals, std::vector<int>& new_interval) -> std::vector<std::vector<int>>;
 
+    // 58: /problems/length-of-last-word/
+    static auto length_of_last_word(const std::string& s) -> int;
+
 private:
     // 23: /problems/merge-k-sorted-lists/
     struct Compare {

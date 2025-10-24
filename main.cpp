@@ -650,6 +650,13 @@ void insert_interval() {
     std::cout << "]" << std::endl;
 }
 
+// 58: /problems/length-of-last-word/
+void length_of_last_word() {
+    const std::string s = "Hello World";
+    const int res = Leetcode::length_of_last_word(s);
+    std::cout << "Length of last word: " << res << std::endl;
+}
+
 auto main() -> int {
     two_sum();
     add_two_numbers();
@@ -707,5 +714,6 @@ auto main() -> int {
     can_jump();
     merge_intervals();
     insert_interval();
+    length_of_last_word();
     return 0;
 }

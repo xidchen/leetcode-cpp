@@ -1173,3 +1173,17 @@ auto Leetcode::insert_interval(const std::vector<std::vector<int>>& intervals, s
     }
     return res;
 }
+
+// 58: /problems/length-of-last-word/
+auto Leetcode::length_of_last_word(const std::string& s) -> int {
+    int res = 0;
+    int i = static_cast<int>(s.length()) - 1;
+    while (i >= 0 && s[i] == ' ') {
+        i--;
+    }
+    while (i >= 0 && s[i] != ' ') {
+        res++;
+        i--;
+    }
+    return res;
+}
