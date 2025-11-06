@@ -1187,3 +1187,33 @@ auto Leetcode::length_of_last_word(const std::string& s) -> int {
     }
     return res;
 }
+
+// 59: /problems/spiral-matrix-ii/
+auto Leetcode::generate_matrix(const int n) -> std::vector<std::vector<int>> {
+    std::vector res(n, std::vector(n, 0));
+    int top = 0, bottom = n - 1, left = 0, right = n - 1;
+    int num = 1;
+    while (top <= bottom && left <= right) {
+        for (int i = left; i <= right; ++i) {
+            res[top][i] = num++;
+        }
+        top++;
+        for (int i = top; i <= bottom; ++i) {
+            res[i][right] = num++;
+        }
+        right--;
+        if (top <= bottom) {
+            for (int i = right; i >= left; --i) {
+                res[bottom][i] = num++;
+            }
+            bottom--;
+        }
+        if (left <= right) {
+            for (int i = bottom; i >= top; --i) {
+                res[i][left] = num++;
+            }
+            left++;
+        }
+    }
+    return res;
+}

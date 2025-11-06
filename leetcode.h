@@ -191,6 +191,9 @@ public:
     // 58: /problems/length-of-last-word/
     static auto length_of_last_word(const std::string& s) -> int;
 
+    // 59: /problems/spiral-matrix-ii/
+    static auto generate_matrix(int n) -> std::vector<std::vector<int>>;
+
 private:
     // 23: /problems/merge-k-sorted-lists/
     struct Compare {

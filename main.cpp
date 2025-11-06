@@ -657,6 +657,23 @@ void length_of_last_word() {
     std::cout << "Length of last word: " << res << std::endl;
 }
 
+// 59: /problems/spiral-matrix-ii/
+void generate_matrix() {
+    constexpr int n = 3;
+    const std::vector<std::vector<int>> res = Leetcode::generate_matrix(n);
+    std::cout << "Spiral matrix II: [";
+    for (size_t i = 0; i < res.size(); ++i) {
+        std::cout << "[";
+        for (size_t j = 0; j < res[i].size(); ++j) {
+            std::cout << res[i][j];
+            if (j < res[i].size() - 1) std::cout << ", ";
+        }
+        std::cout << "]";
+        if (i < res.size() - 1) std::cout << ", ";
+    }
+    std::cout << "]" << std::endl;
+}
+
 auto main() -> int {
     two_sum();
     add_two_numbers();
@@ -715,5 +732,6 @@ auto main() -> int {
     merge_intervals();
     insert_interval();
     length_of_last_word();
+    generate_matrix();
     return 0;
 }
