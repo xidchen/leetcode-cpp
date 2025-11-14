@@ -1217,3 +1217,23 @@ auto Leetcode::generate_matrix(const int n) -> std::vector<std::vector<int>> {
     }
     return res;
 }
+
+// 60: /problems/permutation-sequence/
+auto Leetcode::get_permutation(const int n, const int k) -> std::string {
+    std::vector factorial(n + 1, 1);
+    for (int i = 1; i <= n; ++i) factorial[i] = factorial[i - 1] * i;
+    std::vector<int> nums;
+    nums.reserve(n);
+    for (int i = 1; i <= n; ++i) nums.push_back(i);
+    int index = k - 1;
+    std::string res;
+    res.reserve(n);
+    for (int i = n; i >= 1; --i) {
+        const int blocksize = factorial[i - 1];
+        const int pos = index / blocksize;
+        index %= blocksize;
+        res.push_back(static_cast<char>('0' + nums[pos]));
+        nums.erase(nums.begin() + pos);
+    }
+    return res;
+}

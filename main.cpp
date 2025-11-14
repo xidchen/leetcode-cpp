@@ -674,6 +674,14 @@ void generate_matrix() {
     std::cout << "]" << std::endl;
 }
 
+// 60: /problems/permutation-sequence/
+void get_permutation() {
+    constexpr int n = 4;
+    constexpr int k = 9;
+    const std::string res = Leetcode::get_permutation(n, k);
+    std::cout << "Permutation sequence: " << res << std::endl;
+}
+
 auto main() -> int {
     two_sum();
     add_two_numbers();
@@ -733,5 +741,6 @@ auto main() -> int {
     insert_interval();
     length_of_last_word();
     generate_matrix();
+    get_permutation();
     return 0;
 }

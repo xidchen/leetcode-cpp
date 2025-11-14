@@ -194,6 +194,9 @@ public:
     // 59: /problems/spiral-matrix-ii/
     static auto generate_matrix(int n) -> std::vector<std::vector<int>>;
 
+    // 60: /problems/permutation-sequence/
+    static auto get_permutation(int n, int k) -> std::string;
+
 private:
     // 23: /problems/merge-k-sorted-lists/
     struct Compare {
