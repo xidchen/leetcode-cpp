@@ -682,6 +682,20 @@ void get_permutation() {
     std::cout << "Permutation sequence: " << res << std::endl;
 }
 
+// 61: /problems/rotate-list/
+void rotate_right() {
+    const std::shared_ptr head = Leetcode::vector_to_linked_list({1,2,3,4,5});
+    constexpr int k = 2;
+    const std::shared_ptr result = Leetcode::rotate_right(head, k);
+    const std::vector<int> res = Leetcode::linked_list_to_vector(result);
+    std::cout << "Rotate right: [";
+    for (size_t i = 0; i < res.size(); ++i) {
+        std::cout << res[i];
+        if (i < res.size() - 1) std::cout << ", ";
+    }
+    std::cout << "]" << std::endl;
+}
+
 auto main() -> int {
     two_sum();
     add_two_numbers();
@@ -742,5 +756,6 @@ auto main() -> int {
     length_of_last_word();
     generate_matrix();
     get_permutation();
+    rotate_right();
     return 0;
 }

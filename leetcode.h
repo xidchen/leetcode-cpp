@@ -197,6 +197,9 @@ public:
     // 60: /problems/permutation-sequence/
     static auto get_permutation(int n, int k) -> std::string;
 
+    // 61: /problems/rotate-list/
+    static auto rotate_right(std::shared_ptr<ListNode> head, int k) -> std::shared_ptr<ListNode>;
+
 private:
     // 23: /problems/merge-k-sorted-lists/
     struct Compare {

@@ -1237,3 +1237,24 @@ auto Leetcode::get_permutation(const int n, const int k) -> std::string {
     }
     return res;
 }
+
+// 61: /problems/rotate-list/
+auto Leetcode::rotate_right(std::shared_ptr<ListNode> head, const int k) -> std::shared_ptr<ListNode> {
+    if (!head || k == 0) return head;
+    int length = 1;
+    std::shared_ptr<ListNode> tail = head;
+    while (tail->next) {
+        tail = tail->next;
+        length++;
+    }
+    const int rotations = k % length;
+    if (rotations == 0) return head;
+    tail->next = head;
+    const int steps_to_new_tail = length - rotations;
+    for (int i = 0; i < steps_to_new_tail; ++i) {
+        tail = tail->next;
+    }
+    std::shared_ptr<ListNode> new_head = tail->next;
+    tail->next = nullptr;
+    return new_head;
+}
