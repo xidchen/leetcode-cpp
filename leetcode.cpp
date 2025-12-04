@@ -1258,3 +1258,14 @@ auto Leetcode::rotate_right(std::shared_ptr<ListNode> head, const int k) -> std:
     tail->next = nullptr;
     return new_head;
 }
+
+// 62: /problems/unique-paths/
+auto Leetcode::unique_paths(const int m, const int n) -> int {
+    const int total_moves = m + n - 2;
+    const int k = std::min(m - 1, n - 1);
+    long long res = 1;
+    for (int i = 0; i < k; ++i) {
+        res = res * (total_moves - i) / (i + 1);
+    }
+    return static_cast<int>(res);
+}

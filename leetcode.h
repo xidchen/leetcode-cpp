@@ -200,6 +200,9 @@ public:
     // 61: /problems/rotate-list/
     static auto rotate_right(std::shared_ptr<ListNode> head, int k) -> std::shared_ptr<ListNode>;
 
+    // 62: /problems/unique-paths/
+    static auto unique_paths(int m, int n) -> int;
+
 private:
     // 23: /problems/merge-k-sorted-lists/
     struct Compare {

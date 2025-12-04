@@ -696,6 +696,14 @@ void rotate_right() {
     std::cout << "]" << std::endl;
 }
 
+// 62: /problems/unique-paths/
+void unique_paths() {
+    constexpr int m = 3;
+    constexpr int n = 7;
+    const int res = Leetcode::unique_paths(m, n);
+    std::cout << "Unique paths: " << res << std::endl;
+}
+
 auto main() -> int {
     two_sum();
     add_two_numbers();
@@ -757,5 +765,6 @@ auto main() -> int {
     generate_matrix();
     get_permutation();
     rotate_right();
+    unique_paths();
     return 0;
 }
