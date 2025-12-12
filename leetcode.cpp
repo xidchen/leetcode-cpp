@@ -1269,3 +1269,19 @@ auto Leetcode::unique_paths(const int m, const int n) -> int {
     }
     return static_cast<int>(res);
 }
+
+// 63: /problems/unique-paths-ii/
+auto Leetcode::unique_paths_with_obstacles(const std::vector<std::vector<int>>& obstacle_grid) -> int {
+    if (obstacle_grid.empty() || obstacle_grid[0].empty()) return 0;
+    const int m = static_cast<int>(obstacle_grid.size());
+    const int n = static_cast<int>(obstacle_grid[0].size());
+    std::vector dp(n, 0);
+    dp[0] = 1;
+    for (int i = 0; i < m; ++i) {
+        for (int j = 0; j < n; ++j) {
+            if (obstacle_grid[i][j] == 1) dp[j] = 0;
+            else if (j > 0) dp[j] += dp[j - 1];
+        }
+    }
+    return dp.back();
+}

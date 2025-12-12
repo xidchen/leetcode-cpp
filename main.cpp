@@ -704,6 +704,17 @@ void unique_paths() {
     std::cout << "Unique paths: " << res << std::endl;
 }
 
+// 63: /problems/unique-paths-ii/
+void unique_paths_with_obstacles() {
+    const std::vector<std::vector<int>> obstacle_grid = {
+        {0,0,0},
+        {0,1,0},
+        {0,0,0},
+    };
+    const int res = Leetcode::unique_paths_with_obstacles(obstacle_grid);
+    std::cout << "Unique paths II: " << res << std::endl;
+}
+
 auto main() -> int {
     two_sum();
     add_two_numbers();
@@ -766,5 +777,6 @@ auto main() -> int {
     get_permutation();
     rotate_right();
     unique_paths();
+    unique_paths_with_obstacles();
     return 0;
 }

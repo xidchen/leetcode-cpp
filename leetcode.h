@@ -203,6 +203,9 @@ public:
     // 62: /problems/unique-paths/
     static auto unique_paths(int m, int n) -> int;
 
+    // 63: /problems/unique-paths-ii/
+    static auto unique_paths_with_obstacles(const std::vector<std::vector<int>>& obstacle_grid) -> int;
+
 private:
     // 23: /problems/merge-k-sorted-lists/
     struct Compare {
