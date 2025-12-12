@@ -842,7 +842,7 @@ auto Leetcode::combination_sum(
 ) -> std::vector<std::vector<int>> {
     std::vector<std::vector<int>> res;
     std::vector<int> path;
-    std::function<void(int, int)> backtrack = [&](const int nxt, const int r) {
+    std::function<void(int, int)> backtrack = [&](const int nxt, const int r) -> void {
         if (r == 0) {
             res.push_back(path);
             return;
@@ -868,7 +868,7 @@ auto Leetcode::combination_sum_2(
     std::vector<int> current;
     std::vector<int> sorted_candidates = candidates;
     std::sort(sorted_candidates.begin(), sorted_candidates.end());
-    std::function<void(int, int)> backtrack = [&](const int start, const int remain) {
+    std::function<void(int, int)> backtrack = [&](const int start, const int remain) -> void {
         if (remain == 0) {
             res.push_back(current);
             return;
@@ -1045,7 +1045,7 @@ auto Leetcode::solve_n_queens(const int n) -> std::vector<std::vector<std::strin
     std::vector<std::vector<std::string>> res;
     std::vector queens(n, -1);
     std::function<void(int, int, int, int)> backtrack =
-        [&](const int row, const int cols, const int diag1, const int diag2) {
+        [&](const int row, const int cols, const int diag1, const int diag2) -> void {
         if (row == n) {
             std::vector board(n, std::string(n, '.'));
             for (int i = 0; i < n; ++i) {
@@ -1071,7 +1071,7 @@ auto Leetcode::solve_n_queens(const int n) -> std::vector<std::vector<std::strin
 auto Leetcode::total_n_queens(const int n) -> int {
     int count = 0;
     std::function<void(int, int, int, int)> backtrack =
-        [&](const int row, const int cols, const int diag1, const int diag2) {
+        [&](const int row, const int cols, const int diag1, const int diag2) -> void {
         if (row == n) {
             count++;
             return;
@@ -1137,7 +1137,7 @@ auto Leetcode::merge_intervals(const std::vector<std::vector<int>>& intervals) -
     std::sort(
         sorted_intervals.begin(),
         sorted_intervals.end(),
-        [](const auto &a, const auto &b) { return a[0] < b[0]; }
+        [](const auto &a, const auto &b) -> auto { return a[0] < b[0]; }
     );
     std::vector<std::vector<int>> merged;
     merged.reserve(sorted_intervals.size());
